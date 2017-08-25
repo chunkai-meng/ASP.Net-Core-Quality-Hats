@@ -66,6 +66,7 @@ namespace ContosoUniversity
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // passing an instance of SchoolContext context to controller
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, SchoolContext context)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
