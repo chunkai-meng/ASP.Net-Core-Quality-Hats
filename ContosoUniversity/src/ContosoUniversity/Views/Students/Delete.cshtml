@@ -6,6 +6,8 @@
 
 <h2>Delete</h2>
 
+<p class="text-danger">@ViewData["ErrorMessage"]</p>
+
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Student</h4>
@@ -31,6 +33,7 @@
         </dd>
     </dl>
     
+	@*The following value "Delete" of attribute asp-action is not a String, rather than a *C# model expression property for the RegisterViewModel.*@
     <form asp-action="Delete">
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
