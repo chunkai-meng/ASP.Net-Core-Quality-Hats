@@ -22,7 +22,9 @@ namespace QualityHat.Models
 			var categorys = new Category[]
 			{
 				// new Hat{Name="Carson",CategoryID=1,Price=11.9, Disc="The first hat", Image="/images/hat1.png"}
-				new Category{Name="Carson"}
+				new Category{Name="Mens"},
+				new Category {Name="WOMENS" },
+				new Category {Name="KIDS" }
 			};
 
 			foreach (Category c in categorys)
@@ -31,21 +33,64 @@ namespace QualityHat.Models
 			}
 			context.SaveChanges();
 
-			//var courses = new Course[]
-			//{
-			//new Course{CourseID=1050,Title="Chemistry",Credits=3},
-			//new Course{CourseID=4022,Title="Microeconomics",Credits=3},
-			//new Course{CourseID=4041,Title="Macroeconomics",Credits=3},
-			//new Course{CourseID=1045,Title="Calculus",Credits=4},
-			//new Course{CourseID=3141,Title="Trigonometry",Credits=4},
-			//new Course{CourseID=2021,Title="Composition",Credits=3},
-			//new Course{CourseID=2042,Title="Literature",Credits=4}
-			//};
-			//foreach (Course c in courses)
-			//{
-			//	context.Courses.Add(c);
-			//}
-			//context.SaveChanges();
+			var suppliers = new Supplier[]
+			{
+				new Supplier{Name="Supplier1 Chemistry",WorkPhone="12334343",Email="sadf2@dsf.com", Address="asdf asdf asdf asdf" },
+				new Supplier{Name="Supplier2 Chemistry",WorkPhone="12334343",Email="sadf2@dsf.com", Address="asdf asdf asdf asdf" },
+				new Supplier{Name="Supplier3 Chemistry",WorkPhone="12334343",Email="sadf2@dsf.com", Address="asdf asdf asdf asdf" },
+			};
+			foreach (Supplier s in suppliers)
+			{
+				context.Suppliers.Add(s);
+			}
+			context.SaveChanges();
+
+			var hats = new Hat[]
+			{
+				// new Hat{Name="Carson",CategoryID=1,Price=11.9, Disc="The first hat", Image="/images/hat1.png"}
+				new Hat { Name="Carson",Price=11.9,Disc="The first hat",Image="/images/hat1.png",CategoryID=1,SupplierID=1 },
+				new Hat { Name="Car1",Price=11.9,Disc="The first hat",Image="/images/hat2.png",CategoryID=2,SupplierID=2 },
+				new Hat { Name="Car2n",Price=11.9,Disc="The first hat",Image="/images/hat3.png",CategoryID=3,SupplierID=3 },
+			};
+			foreach (Hat h in hats)
+			{
+				context.Hats.Add(h);
+			}
+			context.SaveChanges();
+
+			var customers = new Customer[]
+			{
+				new Customer { Name="cust1", MobilePhone="021-11111", HomePhone="2344234", WorkPhone="234286", Email="asdfa@jkjc.com", Address="asdf asd dfs-22", CustomerStatus=CustomerStatus.Active },
+				new Customer { Name="cust2", MobilePhone="021-222222", HomePhone="2344234", WorkPhone="234286", Email="asdfa@jkjc.com", Address="asdf asd dfs-22", CustomerStatus=CustomerStatus.Active },
+				new Customer { Name="cust3", MobilePhone="021-33333", HomePhone="2344234", WorkPhone="234286", Email="asdfa@jkjc.com", Address="asdf asd dfs-22", CustomerStatus=CustomerStatus.Active }
+			};
+			foreach (Customer c in customers)
+			{
+				context.Customers.Add(c);
+			}
+			context.SaveChanges();
+
+			var orders = new Order[]
+			{
+				new Order { CustomerID=1, OrderStatus=OrderStatus.InCart, Subtotal=23.5, GST=3.2, GrandTotal=23 }
+			};
+			foreach (Order o in orders)
+			{
+				context.Orders.Add(o);
+			}
+			context.SaveChanges();
+
+			var orderItems = new OrderItem[]
+			{
+				new OrderItem { HatID=1, OrderID=1, Quantity=1 },
+				new OrderItem { HatID=2, OrderID=1, Quantity=2 },
+			};
+			foreach(OrderItem oi in orderItems)
+			{
+				context.OrderItems.Add(oi);
+			}
+			context.SaveChanges();
+
 
 			//var enrollments = new Enrollment[]
 			//{
