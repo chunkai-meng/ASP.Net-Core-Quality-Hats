@@ -33,7 +33,10 @@ namespace QualityHat.Controllers
                 return NotFound();
             }
 
-            var supplier = await _context.Suppliers.SingleOrDefaultAsync(m => m.SupplierID == id);
+            var supplier = await _context.Suppliers
+				.Include(h => h.Hats)
+				.AsNoTracking()
+				.SingleOrDefaultAsync(m => m.SupplierID == id);
             if (supplier == null)
             {
                 return NotFound();
@@ -55,13 +58,23 @@ namespace QualityHat.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("SupplierID,Address,Email,Name,WorkPhone")] Supplier supplier)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(supplier);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(supplier);
+			try
+			{
+				if (ModelState.IsValid)
+				{
+					_context.Add(supplier);
+					await _context.SaveChangesAsync();
+					return RedirectToAction("Index");
+				}
+			}
+			catch (DbUpdateException /* ex */)
+			{
+				//Log the error (uncomment ex variable name and write a log.
+				ModelState.AddModelError("", "Unable to save changes. " +
+					"Try again, and if the problem persists " +
+					"see your system administrator.");
+			}
+			return View(supplier);
         }
 
         // GET: Suppliers/Edit/5

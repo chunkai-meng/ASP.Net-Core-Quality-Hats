@@ -35,6 +35,32 @@
             @Html.DisplayFor(model => model.WorkPhone)
         </dd>
     </dl>
+
+	<dt>
+		@Html.DisplayNameFor(model => model.Hats)
+	</dt>
+	<dd>
+		<table class="table">
+			<tr>
+				<th>Course Title</th>
+				<th>Grade</th>
+			</tr>
+			@foreach (var item in Model.Hats)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Price)
+					</td>
+				</tr>
+			}
+		</table>
+	</dd>
+
+
+
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.SupplierID">Edit</a> |
