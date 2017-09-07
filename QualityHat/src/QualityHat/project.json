@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-QualityHat-dfac14fd-85e8-4f7d-8de0-26b3f3c5d828",
 
   "dependencies": {
@@ -41,10 +41,11 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc":  {
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0"
   },
 
   "tools": {

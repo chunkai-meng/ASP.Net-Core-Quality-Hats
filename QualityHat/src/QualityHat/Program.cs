@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using QualityHat.Data;
+using Microsoft.Extensions.Logging;
 
 namespace QualityHat
 {
-    public class Program
+	public class Program
     {
         public static void Main(string[] args)
         {
@@ -18,7 +18,7 @@ namespace QualityHat
                 .UseStartup<Startup>()
                 .Build();
 
-            host.Run();
+			host.Run();
         }
     }
 }
