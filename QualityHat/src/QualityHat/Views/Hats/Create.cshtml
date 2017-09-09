@@ -1,91 +1,90 @@
 @model QualityHat.Models.Hat
 
 @{
-    ViewData["Title"] = "Create";
+	ViewData["Title"] = "Create";
 }
 
 <h2>Create</h2>
 
-<form asp-action="Create">
-    <div class="form-horizontal">
-        <h4>Hat</h4>
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="CategoryID" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="CategoryID" class ="form-control" asp-items="ViewBag.CategoryID"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Disc" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Disc" class="form-control" />
-                <span asp-validation-for="Disc" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Image" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Name" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Price" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="SupplierID" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="SupplierID" class ="form-control" asp-items="ViewBag.SupplierID"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-</form>
 
 
-//
-<h1>Upload Files</h1>
-<div class="row">
-	<section>
-		<form method="post" enctype="multipart/form-data"
-			  asp-controller="UploadFiles" asp-action="Index">
-			<div class="form-group">
-				<div class="col-md-10">
-					<p>Upload one or more files using this form:</p>
-					<input type="file" name="file" />
-				</div>
+<div class="form-horizontal">
+	<h4>Hat</h4>
+	<hr />
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+	<form method="post" enctype="multipart/form-data"
+		  asp-controller="Hats" asp-action="UploadFile">
+		<div class="form-group">
+			<label class="col-md-2 control-label">Image</label>
+			<div class="col-md-10">
+				<input type="file" class="form-control" name="file" value="@ViewData["Image"]" />
 			</div>
-			<div class="form-group">
-				<div class="col-md-10">
-					<input type="submit" value="Upload" />
-				</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Upload" />
 			</div>
-		</form>
-	</section>
+		</div>
+	</form>
+
+	<form asp-action="Create">
+		<div class="form-group">
+			<label asp-for="CategoryID" class="col-md-2 control-label"></label>
+			<div class="col-md-10">
+				<select asp-for="CategoryID" class="form-control" asp-items="ViewBag.CategoryID"></select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="Disc" class="col-md-2 control-label"></label>
+			<div class="col-md-10">
+				<input asp-for="Disc" class="form-control" />
+				<span asp-validation-for="Disc" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="Image" class="col-md-2 control-label"></label>
+			<div class="col-md-10">
+				<input asp-for="Image" class="form-control" value="@ViewData["Image"]" />
+				<span asp-validation-for="Image" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="Name" class="col-md-2 control-label"></label>
+			<div class="col-md-10">
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="Price" class="col-md-2 control-label"></label>
+			<div class="col-md-10">
+				<input asp-for="Price" class="form-control" />
+				<span asp-validation-for="Price" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="SupplierID" class="col-md-2 control-label"></label>
+			<div class="col-md-10">
+				<select asp-for="SupplierID" class="form-control" asp-items="ViewBag.SupplierID"></select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Create" class="btn btn-default" />
+			</div>
+		</div>
+	</form>
 </div>
+
+
+
 
 
 <div>
-    <a asp-action="Index">Back to List</a>
+	<a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

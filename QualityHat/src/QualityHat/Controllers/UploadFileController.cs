@@ -23,9 +23,13 @@ namespace QualityHat.Controllers
 
 			// full path to file in temp location
 			//var filePath = Path.GetTempFileName();
-			var filePath = "./wwwroot/images/temp1.png";
+			//var filePath = "./wwwroot/images/temp1.png";
+			//var name = file.
+			string filePath = Path.GetTempFileName().Replace(".tmp", ".csv");
+			var myUniqueFileName = $@"{DateTime.Now.Ticks}.png";
+			filePath = "./wwwroot/images/" + myUniqueFileName;
 
-				if (file.Length > 0)
+			if (file.Length > 0)
 				{
 					using (var stream = new FileStream(filePath, FileMode.Create))
 					{

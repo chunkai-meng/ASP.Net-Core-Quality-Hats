@@ -12,11 +12,11 @@
 <table class="table">
     <thead>
         <tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Image)
+			</th>
             <th>
                 @Html.DisplayNameFor(model => model.Disc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -30,11 +30,11 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+			<td>
+				<img src="@Html.DisplayFor(modelItem => item.Image)" width="60" height="60"/>
+			</td>
             <td>
                 @Html.DisplayFor(modelItem => item.Disc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)

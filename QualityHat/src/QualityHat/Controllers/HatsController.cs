@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QualityHat.Data;
 using QualityHat.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace QualityHat.Controllers
 {
@@ -43,11 +45,50 @@ namespace QualityHat.Controllers
             return View(hat);
         }
 
-        // GET: Hats/Create
-        public IActionResult Create()
+
+		[HttpPost]
+		public async Task<IActionResult> UploadFile(IFormFile file)
+		{
+			// full path to file in temp location
+			//var filePath = Path.GetTempFileName();
+			//var filePath = "./wwwroot/images/temp1.png";
+			//string filePath = Path.GetTempFileName().Replace(".tmp", ".csv");
+			string fileFullPath = file.FileName;
+			var fileName = Path.GetFileName(fileFullPath);
+			var fileExtension = Path.GetExtension(fileFullPath);
+
+			//return Ok(new { fileExtension });
+
+			var myUniqueFileName = $@"{DateTime.Now.Ticks}" + fileExtension;
+			var filePath = "./wwwroot/images/hats/" + myUniqueFileName;
+			var imageURL = "/images/hats/" + myUniqueFileName;
+
+			if (file.Length > 0)
+			{
+				using (var stream = new FileStream(filePath, FileMode.Create))
+				{
+					await file.CopyToAsync(stream);
+				}
+			}
+
+			// process uploaded files
+			// Don't rely on or trust the FileName property without validation.
+			return RedirectToAction("Create", "Hats", new { fileName = imageURL });
+		}
+
+
+		// GET: Hats/Create
+		public IActionResult Create(string fileName)
         {
             ViewData["CategoryID"] = new SelectList(_context.Categorys, "CategoryID", "CategoryID");
             ViewData["SupplierID"] = new SelectList(_context.Suppliers, "SupplierID", "SupplierID");
+
+			if (!string.IsNullOrEmpty(fileName))
+			{
+				//return Ok( new { filePath} );
+			}
+				ViewData["Image"] = fileName;
+			//}
             return View();
         }
 
@@ -152,7 +193,11 @@ namespace QualityHat.Controllers
             return RedirectToAction("Index");
         }
 
-        private bool HatExists(int id)
+		
+
+
+
+		private bool HatExists(int id)
         {
             return _context.Hats.Any(e => e.HatID == id);
         }
