@@ -26,26 +26,19 @@
 				<input type="submit" value="Upload" />
 			</div>
 		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				@*<img class="img-thumbnail" src="@ViewData["Image"]" width="60" height="60" />*@
+				<img src="@ViewData["Image"]" width="60" height="60" />
+			</div>
+		</div>
 	</form>
 
 	<form asp-action="Create">
-		<div class="form-group">
-			<label asp-for="CategoryID" class="col-md-2 control-label"></label>
-			<div class="col-md-10">
-				<select asp-for="CategoryID" class="form-control" asp-items="ViewBag.CategoryID"></select>
-			</div>
-		</div>
-		<div class="form-group">
-			<label asp-for="Disc" class="col-md-2 control-label"></label>
-			<div class="col-md-10">
-				<input asp-for="Disc" class="form-control" />
-				<span asp-validation-for="Disc" class="text-danger" />
-			</div>
-		</div>
-		<div class="form-group">
+		<div class="form-group" style="display: none;">
 			<label asp-for="Image" class="col-md-2 control-label"></label>
 			<div class="col-md-10">
-				<input asp-for="Image" class="form-control" value="@ViewData["Image"]" />
+				<input asp-for="Image" class="form-control" value="@ViewData["Image"]" readonly="readonly" />
 				<span asp-validation-for="Image" class="text-danger" />
 			</div>
 		</div>
@@ -57,10 +50,23 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label asp-for="Disc" class="col-md-2 control-label">Discription</label>
+			<div class="col-md-10">
+				<input asp-for="Disc" class="form-control" />
+				<span asp-validation-for="Disc" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
 			<label asp-for="Price" class="col-md-2 control-label"></label>
 			<div class="col-md-10">
 				<input asp-for="Price" class="form-control" />
 				<span asp-validation-for="Price" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="CategoryID" class="col-md-2 control-label"></label>
+			<div class="col-md-10">
+				<select asp-for="CategoryID" class="form-control" asp-items="ViewBag.CategoryID"></select>
 			</div>
 		</div>
 		<div class="form-group">
@@ -71,7 +77,15 @@
 		</div>
 		<div class="form-group">
 			<div class="col-md-offset-2 col-md-10">
-				<input type="submit" value="Create" class="btn btn-default" />
+				@if (ViewData["Image"] != null )
+				{
+					<input type="submit" value="Create" class="btn btn-default" />
+				}
+				else
+				{
+					<input type="submit" value="Create" class="btn btn-default" disabled="disabled" />
+				}
+
 			</div>
 		</div>
 	</form>

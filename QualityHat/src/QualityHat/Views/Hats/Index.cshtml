@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
 			<th>
@@ -31,7 +31,8 @@
 @foreach (var item in Model) {
         <tr>
 			<td>
-				<img src="@Html.DisplayFor(modelItem => item.Image)" width="60" height="60"/>
+				@*<img class="img-thumbnail" src="@Html.DisplayFor(modelItem => item.Image)" width="60" height="60" />*@
+				<img src="@Html.DisplayFor(modelItem => item.Image)" width="60" height="60" />
 			</td>
             <td>
                 @Html.DisplayFor(modelItem => item.Disc)
