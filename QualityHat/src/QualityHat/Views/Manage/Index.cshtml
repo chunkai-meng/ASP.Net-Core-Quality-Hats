@@ -47,6 +47,18 @@
                     <a asp-controller="Manage" asp-action="AddPhoneNumber" class="btn-bracketed">Add</a>
                 }*@
         </dd>
+        <dt>PhoneNumber:</dt>
+        <dd>
+            @if (Model.PhoneNumber != null)
+            {
+            
+            <p>@Model.PhoneNumber</p>
+            }
+            else
+            {
+                <p>No PhoneNumber Provided!</p>
+            }
+        </dd>
 
         <dt>Two-Factor Authentication:</dt>
         <dd>
@@ -67,5 +79,18 @@
                     </form>
                 }*@
         </dd>
+		<dt>Address:</dt>
+		<dd>
+			@if (Model.Address != null)
+			{
+
+				<p>@Model.Address</p>
+			}
+			else
+			{
+				<p>No Address Provided!</p>
+			}
+		</dd>
+
     </dl>
 </div>
