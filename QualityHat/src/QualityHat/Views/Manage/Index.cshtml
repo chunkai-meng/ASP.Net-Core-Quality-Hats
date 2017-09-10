@@ -47,6 +47,18 @@
                     <a asp-controller="Manage" asp-action="AddPhoneNumber" class="btn-bracketed">Add</a>
                 }*@
         </dd>
+         <dt>Customer Name:</dt>
+        <dd>
+            @if (Model.CustomerName != null)
+            {
+            
+            <p>@Model.CustomerName</p>
+            }
+            else
+            {
+                <p>No CustomerName Provided!</p>
+            }
+        </dd>
         <dt>PhoneNumber:</dt>
         <dd>
             @if (Model.PhoneNumber != null)

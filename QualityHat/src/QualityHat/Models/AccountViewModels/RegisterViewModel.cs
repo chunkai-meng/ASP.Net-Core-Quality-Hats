@@ -11,7 +11,7 @@ namespace QualityHat.Models.AccountViewModels
 		[Required]
 		[StringLength(100, ErrorMessage = "The {0} must be at least {1} characters long.", MinimumLength = 4)]
 		[Display(Name = "Name")]
-		public string Name { get; set; }
+		public string CustomerName { get; set; }
 
         [Required]
         [Phone]

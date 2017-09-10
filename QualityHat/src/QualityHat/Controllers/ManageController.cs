@@ -61,7 +61,8 @@ namespace QualityHat.Controllers
                 TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
                 Logins = await _userManager.GetLoginsAsync(user),
                 BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
-				Address = user.Address
+				Address = user.Address,
+                CustomerName = user.CustomerName
 			};
             return View(model);
         }
