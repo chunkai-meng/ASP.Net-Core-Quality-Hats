@@ -38,7 +38,7 @@ To undo this action:
 - Change Index View to show the item you need
 - Add Enable/Disable asp-action link to member view
 - Add relevant method in AdminApplicationUsersController.cs
-
+- 
 
 ## Problems Summary:
 if see `The term 'add-migration' is not recognized as the name of a cmdlet` error.
