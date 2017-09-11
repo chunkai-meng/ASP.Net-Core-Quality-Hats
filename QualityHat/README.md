@@ -38,12 +38,10 @@ To undo this action:
 - Change Index View to show the item you need
 - Add Enable/Disable asp-action link to member view
 - Add relevant method in AdminApplicationUsersController.cs
-
+- Some Change
 
 ## Problems Summary:
 if see `The term 'add-migration' is not recognized as the name of a cmdlet` error.
 - close VS2015 or even restart computer. then open the project should work.
     - Or cmd to /Project Name/src/Project Name/
-    - use `dotnet ef migrations add addAddressToUser -c ApplicationDbContext` 
-
-
+    - use `dotnet ef migrations add addAddressToUser -c ApplicationDbContext`
