@@ -16,7 +16,8 @@ namespace QualityHat.Services
         public Task SendEmailAsync(string email, string subject, string message)
         {
             var mes = new MimeMessage();
-            mes.From.Add(new MailboxAddress("CK", "mengc06@myunitec.ac.nz"));
+            // mes.From.Add(new MailboxAddress("Quality Hats", "mengc06@myunitec.ac.nz"));
+            mes.From.Add(new MailboxAddress("Quality Hats", "chunkai.meng@hotmail.com"));
             mes.To.Add(new MailboxAddress("User", email));
             mes.Subject = subject;
 
@@ -38,7 +39,7 @@ namespace QualityHat.Services
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
 
                 // Note: only needed if the SMTP server requires authentication
-                client.Authenticate("mengc06@myunitec.ac.nz", "qw120p9o");
+                client.Authenticate("chunkai.meng@hotmail.com", "Workin183");
 
                 client.Send(mes);
                 client.Disconnect(true);

@@ -26,7 +26,19 @@ To undo this action:
 - Add Enabled=true to new registered user by default
 - Add Enabled checking in Login action
 - Add Enabled = true for Admin Account by defualt in Startup.cs (Data Seed)
-- Create a new View
+**Show Member**
+- Create a new Controller with View via Scaffolding
+    - Model: ApplicationUser
+    - Data: ApplicationsDbContext
+- Set AdminApplicationUsersController class ot [Authorize(Roles = "Admin")]
+- Add using dependency
+- Add a ReturnAllMembers method to Controller
+- Change Index action to show only members except admin
+- Change _Layout to show Member Link in when Admin login
+- Change Index View to show the item you need
+- Add Enable/Disable asp-action link to member view
+- Add relevant method in AdminApplicationUsersController.cs
+
 
 ## Problems Summary:
 if see `The term 'add-migration' is not recognized as the name of a cmdlet` error.

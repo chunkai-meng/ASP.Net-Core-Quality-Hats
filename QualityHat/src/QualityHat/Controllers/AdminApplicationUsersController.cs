@@ -35,6 +35,24 @@ namespace QualityHat.Controllers
             IEnumerable<ApplicationUser> users = _context.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(role.Id)).ToList();
             return users;
         }
+		public async Task<IActionResult> EnableDisable(string id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+			IEnumerable<ApplicationUser> members = ReturnAllMembers().Result;
+			ApplicationUser member = (ApplicationUser)members.Single(u => u.Id == id);
+			if (member == null)
+			{
+				return NotFound();
+			}
+			member.Enabled = !member.Enabled;
+			_context.Update(member);
+			await _context.SaveChangesAsync();
+			return RedirectToAction("Index");
+		}
+
 
 		// GET: AdminApplicationUsers/Details/5
 		public async Task<IActionResult> Details(string id)
