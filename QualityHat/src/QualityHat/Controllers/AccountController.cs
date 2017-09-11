@@ -62,6 +62,10 @@ namespace QualityHat.Controllers
                 var user = await _userManager.FindByEmailAsync(model.Email);
                 if (user != null)
                 {
+                    if (user.Enabled == false) {
+                        ModelState.AddModelError(string.Empty, "Your Account is Currentyly Disabled, please consult the Administrator.");
+                        return View(model);
+                    }
                     if (!await _userManager.IsEmailConfirmedAsync(user))
                     {
                         ModelState.AddModelError(string.Empty,
@@ -118,7 +122,9 @@ namespace QualityHat.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, CustomerName = model.CustomerName, PhoneNumber = model.PhoneNumber, Email = model.Email, Address = model.Address };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, 
+                CustomerName = model.CustomerName, PhoneNumber = model.PhoneNumber,
+                Address = model.Address, Enabled = true };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

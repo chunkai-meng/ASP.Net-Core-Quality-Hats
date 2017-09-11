@@ -8,5 +8,6 @@ namespace QualityHat.Models
     {
     	public String Address { get; set; }
 		public string CustomerName { get; set; }
+		public bool Enabled { get; set; }
 	}
 }
