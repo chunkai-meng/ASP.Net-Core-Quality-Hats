@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,8 +8,8 @@ namespace QualityHat.Models
 {
 	public enum OrderStatus
 	{
-		InCart, Orderd, Paid, Processing, Delivered
-	} 
+		InCart, Ordered, Paid, Processing, Delivered
+	}
 
     public class Order
     {
@@ -17,8 +18,24 @@ namespace QualityHat.Models
 		public int CustomerID { get; set; }
 		public double Subtotal { get; set; }
 		public double GST { get; set; }
+
+		[DataType(DataType.DateTime)]
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
+		public DateTime OrderedDate { get; set; }
+
+		[DataType(DataType.DateTime)]
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
+		public DateTime PaidDate { get; set; }
+
+		[DataType(DataType.DateTime)]
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
+		public DateTime DeveliverdDate { get; set; }
+
+		[DataType(DataType.Currency)]
 		public double GrandTotal { get; set; }
 
+
+		public Customer Customer { get; set; }
 		public ICollection<OrderItem> OrderItems { get; set; }
     }
 }

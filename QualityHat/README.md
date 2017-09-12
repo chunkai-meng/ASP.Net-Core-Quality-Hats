@@ -1,4 +1,31 @@
-# **THe order of MVC is:**
+# **The Procedure for creating a MVC APP:**
+
+## Customize the Data Model by Using Attributes
+specify formatting, validation, and database mapping rules.
+
+The `DataType` attribute
+The `StringLength` attribute
+The `Column` attribute
+The Table attribute
+The Required attribute
+The Key attribute specific to a one-to-zero-or-one relationship
+```
+[Display(Name = "Last Name")] [
+StringLength(50, MinimumLength=1)]
+public string LastName { get; set; }
+```
+
+
+After Change Data Model
+```
+dotnet ef migrations add decimalPrice -c ShopContext
+dotnet ef database update -c ShopContext
+
+dotnet ef migrations add decimalPrice -c ApplicationDbContext
+dotnet ef database update -c ApplicationDbContext
+```
+
+##
 1. Add a model
 2. Modify the action method in the controller
 3. add a view
@@ -38,7 +65,7 @@ To undo this action:
 - Change Index View to show the item you need
 - Add Enable/Disable asp-action link to member view
 - Add relevant method in AdminApplicationUsersController.cs
-- 
+-
 
 ## Problems Summary:
 if see `The term 'add-migration' is not recognized as the name of a cmdlet` error.
