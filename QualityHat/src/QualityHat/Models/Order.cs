@@ -20,16 +20,16 @@ namespace QualityHat.Models
 		public double GST { get; set; }
 
 		[DataType(DataType.DateTime)]
-		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
-		public DateTime OrderedDate { get; set; }
+		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]
+		public DateTime? OrderedDate { get; set; }
 
 		[DataType(DataType.DateTime)]
-		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
-		public DateTime PaidDate { get; set; }
+		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]
+		public DateTime? PaidDate { get; set; }
 
 		[DataType(DataType.DateTime)]
-		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
-		public DateTime DeveliverdDate { get; set; }
+		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]
+		public DateTime? DeveliverdDate { get; set; }
 
 		[DataType(DataType.Currency)]
 		public double GrandTotal { get; set; }

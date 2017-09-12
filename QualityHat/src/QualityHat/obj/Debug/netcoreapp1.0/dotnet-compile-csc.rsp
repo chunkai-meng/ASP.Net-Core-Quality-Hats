@@ -267,6 +267,8 @@
 "Z:\WebApp\QualityHat\src\QualityHat\Migrations\20170912052725_orderTimeFormat.Designer.cs"
 "Z:\WebApp\QualityHat\src\QualityHat\Migrations\20170912061509_orderall.cs"
 "Z:\WebApp\QualityHat\src\QualityHat\Migrations\20170912061509_orderall.Designer.cs"
+"Z:\WebApp\QualityHat\src\QualityHat\Migrations\20170912080453_dateTimeFormat.cs"
+"Z:\WebApp\QualityHat\src\QualityHat\Migrations\20170912080453_dateTimeFormat.Designer.cs"
 "Z:\WebApp\QualityHat\src\QualityHat\Migrations\ShopContextModelSnapshot.cs"
 "Z:\WebApp\QualityHat\src\QualityHat\Models\ApplicationUser.cs"
 "Z:\WebApp\QualityHat\src\QualityHat\Models\Category.cs"
