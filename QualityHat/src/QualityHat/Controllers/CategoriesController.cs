@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QualityHat.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace QualityHat.Models
 {
-    public class CategoriesController : Controller
+	[Authorize(Roles = "Admin")]
+	public class CategoriesController : Controller
     {
         private readonly ShopContext _context;
 

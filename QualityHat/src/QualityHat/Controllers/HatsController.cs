@@ -9,10 +9,12 @@ using QualityHat.Data;
 using QualityHat.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace QualityHat.Controllers
 {
-    public class HatsController : Controller
+	[Authorize(Roles = "Admin")]
+	public class HatsController : Controller
     {
         private readonly ShopContext _context;
 

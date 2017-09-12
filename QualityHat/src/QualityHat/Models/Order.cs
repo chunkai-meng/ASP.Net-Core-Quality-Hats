@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using QualityHat.Models.AccountViewModels;
 
 namespace QualityHat.Models
 {
@@ -16,20 +15,21 @@ namespace QualityHat.Models
 		public int OrderID { get; set; }
 		public OrderStatus OrderStatus { get; set; }
 		public int CustomerID { get; set; }
+		//public int AccountID { get; set; }
 		public double Subtotal { get; set; }
 		public double GST { get; set; }
 
 		[DataType(DataType.DateTime)]
-		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]
-		public DateTime? OrderedDate { get; set; }
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
+		public DateTime OrderedDate { get; set; }
 
 		[DataType(DataType.DateTime)]
-		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]
-		public DateTime? PaidDate { get; set; }
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
+		public DateTime PaidDate { get; set; }
 
 		[DataType(DataType.DateTime)]
-		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]
-		public DateTime? DeveliverdDate { get; set; }
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
+		public DateTime DeveliverdDate { get; set; }
 
 		[DataType(DataType.Currency)]
 		public double GrandTotal { get; set; }
