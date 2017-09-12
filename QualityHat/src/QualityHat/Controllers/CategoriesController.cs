@@ -31,7 +31,10 @@ namespace QualityHat.Models
                 return NotFound();
             }
 
-            var category = await _context.Categorys.SingleOrDefaultAsync(m => m.CategoryID == id);
+            // var category = await _context.Categorys.SingleOrDefaultAsync(m => m.CategoryID == id);
+
+            var category = await _context.Categorys.Include(h => h.Hats).AsNoTracking().SingleOrDefaultAsync(m => m.CategoryID == id);
+            
             if (category == null)
             {
                 return NotFound();

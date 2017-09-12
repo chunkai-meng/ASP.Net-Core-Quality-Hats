@@ -46,6 +46,7 @@
 				<th>Name</th>
                 <th>Price</th>
 				<th>Discription</th>
+                <!-- <th>Category</th> -->
 			</tr>
 			@foreach (var item in Model.Hats)
 			{
@@ -62,6 +63,9 @@
                     <td>
 						@Html.DisplayFor(modelItem => item.Disc)
 					</td>
+                    <!-- <td>
+						@Html.DisplayFor(modelItem => item.Category.Name)
+					</td> -->
 				</tr>
 			}
 		</table>
