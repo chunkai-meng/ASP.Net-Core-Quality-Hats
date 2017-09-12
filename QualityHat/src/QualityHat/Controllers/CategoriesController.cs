@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QualityHat.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -54,7 +51,7 @@ namespace QualityHat.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryID,Name")] Category category)
+        public async Task<IActionResult> Create([Bind("CategoryID,Disc,Name")] Category category)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +83,7 @@ namespace QualityHat.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryID,Name")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryID,Disc,Name")] Category category)
         {
             if (id != category.CategoryID)
             {
