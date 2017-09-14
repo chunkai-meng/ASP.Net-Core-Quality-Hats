@@ -25,6 +25,18 @@ dotnet ef migrations add decimalPrice -c ApplicationDbContext
 dotnet ef database update -c ApplicationDbContext
 ```
 
+## Read relative data to Category & Supplier Controller
+Next ... Create the Instructor controller and views
+•	Many-to-Many Relationships in week4Pratical
+
+
+
+
+
+
+
+
+
 ##
 1. Add a model
 2. Modify the action method in the controller
