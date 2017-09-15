@@ -58,17 +58,17 @@ namespace QualityHat.Models
 			}
 			context.SaveChanges();
 
-			var customers = new Customer[]
-			{
-				new Customer { Name="cust1", MobilePhone="021-11111", HomePhone="2344234", WorkPhone="234286", Email="asdfa@jkjc.com", Address="asdf asd dfs-22", CustomerStatus=CustomerStatus.Active },
-				new Customer { Name="cust2", MobilePhone="021-222222", HomePhone="2344234", WorkPhone="234286", Email="asdfa@jkjc.com", Address="asdf asd dfs-22", CustomerStatus=CustomerStatus.Active },
-				new Customer { Name="cust3", MobilePhone="021-33333", HomePhone="2344234", WorkPhone="234286", Email="asdfa@jkjc.com", Address="asdf asd dfs-22", CustomerStatus=CustomerStatus.Active }
-			};
-			foreach (Customer c in customers)
-			{
-				context.Customers.Add(c);
-			}
-			context.SaveChanges();
+			//var customers = new Customer[]
+			//{
+			//	new Customer { Name="cust1", MobilePhone="021-11111", HomePhone="2344234", WorkPhone="234286", Email="asdfa@jkjc.com", Address="asdf asd dfs-22", CustomerStatus=CustomerStatus.Active },
+			//	new Customer { Name="cust2", MobilePhone="021-222222", HomePhone="2344234", WorkPhone="234286", Email="asdfa@jkjc.com", Address="asdf asd dfs-22", CustomerStatus=CustomerStatus.Active },
+			//	new Customer { Name="cust3", MobilePhone="021-33333", HomePhone="2344234", WorkPhone="234286", Email="asdfa@jkjc.com", Address="asdf asd dfs-22", CustomerStatus=CustomerStatus.Active }
+			//};
+			//foreach (Customer c in customers)
+			//{
+			//	context.Customers.Add(c);
+			//}
+			//context.SaveChanges();
 
 			var orders = new Order[]
 			{

@@ -15,7 +15,7 @@ namespace QualityHat.Data
 		public DbSet<Order> Orders { get; set; }
 		public DbSet<Category> Categorys { get; set; }
 		public DbSet<Supplier> Suppliers { get; set; }
-		public DbSet<Customer> Customers { get; set; }
+		//public DbSet<Customer> Customers { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -24,7 +24,7 @@ namespace QualityHat.Data
 			modelBuilder.Entity<OrderItem>().ToTable("OrderItem");
 			modelBuilder.Entity<Category>().ToTable("Category");
 			modelBuilder.Entity<Supplier>().ToTable("Supplier");
-			modelBuilder.Entity<Customer>().ToTable("Customer");
+			//modelBuilder.Entity<Customer>().ToTable("Customer");
 		}
 	}
 }
