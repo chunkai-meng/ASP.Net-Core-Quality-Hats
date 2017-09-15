@@ -32,7 +32,7 @@ Next ... Create the Instructor controller and views
 
 ## Publish
 When publish to a new Server and DB Svr
-you need to migration and update database first
+you need to update database and you might need to migrations first
 
 
 

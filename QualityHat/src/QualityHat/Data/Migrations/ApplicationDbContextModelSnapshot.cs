@@ -222,52 +222,6 @@ namespace QualityHat.Data.Migrations
                     b.ToTable("Hat");
                 });
 
-            modelBuilder.Entity("QualityHat.Models.Order", b =>
-                {
-                    b.Property<int>("OrderID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CustomerID");
-
-                    b.Property<DateTime>("DeveliverdDate");
-
-                    b.Property<double>("GST");
-
-                    b.Property<double>("GrandTotal");
-
-                    b.Property<int>("OrderStatus");
-
-                    b.Property<DateTime>("OrderedDate");
-
-                    b.Property<DateTime>("PaidDate");
-
-                    b.Property<double>("Subtotal");
-
-                    b.HasKey("OrderID");
-
-                    b.ToTable("Order");
-                });
-
-            modelBuilder.Entity("QualityHat.Models.OrderItem", b =>
-                {
-                    b.Property<int>("OrderItemID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("HatID");
-
-                    b.Property<int>("OrderID");
-
-                    b.Property<int>("Quantity");
-
-                    b.HasKey("OrderItemID");
-
-                    b.HasIndex("HatID");
-
-                    b.HasIndex("OrderID");
-
-                    b.ToTable("OrderItem");
-                });
-
             modelBuilder.Entity("QualityHat.Models.Supplier", b =>
                 {
                     b.Property<int>("SupplierID")
@@ -338,19 +292,6 @@ namespace QualityHat.Data.Migrations
                     b.HasOne("QualityHat.Models.Supplier", "Supplier")
                         .WithMany("Hats")
                         .HasForeignKey("SupplierID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("QualityHat.Models.OrderItem", b =>
-                {
-                    b.HasOne("QualityHat.Models.Hat", "Hat")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("HatID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("QualityHat.Models.Order", "Order")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

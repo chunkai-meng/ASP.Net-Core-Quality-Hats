@@ -13,6 +13,7 @@ namespace QualityHat.Data
 		public DbSet<Hat> Hats { get; set; }
         public DbSet<Category> Categorys { get; set; }
 		public DbSet<Supplier> Suppliers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
