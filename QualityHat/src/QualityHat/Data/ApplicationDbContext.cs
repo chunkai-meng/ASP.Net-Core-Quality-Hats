@@ -13,8 +13,9 @@ namespace QualityHat.Data
 		public DbSet<Hat> Hats { get; set; }
         public DbSet<Category> Categorys { get; set; }
 		public DbSet<Supplier> Suppliers { get; set; }
+		public DbSet<ApplicationUser> ApplicationUser { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+		protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 			// Customize the ASP.NET Identity model and override the defaults if needed.
@@ -24,7 +25,5 @@ namespace QualityHat.Data
 			builder.Entity<Category>().ToTable("Category");
 			builder.Entity<Supplier>().ToTable("Supplier");
 		}
-
-        public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }

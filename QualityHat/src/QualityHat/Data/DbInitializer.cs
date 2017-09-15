@@ -1,4 +1,5 @@
-﻿using QualityHat.Data;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using QualityHat.Data;
 using QualityHat.Models;
 using System;
 using System.Collections.Generic;
@@ -19,14 +20,25 @@ namespace QualityHat.Models
 				return;   // DB has been seeded
 			}
 
+			var applicationUsers = new ApplicationUser[]
+			{
+				new ApplicationUser{UserName="test@me.com", Email="test@me.com", Address="Unitec", EmailConfirmed=true, CustomerName="Test", 
+					PhoneNumber="021-123123", PasswordHash="AQAAAAEAACcQAAAAEGt6T1qkdeJrm1vOCon/mjRZUvMxZVSWL4mrenW0kmrAQDdUY2iZUDW9v7ldY6qAiw==",
+					SecurityStamp="74459115-ad54-45d4-bbfa-2fa5e2ea20e6",Enabled=true}
+			};
+			foreach (ApplicationUser c in applicationUsers)
+			{
+				context.ApplicationUser.Add(c);
+			}
+			context.SaveChanges();
+
+
 			var categorys = new Category[]
 			{
-				// new Hat{Name="Carson",CategoryID=1,Price=11.9, Disc="The first hat", Image="/images/hat1.png"}
 				new Category{Name="Mens"},
 				new Category {Name="WOMENS" },
 				new Category {Name="KIDS" }
 			};
-
 			foreach (Category c in categorys)
 			{
 				context.Categorys.Add(c);
@@ -35,9 +47,9 @@ namespace QualityHat.Models
 
 			var suppliers = new Supplier[]
 			{
-				new Supplier{Name="Supplier1 Chemistry",WorkPhone="12334343",Email="sadf2@dsf.com", Address="asdf asdf asdf asdf" },
-				new Supplier{Name="Supplier2 Chemistry",WorkPhone="12334343",Email="sadf2@dsf.com", Address="asdf asdf asdf asdf" },
-				new Supplier{Name="Supplier3 Chemistry",WorkPhone="12334343",Email="sadf2@dsf.com", Address="asdf asdf asdf asdf" },
+				new Supplier{Name="Adidas",WorkPhone="021-2344222",Email="test@gmail.com", Address="42 Park Road, Auckland" },
+				new Supplier{Name="361",WorkPhone="021-6433888",Email="test2@hotmail.com", Address="2A Princess Road, Auckland"},
+				new Supplier{Name="Nike",WorkPhone="021-8788883",Email="CustomerService@me.com", Address="771 Wanghhari Road, Auckland" },
 			};
 			foreach (Supplier s in suppliers)
 			{
@@ -48,9 +60,9 @@ namespace QualityHat.Models
 			var hats = new Hat[]
 			{
 				// new Hat{Name="Carson",CategoryID=1,Price=11.9, Disc="The first hat", Image="/images/hat1.png"}
-				new Hat { Name="Carson",Price=11.9,Disc="The first hat",Image="/images/hat1.png",CategoryID=1,SupplierID=1 },
-				new Hat { Name="Car1",Price=11.9,Disc="The first hat",Image="/images/hat2.png",CategoryID=2,SupplierID=2 },
-				new Hat { Name="Car2n",Price=11.9,Disc="The first hat",Image="/images/hat3.png",CategoryID=3,SupplierID=3 },
+				new Hat { Name="Good Dog",Price=11.9,Disc="This is a hat's discription",Image="/images/hats/636408330595139931.png",CategoryID=1,SupplierID=1 },
+				new Hat { Name="Cool Hat",Price=11.9,Disc="Here is the hat's discription",Image="/images/hats/636408476761332375.png",CategoryID=2,SupplierID=2 },
+				new Hat { Name="Fans Hat",Price=11.9,Disc="Want to know more about this cool hat? ",Image="/images/hats/636410890049279767.jpg",CategoryID=3,SupplierID=3 },
 			};
 			foreach (Hat h in hats)
 			{
