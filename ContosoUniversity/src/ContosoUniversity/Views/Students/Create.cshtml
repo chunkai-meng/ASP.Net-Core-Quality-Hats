@@ -1,0 +1,81 @@
+@model ContosoUniversity.Models.Student
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@*This block as added to demonstrate how javaScript can be used in ASP.NET Core
+  The control IDs were obtained from the client side, not part of the tutorials
+*@
+@*<script type="text/javascript">
+        function IsInteger(input) {
+            var regEx = /^\+{0,1}\d+\d*$/;
+            return regEx.test(input);
+        }
+
+        function formValidation() {
+            
+            var txtName = document.getElementById('FirstMidName');
+            if (txtName.value.length == 0) {
+                document.getElementById('alert-message').innerHTML = "You must enter the required information for the first name.";
+                return;
+            }
+
+            var txtPhone = document.getElementById('LastName');
+            if (!IsInteger(txtPhone.value)) {
+                document.getElementById('alert-message').innerHTML = "You must enter the required information for the last name.";
+                return;
+            }
+
+            if (txtPhone.value < 10000000 || txtPhone.value > 99999999)            {
+                document.getElementById('alert-message').innerHTML = "The phone number you entered is invalid.";
+                return;
+            }
+        }
+</script>*@
+<h2>Create</h2>
+
+@*onsubmit="formValidation() was added for testing JavaScript only, and removed later*@
+<form asp-action="Create" enctype="multipart/form-data">
+    <div class="form-horizontal">
+        <h4>Student</h4>
+        <hr />
+        @*<div id="alert-message" class="alert-danger"></div><br />*@ @*Added for testing only*@
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="EnrollmentDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="EnrollmentDate" class="form-control" />
+                <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="FirstMidName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="FirstMidName" class="form-control" />
+                <span asp-validation-for="FirstMidName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+        <input type="file" name="_files" id="_files" /> @*Week 6*@
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
