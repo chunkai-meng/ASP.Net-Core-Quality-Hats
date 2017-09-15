@@ -8,9 +8,10 @@ using QualityHat.Data;
 namespace QualityHat.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20170915045325_MoveToAppDbContext1")]
+    partial class MoveToAppDbContext1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")

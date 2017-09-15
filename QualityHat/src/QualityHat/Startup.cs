@@ -61,7 +61,7 @@ namespace QualityHat
             //     .AddEntityFrameworkStores<ApplicationDbContext>()
             //     .AddDefaultTokenProviders();
 
-			services.AddDbContext<ShopContext>(options =>
+			services.AddDbContext<ApplicationDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 			services.AddMvc();
@@ -73,7 +73,7 @@ namespace QualityHat
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, 
-            ShopContext context, IServiceProvider serviceProvider, ApplicationDbContext apContext, UserManager<ApplicationUser> userManager)
+            ApplicationDbContext context, IServiceProvider serviceProvider, ApplicationDbContext apContext, UserManager<ApplicationUser> userManager)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();

@@ -8,9 +8,10 @@ using QualityHat.Data;
 namespace QualityHat.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170915044019_deleteModelCustomerOrderOrderItem")]
+    partial class deleteModelCustomerOrderOrderItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -222,52 +223,6 @@ namespace QualityHat.Data.Migrations
                     b.ToTable("Hat");
                 });
 
-            modelBuilder.Entity("QualityHat.Models.Order", b =>
-                {
-                    b.Property<int>("OrderID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CustomerID");
-
-                    b.Property<DateTime>("DeveliverdDate");
-
-                    b.Property<double>("GST");
-
-                    b.Property<double>("GrandTotal");
-
-                    b.Property<int>("OrderStatus");
-
-                    b.Property<DateTime>("OrderedDate");
-
-                    b.Property<DateTime>("PaidDate");
-
-                    b.Property<double>("Subtotal");
-
-                    b.HasKey("OrderID");
-
-                    b.ToTable("Order");
-                });
-
-            modelBuilder.Entity("QualityHat.Models.OrderItem", b =>
-                {
-                    b.Property<int>("OrderItemID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("HatID");
-
-                    b.Property<int>("OrderID");
-
-                    b.Property<int>("Quantity");
-
-                    b.HasKey("OrderItemID");
-
-                    b.HasIndex("HatID");
-
-                    b.HasIndex("OrderID");
-
-                    b.ToTable("OrderItem");
-                });
-
             modelBuilder.Entity("QualityHat.Models.Supplier", b =>
                 {
                     b.Property<int>("SupplierID")
@@ -338,19 +293,6 @@ namespace QualityHat.Data.Migrations
                     b.HasOne("QualityHat.Models.Supplier", "Supplier")
                         .WithMany("Hats")
                         .HasForeignKey("SupplierID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("QualityHat.Models.OrderItem", b =>
-                {
-                    b.HasOne("QualityHat.Models.Hat", "Hat")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("HatID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("QualityHat.Models.Order", "Order")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

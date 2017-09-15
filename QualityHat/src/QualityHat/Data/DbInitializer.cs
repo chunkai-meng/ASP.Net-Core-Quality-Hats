@@ -9,7 +9,7 @@ namespace QualityHat.Models
 {
     public static class DbInitializer
     {
-		public static void Initialize(ShopContext context)
+		public static void Initialize(ApplicationDbContext context)
 		{
 			context.Database.EnsureCreated();
 
@@ -70,26 +70,26 @@ namespace QualityHat.Models
 			//}
 			//context.SaveChanges();
 
-			var orders = new Order[]
-			{
-				new Order { CustomerID=1, OrderStatus=OrderStatus.InCart, Subtotal=23.5, GST=3.2, GrandTotal=23 }
-			};
-			foreach (Order o in orders)
-			{
-				context.Orders.Add(o);
-			}
-			context.SaveChanges();
+			//var orders = new Order[]
+			//{
+			//	new Order { CustomerID=1, OrderStatus=OrderStatus.InCart, Subtotal=23.5, GST=3.2, GrandTotal=23 }
+			//};
+			//foreach (Order o in orders)
+			//{
+			//	context.Orders.Add(o);
+			//}
+			//context.SaveChanges();
 
-			var orderItems = new OrderItem[]
-			{
-				new OrderItem { HatID=1, OrderID=1, Quantity=1 },
-				new OrderItem { HatID=2, OrderID=1, Quantity=2 },
-			};
-			foreach(OrderItem oi in orderItems)
-			{
-				context.OrderItems.Add(oi);
-			}
-			context.SaveChanges();
+			//var orderItems = new OrderItem[]
+			//{
+			//	new OrderItem { HatID=1, OrderID=1, Quantity=1 },
+			//	new OrderItem { HatID=2, OrderID=1, Quantity=2 },
+			//};
+			//foreach(OrderItem oi in orderItems)
+			//{
+			//	context.OrderItems.Add(oi);
+			//}
+			//context.SaveChanges();
 
 
 			//var enrollments = new Enrollment[]

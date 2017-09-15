@@ -26,6 +26,6 @@ namespace QualityHat.Models
 
 		public Category Category { get; set; }
 		public Supplier Supplier { get; set; }
-		public ICollection<OrderItem> OrderItems { get; set; }
+		//public ICollection<OrderItem> OrderItems { get; set; }
     }
 }
