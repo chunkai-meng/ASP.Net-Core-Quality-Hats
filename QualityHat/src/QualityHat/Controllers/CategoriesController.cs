@@ -10,9 +10,9 @@ namespace QualityHat.Models
 	[Authorize(Roles = "Admin")]
 	public class CategoriesController : Controller
     {
-        private readonly ShopContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public CategoriesController(ShopContext context)
+        public CategoriesController(ApplicationDbContext context)
         {
             _context = context;    
         }

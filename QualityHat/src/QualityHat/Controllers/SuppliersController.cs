@@ -14,9 +14,9 @@ namespace QualityHat.Controllers
 	[Authorize(Roles = "Admin")]
 	public class SuppliersController : Controller
     {
-        private readonly ShopContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public SuppliersController(ShopContext context)
+        public SuppliersController(ApplicationDbContext context)
         {
             _context = context;    
         }

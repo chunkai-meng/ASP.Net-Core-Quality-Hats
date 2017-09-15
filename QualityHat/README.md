@@ -30,7 +30,9 @@ Next ... Create the Instructor controller and views
 •	Many-to-Many Relationships in week4Pratical
 
 
-
+## Publish
+When publish to a new Server and DB Svr
+you need to migration and update database first
 
 
 

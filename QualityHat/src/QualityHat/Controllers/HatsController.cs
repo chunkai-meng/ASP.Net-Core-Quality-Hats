@@ -16,9 +16,9 @@ namespace QualityHat.Controllers
 	[Authorize(Roles = "Admin")]
 	public class HatsController : Controller
     {
-        private readonly ShopContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public HatsController(ShopContext context)
+        public HatsController(ApplicationDbContext context)
         {
             _context = context;    
         }
