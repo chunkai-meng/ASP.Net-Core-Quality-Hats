@@ -12,7 +12,7 @@ namespace QualityHat.Models
 
 		[Required]
 		[DataType(DataType.Currency)]
-		public double Price { get; set; }
+		public decimal Price { get; set; }
 
 		[Required]
 		[Display(Name = "Discription")]

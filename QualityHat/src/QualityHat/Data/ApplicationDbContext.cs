@@ -15,6 +15,12 @@ namespace QualityHat.Data
 		public DbSet<Supplier> Suppliers { get; set; }
 		public DbSet<ApplicationUser> ApplicationUser { get; set; }
 
+		public DbSet<CartItem> CartItems { get; set; }
+
+		public DbSet<Order> Orders { get; set; }
+
+		public DbSet<OrderDetail> OrderDetails { get; set; }
+
 		protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -24,6 +30,11 @@ namespace QualityHat.Data
 			builder.Entity<Hat>().ToTable("Hat");
 			builder.Entity<Category>().ToTable("Category");
 			builder.Entity<Supplier>().ToTable("Supplier");
+
+			builder.Entity<CartItem>().ToTable("CartItem");
+			builder.Entity<Order>().ToTable("Order");
+			builder.Entity<OrderDetail>().ToTable("OrderDetail");
+			builder.Entity<OrderDetail>().HasOne(p => p.Order).WithMany(o => o.OrderDetails).OnDelete(Microsoft.EntityFrameworkCore.Metadata.DeleteBehavior.Cascade);
 		}
-    }
+	}
 }

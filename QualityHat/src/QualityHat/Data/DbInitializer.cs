@@ -60,9 +60,9 @@ namespace QualityHat.Models
 			var hats = new Hat[]
 			{
 				// new Hat{Name="Carson",CategoryID=1,Price=11.9, Disc="The first hat", Image="/images/hat1.png"}
-				new Hat { Name="Good Dog",Price=11.9,Disc="This is a hat's discription",Image="/images/hats/636408330595139931.png",CategoryID=1,SupplierID=1 },
-				new Hat { Name="Cool Hat",Price=11.9,Disc="Here is the hat's discription",Image="/images/hats/636408476761332375.png",CategoryID=2,SupplierID=2 },
-				new Hat { Name="Fans Hat",Price=11.9,Disc="Want to know more about this cool hat? ",Image="/images/hats/636410890049279767.jpg",CategoryID=3,SupplierID=3 },
+				new Hat { Name="Good Dog",Price=11,Disc="This is a hat's discription",Image="/images/hats/636408330595139931.png",CategoryID=1,SupplierID=1 },
+				new Hat { Name="Cool Hat",Price=11,Disc="Here is the hat's discription",Image="/images/hats/636408476761332375.png",CategoryID=2,SupplierID=2 },
+				new Hat { Name="Fans Hat",Price=11,Disc="Want to know more about this cool hat? ",Image="/images/hats/636410890049279767.jpg",CategoryID=3,SupplierID=3 },
 			};
 			foreach (Hat h in hats)
 			{
