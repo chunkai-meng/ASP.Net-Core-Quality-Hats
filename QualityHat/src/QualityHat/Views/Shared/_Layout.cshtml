@@ -37,10 +37,11 @@
                         <li><a asp-area="" asp-controller="Categories" asp-action="Index">Categories</a></li>
                         <li><a asp-area="" asp-controller="Suppliers" asp-action="Index">Suppliers</a></li>
                         <li><a asp-area="" asp-controller="AdminApplicationUsers" asp-action="Index">Members</a></li>
-                    }
-                    else 
-                    {
-                        <li><a asp-area="" asp-controller="Shop" asp-action="Whats-new">WHAT'S NEW</a></li>
+					}
+					else
+					{
+						<li><a asp-area =""  asp-controller="Hats"  asp-action="Index">Hats</a></li>
+						<li><a asp-area="" asp-controller="Shop" asp-action="Whats-new">WHAT'S NEW</a></li>
                         <li><a asp-area="" asp-controller="Shop" asp-action="Mens">MENS</a></li>
                         <li><a asp-area="" asp-controller="Shop" asp-action="Womens">WOMENS</a></li>
                         <li><a asp-area="" asp-controller="Shop" asp-action="Childrens">KIDS</a></li>
@@ -53,6 +54,9 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
+		<div>
+			@await Component.InvokeAsync("ShoppingCartViewModel")
+		</div>
         <footer>
             <p>&copy; 2017 - Quality Hat</p>
         </footer>

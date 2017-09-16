@@ -33,7 +33,7 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+<tbody>
 @foreach (var item in Model) {
         <tr>
 			<td>
@@ -60,6 +60,12 @@
                 <a asp-action="Details" asp-route-id="@item.HatID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.HatID">Delete</a>
             </td>
+			<td>
+				<a asp-action="AddToCart" asp-controller="ShoppingCart" asp-route-id="@item.HatID">
+					<span class="glyphicon glyphicon-shopping-cart"></span>
+					Add To Cart
+				</a>
+			</td>
         </tr>
 }
     </tbody>

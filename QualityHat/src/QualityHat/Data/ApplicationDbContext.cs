@@ -36,5 +36,7 @@ namespace QualityHat.Data
 			builder.Entity<OrderDetail>().ToTable("OrderDetail");
 			builder.Entity<OrderDetail>().HasOne(p => p.Order).WithMany(o => o.OrderDetails).OnDelete(Microsoft.EntityFrameworkCore.Metadata.DeleteBehavior.Cascade);
 		}
+
+		public DbSet<ShoppingCart> ShoppingCart { get; set; }
 	}
 }
