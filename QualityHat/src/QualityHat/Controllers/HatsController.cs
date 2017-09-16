@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace QualityHat.Controllers
 {
-	[Authorize(Roles = "Admin")]
+	// [Authorize(Roles = "Admin")]
 	public class HatsController : Controller
     {
         private readonly ApplicationDbContext _context;
