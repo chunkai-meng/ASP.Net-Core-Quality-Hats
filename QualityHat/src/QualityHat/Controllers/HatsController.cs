@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace QualityHat.Controllers
 {
-	// [Authorize(Roles = "Admin")]
+	[Authorize(Roles = "Admin")]
 	public class HatsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -191,13 +191,17 @@ namespace QualityHat.Controllers
         {
             var hat = await _context.Hats.SingleOrDefaultAsync(m => m.HatID == id);
             _context.Hats.Remove(hat);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException s)
+            {
+                TempData["HatUsed"]= "The Tutorial being deleted has been used in previous orders.Delete those orders before trying again." + s;
+                return RedirectToAction("Delete");
+            }
             return RedirectToAction("Index");
         }
-
-		
-
-
 
 		private bool HatExists(int id)
         {

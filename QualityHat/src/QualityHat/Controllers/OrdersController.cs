@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using QualityHat.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Authorization;
 
 namespace QualityHat.Models
 {
+    [Authorize(Roles = "Admin, Member")]
     public class OrdersController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -25,15 +27,16 @@ namespace QualityHat.Models
 		}
 
         // GET: Orders
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
 			//return View(await _context.Orders.ToListAsync());
 			return View(await _context.Orders.Include(i => i.User).AsNoTracking().ToListAsync());
 		}
 
-        // GET: Orders/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
+        // // GET: Orders/Details/5
+        // public async Task<IActionResult> Details(int? id)
+        // {
         //    if (id == null)
         //    {
         //        return NotFound();
@@ -46,9 +49,10 @@ namespace QualityHat.Models
         //    }
 
         //    return View(order);
-        //}
+        // }
 
         // GET: Orders/Create
+        [Authorize(Roles = "Member")]
         public IActionResult Create()
         {
             return View();
@@ -73,6 +77,7 @@ namespace QualityHat.Models
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+        [Authorize(Roles = "Member")]
 		public async Task<IActionResult> Create([Bind("City,Country,FirstName,LastName,Phone,PostalCode,State")]Order order)
 		{
 			ApplicationUser user = await _userManager.GetUserAsync(User);
@@ -142,57 +147,60 @@ namespace QualityHat.Models
 
 
 		// GET: Orders/Edit/5
-		//public async Task<IActionResult> Edit(int? id)
-  //      {
-  //          if (id == null)
-  //          {
-  //              return NotFound();
-  //          }
+        [Authorize(Roles = "Admin")]
+		public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-  //          var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
-  //          if (order == null)
-  //          {
-  //              return NotFound();
-  //          }
-  //          return View(order);
-  //      }
+            var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+            return View(order);
+        }
 
         // POST: Orders/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("OrderId,City,Country,FirstName,LastName,OrderDate,Phone,PostalCode,State,Total")] Order order)
-        //{
-        //    if (id != order.OrderId)
-        //    {
-        //        return NotFound();
-        //    }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Edit(int id, [Bind("OrderId,City,Country,FirstName,LastName,OrderDate,Phone,PostalCode,State,Total")] Order order)
+        {
+           if (id != order.OrderId)
+           {
+               return NotFound();
+           }
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(order);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!OrderExists(order.OrderId))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(order);
-        //}
+           if (ModelState.IsValid)
+           {
+               try
+               {
+                   _context.Update(order);
+                   await _context.SaveChangesAsync();
+               }
+               catch (DbUpdateConcurrencyException)
+               {
+                   if (!OrderExists(order.OrderId))
+                   {
+                       return NotFound();
+                   }
+                   else
+                   {
+                       throw;
+                   }
+               }
+               return RedirectToAction("Index");
+           }
+           return View(order);
+        }
 
         // GET: Orders/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -217,6 +225,7 @@ namespace QualityHat.Models
         // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
@@ -225,9 +234,9 @@ namespace QualityHat.Models
             return RedirectToAction("Index");
         }
 
-        //private bool OrderExists(int id)
-        //{
-        //    return _context.Orders.Any(e => e.OrderId == id);
-        //}
+        private bool OrderExists(int id)
+        {
+           return _context.Orders.Any(e => e.OrderId == id);
+        }
     }
 }
