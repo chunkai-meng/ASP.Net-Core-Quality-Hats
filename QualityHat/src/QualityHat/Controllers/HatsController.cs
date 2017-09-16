@@ -188,15 +188,19 @@ namespace QualityHat.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var cartItems = await _context.CartItems.SingleOrDefaultAsync(m => m.Hat.HatID == id);
+
             var hat = await _context.Hats.SingleOrDefaultAsync(m => m.HatID == id);
             _context.Hats.Remove(hat);
+            
+
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException s)
             {
-                TempData["HatUsed"]= "The Tutorial being deleted has been used in previous orders.Delete those orders before trying again.";
+                TempData["HatUsed"]= "The Hat being deleted has been used in previous orders.Delete those orders before trying again.";
                 return RedirectToAction("Delete");
             }
             return RedirectToAction("Index");

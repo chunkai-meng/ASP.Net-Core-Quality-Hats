@@ -274,6 +274,8 @@ Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170916054812_CartItem.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170916054812_CartItem.Designer.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170916063411_cart.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170916063411_cart.Designer.cs
+Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170916230054_orderStatus.cs
+Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170916230054_orderStatus.Designer.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\ApplicationDbContextModelSnapshot.cs
 Z:\WebApp\QualityHat\src\QualityHat\Migrations\20170912045247_decimalPrice.cs
 Z:\WebApp\QualityHat\src\QualityHat\Migrations\20170912045247_decimalPrice.Designer.cs
