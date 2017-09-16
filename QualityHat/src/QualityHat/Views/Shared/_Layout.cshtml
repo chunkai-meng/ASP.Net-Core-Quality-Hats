@@ -31,21 +31,22 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    	<li><a asp-area="" asp-controller="Shop" asp-action="Whats-new">WHAT'S NEW</a></li>
+                        <li><a asp-area="" asp-controller="Shop" asp-action="Mens">MENS</a></li>
+                        <li><a asp-area="" asp-controller="Shop" asp-action="Womens">WOMENS</a></li>
+                        <li><a asp-area="" asp-controller="Shop" asp-action="Childrens">KIDS</a></li>
+                        
                     @if (User.IsInRole("Admin"))
                     {
-                        <li><a asp-area="" asp-controller="Hats" asp-action="Index">HATS</a></li>
                         <li><a asp-area="" asp-controller="Categories" asp-action="Index">Categories</a></li>
                         <li><a asp-area="" asp-controller="Suppliers" asp-action="Index">Suppliers</a></li>
                         <li><a asp-area="" asp-controller="AdminApplicationUsers" asp-action="Index">Members</a></li>
                         <li><a asp-area="" asp-controller="Orders" asp-action="Index">Orders</a></li>
+                        <li><a asp-area="" asp-controller="Hats" asp-action="Index">HATS</a></li>
 					}
 					else
 					{
-						<li><a asp-area="" asp-controller="Shop" asp-action="Whats-new">WHAT'S NEW</a></li>
-                        <li><a asp-area="" asp-controller="Shop" asp-action="Mens">MENS</a></li>
-                        <li><a asp-area="" asp-controller="Shop" asp-action="Womens">WOMENS</a></li>
-                        <li><a asp-area="" asp-controller="Shop" asp-action="Childrens">KIDS</a></li>
-                        <li><a asp-area="" asp-controller="Hats" asp-action="Index">HATS</a></li>
+						<li><a asp-area="" asp-controller="MemberHats" asp-action="Index">HATS</a></li>
                     }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
@@ -56,7 +57,11 @@
         @RenderBody()
         <hr />
 		<div>
-			@await Component.InvokeAsync("ShoppingCartViewModel")
+			<!-- @await Component.InvokeAsync("ShoppingCartViewModel") -->
+            @if (!User.IsInRole("Admin"))
+            {
+                @await Component.InvokeAsync("ShoppingCartViewModel")
+            }
 		</div>
         <footer>
             <p>&copy; 2017 - Quality Hat</p>

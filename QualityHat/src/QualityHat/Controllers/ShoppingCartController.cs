@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using QualityHat.Data;
 using QualityHat.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace QualityHat.Controllers
 {
+	[AllowAnonymous]
+	[Authorize(Roles = "Member")]
     public class ShoppingCartController : Controller
     {
 		//public IActionResult Index()
@@ -39,7 +42,7 @@ namespace QualityHat.Controllers
 			var cart = ShoppingCart.GetCart(this.HttpContext);
 			cart.AddToCart(addedTutorial, _context);
 			// Go back to the main store page for more shopping
-			return RedirectToAction("Index", "Hats");
+			return RedirectToAction("Index", "MemberHats");
 		}
 
 		public ActionResult RemoveFromCart(int id)
