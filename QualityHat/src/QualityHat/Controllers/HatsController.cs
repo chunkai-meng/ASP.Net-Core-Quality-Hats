@@ -25,6 +25,7 @@ namespace QualityHat.Controllers
         // GET: Hats
         public async Task<IActionResult> Index()
         {
+            ViewData["ShowCartView"] = true;
             var shopContext = _context.Hats.Include(h => h.Category).Include(h => h.Supplier);
             return View(await shopContext.ToListAsync());
         }

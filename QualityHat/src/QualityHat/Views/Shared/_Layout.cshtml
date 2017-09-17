@@ -47,6 +47,7 @@
 					else
 					{
 						<li><a asp-area="" asp-controller="MemberHats" asp-action="Index">HATS</a></li>
+                        <li><a asp-area="" asp-controller="MemberOrders" asp-action="Index">Orders</a></li>
                     }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
@@ -56,14 +57,13 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-		<div>
-			<!-- @await Component.InvokeAsync("ShoppingCartViewModel") -->
+		<!-- <div>
             @if (!User.IsInRole("Admin"))
             {
                 @await Component.InvokeAsync("ShoppingCartViewModel")
             }
-		</div>
-        <footer>
+		</div> -->
+        <footer class="footer">
             <p>&copy; 2017 - Quality Hats</p>
         </footer>
     </div>

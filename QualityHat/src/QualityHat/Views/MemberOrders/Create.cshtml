@@ -56,7 +56,7 @@
         <div class="form-group">
             <label asp-for="OrderStatus" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="OrderStatus" class="form-control"></select>
+                <select asp-for="OrderStatus" class="form-control" asp-items="@ViewBag.OrderStatus"></select>
                 <span asp-validation-for="OrderStatus" class="text-danger" />
             </div>
         </div>
@@ -110,3 +110,11 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<hr />
+<div>
+    @if (!User.IsInRole("Admin"))
+    {
+        @await Component.InvokeAsync("ShoppingCartViewModel")
+    }
+</div>

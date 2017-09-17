@@ -84,7 +84,37 @@
             @Html.DisplayFor(model => model.Total)
         </dd>
     </dl>
-    
+    <dl>
+        <dd>
+			<table class="table">
+				<tr>
+					<th>Tutorial </th>
+					<th>Dates</th>
+					<th>Quantity</th>
+					<th>Price</th>
+				</tr>
+				@foreach (var item in Model.OrderDetails)
+				{
+					<tr>
+						<td>@Html.DisplayFor(modelItem => item.Hat.Name)</td>
+						<td>@Html.DisplayFor(modelItem => item.Hat.Disc)</td>
+						<td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+						<td>@Html.DisplayFor(modelItem => item.Hat.Price)</td>
+					</tr>
+				}
+				<tr>
+					<td></td>
+					<td></td>
+					<td>
+						<label>Total:</label>
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => Model.Total)
+					</td>
+				</tr>
+			</table>
+		</dd>
+    </dl>
     <form asp-action="Delete">
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |

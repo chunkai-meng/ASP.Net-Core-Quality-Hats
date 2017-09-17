@@ -70,3 +70,10 @@
 }
     </tbody>
 </table>
+<div>
+    <!-- @await Component.InvokeAsync("ShoppingCartViewModel") -->
+    @if (!User.IsInRole("Admin"))
+    {
+        @await Component.InvokeAsync("ShoppingCartViewModel")
+    }
+</div>

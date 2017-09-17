@@ -7,17 +7,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QualityHat.Data;
 using QualityHat.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Routing;
 
 namespace QualityHat.Controllers
 {
     public class MemberOrdersController : Controller
     {
         private readonly ApplicationDbContext _context;
+		private UserManager<ApplicationUser> _userManager;
 
-        public MemberOrdersController(ApplicationDbContext context)
+		public MemberOrdersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
-        }
+            _context = context;
+			_userManager = userManager;
+		}
 
         // GET: MemberOrders
         public async Task<IActionResult> Index()
@@ -33,41 +38,104 @@ namespace QualityHat.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
-            if (order == null)
+			var order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
+
+			if (order == null)
             {
                 return NotFound();
             }
 
-            return View(order);
+			var details = _context.OrderDetails.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
+			order.OrderDetails = details;
+
+			return View(order);
         }
 
         // GET: MemberOrders/Create
+        [Authorize(Roles = "Member")]
         public IActionResult Create()
         {
-            return View();
+			//ViewData["OrderStatus"] = new SelectList(_context.Orders, "OrderStatus", "OrderStatus");
+			ViewBag.OrderStatus = new List<SelectListItem>
+			{
+				new SelectListItem {Text = "InCart", Value = "0"},
+				new SelectListItem {Text = "Placed", Value = "1"},
+				new SelectListItem {Text = "InProgress", Value = "2"},
+				new SelectListItem {Text = "PreparingToShip", Value = "3"},
+				new SelectListItem {Text = "Shipped", Value = "4"},
+				new SelectListItem {Text = "Delieved", Value = "5"}
+			};
+			return View();
         }
 
         // POST: MemberOrders/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderId,City,Country,DelievedDate,FirstName,LastName,OrderDate,OrderStatus,Phone,PostalCode,ShippedDate,State,Total")] Order order)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(order);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(order);
-        }
 
-        // GET: MemberOrders/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+        [Authorize(Roles = "Member")]
+		public async Task<IActionResult> Create([Bind("OrderStatus,City,Country,FirstName,LastName,Phone,PostalCode,State")]Order order)
+		{
+			ApplicationUser user = await _userManager.GetUserAsync(User);
+
+			if (ModelState.IsValid)
+			{
+
+				ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
+				List<CartItem> items = cart.GetCartItems(_context);
+				List<OrderDetail> details = new List<OrderDetail>();
+				foreach (CartItem item in items)
+				{
+
+					OrderDetail detail = CreateOrderDetailForThisItem(item);
+					detail.Order = order;
+					details.Add(detail);
+					_context.Add(detail);
+
+				}
+
+				order.User = user;
+				order.OrderDate = DateTime.Today;
+				order.Total = ShoppingCart.GetCart(this.HttpContext).GetTotal(_context);
+				order.OrderDetails = details;
+				_context.SaveChanges();
+
+
+				return RedirectToAction("Details", new RouteValueDictionary(
+				new { action = "Details", id = order.OrderId }));
+			}
+			//ViewData["OrderStatus"] = new SelectList(_context.Orders, "OrderStatus", "OrderStatus", order.OrderStatus);
+			return View(order);
+		}
+		private OrderDetail CreateOrderDetailForThisItem(CartItem item)
+		{
+
+			OrderDetail detail = new OrderDetail();
+
+
+			detail.Quantity = item.Count;
+			detail.Hat = item.Hat;
+			detail.UnitPrice = item.Hat.Price;
+
+			return detail;
+
+		}
+
+		// GET: MemberOrders/Edit/5
+		public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+			ViewBag.OrderStatus = new List<SelectListItem>
+			{
+				new SelectListItem {Text = "InCart", Value = "0"},
+				new SelectListItem {Text = "Placed", Value = "1"},
+				new SelectListItem {Text = "InProgress", Value = "2"},
+				new SelectListItem {Text = "PreparingToShip", Value = "3"},
+				new SelectListItem {Text = "Shipped", Value = "4"},
+				new SelectListItem {Text = "Delieved", Value = "5"}
+			};
+
+			if (id == null)
             {
                 return NotFound();
             }
@@ -123,11 +191,15 @@ namespace QualityHat.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
-            if (order == null)
+            var order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
+
+			if (order == null)
             {
                 return NotFound();
             }
+
+			var details = _context.OrderDetails.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
+			order.OrderDetails = details;
 
             return View(order);
         }

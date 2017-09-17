@@ -36,11 +36,11 @@ namespace QualityHat.Controllers
 		public ActionResult AddToCart(int id)
 		{
 			// Retrieve the album from the database
-			var addedTutorial = _context.Hats
+			var addedHat = _context.Hats
 				.Single(hat => hat.HatID == id);
 			// Add it to the shopping cart
 			var cart = ShoppingCart.GetCart(this.HttpContext);
-			cart.AddToCart(addedTutorial, _context);
+			cart.AddToCart(addedHat, _context);
 			// Go back to the main store page for more shopping
 			return RedirectToAction("Index", "MemberHats");
 		}
