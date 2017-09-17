@@ -25,9 +25,30 @@ namespace QualityHat.Controllers
 		}
 
         // GET: MemberOrders
+        // [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Member")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Orders.ToListAsync());
+            // return View(await _context.Orders.ToListAsync());
+            ApplicationUser user = await _userManager.GetUserAsync(User);
+            return View(await _context.Orders.Where(o => o.User.Id == user.Id).Include(o => o.User).AsNoTracking().ToListAsync());
+        }
+
+        // GET: MemberOrders/Bag/CK
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> Bag()
+        {
+            ApplicationUser user = await _userManager.GetUserAsync(User);
+            IList<Order> orders = await _context.Orders.Where(o => o.User.Id == user.Id && o.OrderStatus == 0).Include(o => o.User).AsNoTracking().ToListAsync();
+
+			// var order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
+
+			if (orders == null)
+            {
+                return NotFound();
+            }
+
+			return View(orders);
         }
 
         // GET: MemberOrders/Details/5
@@ -52,6 +73,7 @@ namespace QualityHat.Controllers
         }
 
         // GET: MemberOrders/Create
+        [ValidateAntiForgeryToken]
         [Authorize(Roles = "Member")]
         public IActionResult Create()
         {
@@ -67,6 +89,44 @@ namespace QualityHat.Controllers
 			};
 			return View();
         }
+
+        // POST: CheckoutCart
+        // [HttpPost]
+		//[ValidateAntiForgeryToken]
+        [Authorize(Roles = "Member")]
+		public async Task<IActionResult> Checkout()
+		{
+			ApplicationUser user = await _userManager.GetUserAsync(User);
+            Order order = new Order{OrderStatus = 0};
+			if (ModelState.IsValid)
+			{
+
+				ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
+				List<CartItem> items = cart.GetCartItems(_context);
+				List<OrderDetail> details = new List<OrderDetail>();
+				foreach (CartItem item in items)
+				{
+
+					OrderDetail detail = CreateOrderDetailForThisItem(item);
+					detail.Order = order;
+					details.Add(detail);
+					_context.Add(detail);
+
+				}
+
+				order.User = user;
+				order.OrderDate = DateTime.Today;
+				order.Total = ShoppingCart.GetCart(this.HttpContext).GetTotal(_context);
+				order.OrderDetails = details;
+				_context.SaveChanges();
+
+
+				return RedirectToAction("Details", new RouteValueDictionary(
+				new { action = "Details", id = order.OrderId }));
+			}
+
+			return View(order);
+		}
 
         // POST: MemberOrders/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -105,7 +165,7 @@ namespace QualityHat.Controllers
 				return RedirectToAction("Details", new RouteValueDictionary(
 				new { action = "Details", id = order.OrderId }));
 			}
-			//ViewData["OrderStatus"] = new SelectList(_context.Orders, "OrderStatus", "OrderStatus", order.OrderStatus);
+
 			return View(order);
 		}
 		private OrderDetail CreateOrderDetailForThisItem(CartItem item)
@@ -182,6 +242,7 @@ namespace QualityHat.Controllers
             }
             return View(order);
         }
+
 
         // GET: MemberOrders/Delete/5
         public async Task<IActionResult> Delete(int? id)
