@@ -39,16 +39,82 @@ namespace QualityHat.Controllers
         public async Task<IActionResult> Bag()
         {
             ApplicationUser user = await _userManager.GetUserAsync(User);
-            IList<Order> orders = await _context.Orders.Where(o => o.User.Id == user.Id && o.OrderStatus == 0).Include(o => o.User).AsNoTracking().ToListAsync();
+            // IList<Order> orders = await _context.Orders.Where(o => o.User.Id == user.Id && o.OrderStatus == 0).Include(o => o.User).AsNoTracking().ToListAsync();
+            Order order = await _context.Orders
+				.Include(i => i.OrderDetails)
+				.AsNoTracking().
+				SingleOrDefaultAsync(m => m.User.Id == user.Id && m.OrderStatus == 0);
 
-			// var order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
+			if (order == null) {
+                order = new Order{OrderStatus = 0};
 
-			if (orders == null)
-            {
-                return NotFound();
+                if (ModelState.IsValid)
+                {
+                    ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
+                    List<CartItem> items = cart.GetCartItems(_context);
+                    List<OrderDetail> details = new List<OrderDetail>();
+                    foreach (CartItem item in items)
+                    {
+
+                        OrderDetail detail = CreateOrderDetailForThisItem(item);
+                        detail.Order = order;
+                        details.Add(detail);
+                        _context.Add(detail);
+
+                    }
+
+                    order.User = user;
+                    order.OrderDate = DateTime.Today;
+                    order.Total = ShoppingCart.GetCart(this.HttpContext).GetTotal(_context);
+                    order.OrderDetails = details;
+                    _context.SaveChanges();
+
+
+                    return RedirectToAction("Details", new RouteValueDictionary(
+                    new { action = "Details", id = order.OrderId }));
+                }
+            } else {
+				List<OrderDetail> details = await _context.OrderDetails.Where(o => o.Order.OrderId == order.OrderId).Include(i => i.Hat).AsNoTracking().ToListAsync();
+				ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
+                List<CartItem> items = cart.GetCartItems(_context);
+
+				foreach (CartItem item in items) 
+                {
+                    bool ifFound = false;
+                    foreach (OrderDetail detail in details)
+                    {
+						if (item.Hat.HatID == detail.Hat.HatID)
+						{
+							detail.Hat = item.Hat;
+							detail.Quantity += item.Count;
+							_context.Update(detail);
+							ifFound = true;
+                            break;
+						}
+					}
+                    if(!ifFound)
+                    {
+                        OrderDetail detail = CreateOrderDetailForThisItem(item);
+                        detail.Order = order;
+                        details.Add(detail);
+						//_context.Update(order);
+                        _context.Add(detail);
+                    }
+
+                }
+
+                //order.User = user;
+                // order.OrderDate = DateTime.Today;
+                // order.Total = ShoppingCart.GetCart(this.HttpContext).GetTotal(_context);
+                order.OrderDetails = details;
+                _context.Update(order);
+				_context.SaveChanges();
+
+				return RedirectToAction("Details", new RouteValueDictionary(
+                new { action = "Details", id = order.OrderId }));
             }
 
-			return View(orders);
+			return View(order);
         }
 
         // GET: MemberOrders/Details/5
