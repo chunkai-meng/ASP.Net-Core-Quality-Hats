@@ -47,7 +47,8 @@
 					else
 					{
 						<li><a asp-area="" asp-controller="MemberHats" asp-action="Index">HATS</a></li>
-                        <li><a asp-area="" asp-controller="MemberOrders" asp-action="Index">Orders</a></li>
+						<li><a asp-area="" asp-controller="MemberOrders" asp-action="Index">Orders</a></li>
+                       <li><a asp-area="" asp-controller="MemberOrders" asp-action="Bag">Shopping Bag</a></li>
                     }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
