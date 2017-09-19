@@ -36,7 +36,7 @@ namespace QualityHat.Controllers
 
 		// GET: MemberOrders/Bag/CK
 		[Authorize(Roles = "Member")]
-		 public async Task<IActionResult> Bag()
+		 public async Task<IActionResult> AddToBag()
 		{
 			ApplicationUser user = await _userManager.GetUserAsync(User);
 			ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
@@ -103,49 +103,12 @@ namespace QualityHat.Controllers
 						OrderDetail detailToUpdate = CreateOrderDetailForThisItem(item);
 						detailToUpdate.Order = orderToUpdate;
 						detailsToUpdate.Add(detailToUpdate);
-						//detailToUpdate.Order = orderToUpdate;
-						//orderToUpdate.User = user;
-						//orderToUpdate.OrderDate = DateTime.Today;
-						//orderToUpdate.OrderDetails = details;
+
 						_context.Add(detailToUpdate);
 
 					}
 				}
 
-				//if (existDetail != null)
-				//{
-				//	OrderDetail detailToUpdate = new OrderDetail { OrderDetailId = existDetail.OrderDetailId, Quantity = existDetail.Quantity + item.Count, UnitPrice = existDetail.UnitPrice };
-				//	_context.Update(detailToUpdate);
-
-				//}
-				//else
-				//{
-				//	OrderDetail detailToUpdate = CreateOrderDetailForThisItem(item);
-				//	detailToUpdate.Order = orderToUpdate;
-				//	orderToUpdate.OrderDetails.Add(detailToUpdate);
-				//	//detailToUpdate.Order = orderToUpdate;
-				//	//orderToUpdate.User = user;
-				//	//orderToUpdate.OrderDate = DateTime.Today;
-				//	//orderToUpdate.Total = ShoppingCart.GetCart(this.HttpContext).GetTotal(_context);
-				//	//orderToUpdate.OrderDetails = details;
-				//	_context.Add(detailToUpdate);
-
-				//}
-
-				//orderToUpdate.Total = ShoppingCart.GetCart(this.HttpContext).GetTotal(_context) + orderToUpdate.Total;
-
-				//_context.Update(detailToUpdate);
-				//_context.CartItems.Remove(item);
-				//try
-				//{
-				//	await _context.SaveChangesAsync();
-				//}
-				//catch (DbUpdateException /* ex */)
-				//{
-				//	//Log the error (uncomment ex variable name and write a log.) 
-				//	ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists, " + "see your system administrator.");
-				//}
-				//}
 				orderToUpdate.Total = cart.GetTotal(_context) + order.Total;
 				_context.Orders.Update(orderToUpdate);
 				cart.EmptyCart(_context);
@@ -161,13 +124,40 @@ namespace QualityHat.Controllers
 				}
 
 				return RedirectToAction("ShoppingBag", new RouteValueDictionary(
-				new { action = "ShoppingBag", id = orderToUpdate.OrderId }));
+				new { action = "ShoppingBag" }));
 			}
 			return View(order);
 		}
 
+		// GET: MemberOrders/ShoppingBag/
+		public async Task<IActionResult> ShoppingBag()
+		{
+			ApplicationUser user = await _userManager.GetUserAsync(User);
+			var order = await _context.Orders
+				.Include(o => o.User)
+				.AsNoTracking().
+				SingleOrDefaultAsync(m => m.User.Id == user.Id && m.OrderStatus == 0);
+			//var order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
+
+			if (order == null)
+			{
+				return NotFound();
+			}
+
+			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
+			order.OrderDetails = details;
+
+			return View(order);
+		}
+
+
+
+
+
+
+
 		// GET: MemberOrders/Details/5
-		public async Task<IActionResult> ShoppingBag(int? id)
+		public async Task<IActionResult> Detail(int? id)
         {
             if (id == null)
             {
