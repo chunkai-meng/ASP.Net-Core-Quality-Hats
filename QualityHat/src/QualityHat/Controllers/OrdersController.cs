@@ -138,7 +138,7 @@ namespace QualityHat.Models
 				return NotFound();
 			}
 
-			var details = _context.OrderDetails.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
+			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
 
 			order.OrderDetails = details;
 			ShoppingCart.GetCart(this.HttpContext).EmptyCart(_context);
@@ -216,7 +216,7 @@ namespace QualityHat.Models
                 return NotFound();
             }
 
-			var details = _context.OrderDetails.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
+			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
 			order.OrderDetails = details;
 
 			return View(order);

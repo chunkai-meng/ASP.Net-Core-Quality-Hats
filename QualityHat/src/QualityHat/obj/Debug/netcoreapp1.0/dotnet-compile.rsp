@@ -323,6 +323,7 @@ Z:\WebApp\QualityHat\src\QualityHat\Models\ManageViewModels\RemoveLoginViewModel
 Z:\WebApp\QualityHat\src\QualityHat\Models\ManageViewModels\SetPasswordViewModel.cs
 Z:\WebApp\QualityHat\src\QualityHat\Models\ManageViewModels\VerifyPhoneNumberViewModel.cs
 Z:\WebApp\QualityHat\src\QualityHat\Models\ShoppingCartViewModels\ShoppingCartViewModel.cs
+Z:\WebApp\QualityHat\src\QualityHat\Models\ViewModels\ShoppingBagData.cs
 Z:\WebApp\QualityHat\src\QualityHat\Services\IEmailSender.cs
 Z:\WebApp\QualityHat\src\QualityHat\Services\ISmsSender.cs
 Z:\WebApp\QualityHat\src\QualityHat\Services\MessageServices.cs

@@ -19,7 +19,7 @@ namespace QualityHat.Data
 
 		public DbSet<Order> Orders { get; set; }
 
-		public DbSet<OrderDetail> OrderDetails { get; set; }
+		public DbSet<OrderDetail> OrderDetail { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder builder)
         {

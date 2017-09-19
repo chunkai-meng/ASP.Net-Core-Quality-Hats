@@ -22,7 +22,7 @@ namespace QualityHat.Controllers
         // GET: OrderDetails
         public async Task<IActionResult> Index()
         {
-            return View(await _context.OrderDetails.Include(i => i.Order).ToListAsync());
+            return View(await _context.OrderDetail.Include(i => i.Order).ToListAsync());
         }
 
         // GET: OrderDetails/Details/5
@@ -33,7 +33,7 @@ namespace QualityHat.Controllers
                 return NotFound();
             }
 
-            var orderDetail = await _context.OrderDetails.SingleOrDefaultAsync(m => m.OrderDetailId == id);
+            var orderDetail = await _context.OrderDetail.SingleOrDefaultAsync(m => m.OrderDetailId == id);
             if (orderDetail == null)
             {
                 return NotFound();
@@ -72,7 +72,7 @@ namespace QualityHat.Controllers
                 return NotFound();
             }
 
-            var orderDetail = await _context.OrderDetails.SingleOrDefaultAsync(m => m.OrderDetailId == id);
+            var orderDetail = await _context.OrderDetail.SingleOrDefaultAsync(m => m.OrderDetailId == id);
             if (orderDetail == null)
             {
                 return NotFound();
@@ -123,7 +123,7 @@ namespace QualityHat.Controllers
                 return NotFound();
             }
 
-            var orderDetail = await _context.OrderDetails.SingleOrDefaultAsync(m => m.OrderDetailId == id);
+            var orderDetail = await _context.OrderDetail.SingleOrDefaultAsync(m => m.OrderDetailId == id);
             if (orderDetail == null)
             {
                 return NotFound();
@@ -137,15 +137,15 @@ namespace QualityHat.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var orderDetail = await _context.OrderDetails.SingleOrDefaultAsync(m => m.OrderDetailId == id);
-            _context.OrderDetails.Remove(orderDetail);
+            var orderDetail = await _context.OrderDetail.SingleOrDefaultAsync(m => m.OrderDetailId == id);
+            _context.OrderDetail.Remove(orderDetail);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
         private bool OrderDetailExists(int id)
         {
-            return _context.OrderDetails.Any(e => e.OrderDetailId == id);
+            return _context.OrderDetail.Any(e => e.OrderDetailId == id);
         }
     }
 }

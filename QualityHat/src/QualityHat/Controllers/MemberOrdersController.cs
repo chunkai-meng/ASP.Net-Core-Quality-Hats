@@ -34,91 +34,140 @@ namespace QualityHat.Controllers
             return View(await _context.Orders.Where(o => o.User.Id == user.Id).Include(o => o.User).AsNoTracking().ToListAsync());
         }
 
-        // GET: MemberOrders/Bag/CK
-        [Authorize(Roles = "Member")]
-        public async Task<IActionResult> Bag()
-        {
-            ApplicationUser user = await _userManager.GetUserAsync(User);
-            // IList<Order> orders = await _context.Orders.Where(o => o.User.Id == user.Id && o.OrderStatus == 0).Include(o => o.User).AsNoTracking().ToListAsync();
-            Order order = await _context.Orders
-				.Include(i => i.OrderDetails)
+		// GET: MemberOrders/Bag/CK
+		[Authorize(Roles = "Member")]
+		 public async Task<IActionResult> Bag()
+		{
+			ApplicationUser user = await _userManager.GetUserAsync(User);
+			ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
+			Order order = await _context.Orders
+				.Include(o => o.OrderDetails)
 				.AsNoTracking().
 				SingleOrDefaultAsync(m => m.User.Id == user.Id && m.OrderStatus == 0);
 
-			if (order == null) {
-                order = new Order{OrderStatus = 0};
+			if (order == null)
+			{
+				Order orderToUpdate = new Order { OrderStatus = 0 };
 
-                if (ModelState.IsValid)
-                {
-                    ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
-                    List<CartItem> items = cart.GetCartItems(_context);
-                    List<OrderDetail> details = new List<OrderDetail>();
-                    foreach (CartItem item in items)
-                    {
+				if (ModelState.IsValid)
+				{
+					List<CartItem> items = cart.GetCartItems(_context);
+					List<OrderDetail> details = new List<OrderDetail>();
+					foreach (CartItem item in items)
+					{
 
-                        OrderDetail detail = CreateOrderDetailForThisItem(item);
-                        detail.Order = order;
-                        details.Add(detail);
-                        _context.Add(detail);
+						OrderDetail detail = CreateOrderDetailForThisItem(item);
+						detail.Order = orderToUpdate;
+						details.Add(detail);
+						_context.Add(detail);
 
-                    }
-
-                    order.User = user;
-                    order.OrderDate = DateTime.Today;
-                    order.Total = ShoppingCart.GetCart(this.HttpContext).GetTotal(_context);
-                    order.OrderDetails = details;
-                    _context.SaveChanges();
-
-
-                    return RedirectToAction("Details", new RouteValueDictionary(
-                    new { action = "Details", id = order.OrderId }));
-                }
-            } else {
-				List<OrderDetail> details = await _context.OrderDetails.Where(o => o.Order.OrderId == order.OrderId).Include(i => i.Hat).AsNoTracking().ToListAsync();
-				ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
-                List<CartItem> items = cart.GetCartItems(_context);
-
-				foreach (CartItem item in items) 
-                {
-                    bool ifFound = false;
-                    foreach (OrderDetail detail in details)
-                    {
-						if (item.Hat.HatID == detail.Hat.HatID)
-						{
-							detail.Hat = item.Hat;
-							detail.Quantity += item.Count;
-							_context.Update(detail);
-							ifFound = true;
-                            break;
-						}
 					}
-                    if(!ifFound)
-                    {
-                        OrderDetail detail = CreateOrderDetailForThisItem(item);
-                        detail.Order = order;
-                        details.Add(detail);
-						//_context.Update(order);
-                        _context.Add(detail);
-                    }
 
-                }
+					orderToUpdate.User = user;
+					orderToUpdate.OrderDate = DateTime.Today;
+					orderToUpdate.Total = ShoppingCart.GetCart(this.HttpContext).GetTotal(_context);
+					orderToUpdate.OrderDetails = details;
+					_context.SaveChanges();
 
-                //order.User = user;
-                // order.OrderDate = DateTime.Today;
-                // order.Total = ShoppingCart.GetCart(this.HttpContext).GetTotal(_context);
-                order.OrderDetails = details;
-                _context.Update(order);
-				_context.SaveChanges();
+					cart.EmptyCart(_context);
 
-				return RedirectToAction("Details", new RouteValueDictionary(
-                new { action = "Details", id = order.OrderId }));
-            }
+					return RedirectToAction("Details", new RouteValueDictionary(
+					new { action = "Details", id = orderToUpdate.OrderId }));
+				}
+			}
+			else
+			{
+				List<CartItem> items = cart.GetCartItems(_context);
+				Order orderToUpdate = new Order { OrderId = order.OrderId, City = "", Country = "", Phone = "", PostalCode = "", State = "", User = user ,
+										FirstName ="", LastName="", Total = 0, OrderStatus = 0 };
+				//var hatsInCart = new HashSet<int>(items.Select(i => i.Hat.HatID));
+				List<OrderDetail> detailsToUpdate = new List<OrderDetail>();
+				var details = _context.OrderDetail.Include(d => d.Hat).AsNoTracking().Where(d => d.Order.OrderId == orderToUpdate.OrderId);
+				foreach (CartItem item in items)
+				{
+					var existDetail = _context.OrderDetail.AsNoTracking().SingleOrDefault(d => d.Hat.HatID == item.Hat.HatID && d.Order.OrderId == orderToUpdate.OrderId);
+					bool ifNewCart = true;
+					foreach (OrderDetail detail in details)
+					{
+						if (detail.Hat.HatID == item.Hat.HatID)
+						{
+							OrderDetail detailToUpdate = new OrderDetail { OrderDetailId = existDetail.OrderDetailId, Quantity = existDetail.Quantity + item.Count, UnitPrice = existDetail.UnitPrice };
+							_context.Update(detailToUpdate);
+							ifNewCart = false;
+						}
+						detailsToUpdate.Add(detail);
+					}
 
+					if (ifNewCart)
+					{
+						OrderDetail detailToUpdate = CreateOrderDetailForThisItem(item);
+						detailToUpdate.Order = orderToUpdate;
+						detailsToUpdate.Add(detailToUpdate);
+						//detailToUpdate.Order = orderToUpdate;
+						//orderToUpdate.User = user;
+						//orderToUpdate.OrderDate = DateTime.Today;
+						//orderToUpdate.OrderDetails = details;
+						_context.Add(detailToUpdate);
+
+					}
+				}
+
+				//if (existDetail != null)
+				//{
+				//	OrderDetail detailToUpdate = new OrderDetail { OrderDetailId = existDetail.OrderDetailId, Quantity = existDetail.Quantity + item.Count, UnitPrice = existDetail.UnitPrice };
+				//	_context.Update(detailToUpdate);
+
+				//}
+				//else
+				//{
+				//	OrderDetail detailToUpdate = CreateOrderDetailForThisItem(item);
+				//	detailToUpdate.Order = orderToUpdate;
+				//	orderToUpdate.OrderDetails.Add(detailToUpdate);
+				//	//detailToUpdate.Order = orderToUpdate;
+				//	//orderToUpdate.User = user;
+				//	//orderToUpdate.OrderDate = DateTime.Today;
+				//	//orderToUpdate.Total = ShoppingCart.GetCart(this.HttpContext).GetTotal(_context);
+				//	//orderToUpdate.OrderDetails = details;
+				//	_context.Add(detailToUpdate);
+
+				//}
+
+				//orderToUpdate.Total = ShoppingCart.GetCart(this.HttpContext).GetTotal(_context) + orderToUpdate.Total;
+
+				//_context.Update(detailToUpdate);
+				//_context.CartItems.Remove(item);
+				//try
+				//{
+				//	await _context.SaveChangesAsync();
+				//}
+				//catch (DbUpdateException /* ex */)
+				//{
+				//	//Log the error (uncomment ex variable name and write a log.) 
+				//	ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists, " + "see your system administrator.");
+				//}
+				//}
+				orderToUpdate.Total = cart.GetTotal(_context) + order.Total;
+				_context.Orders.Update(orderToUpdate);
+				cart.EmptyCart(_context);
+				
+				try
+				{
+					await _context.SaveChangesAsync();
+				}
+				catch (DbUpdateException /* ex */)
+				{
+					//Log the error (uncomment ex variable name and write a log.) 
+					ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists, " + "see your system administrator.");
+				}
+
+				return RedirectToAction("ShoppingBag", new RouteValueDictionary(
+				new { action = "ShoppingBag", id = orderToUpdate.OrderId }));
+			}
 			return View(order);
-        }
+		}
 
-        // GET: MemberOrders/Details/5
-        public async Task<IActionResult> Details(int? id)
+		// GET: MemberOrders/Details/5
+		public async Task<IActionResult> ShoppingBag(int? id)
         {
             if (id == null)
             {
@@ -132,7 +181,7 @@ namespace QualityHat.Controllers
                 return NotFound();
             }
 
-			var details = _context.OrderDetails.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
+			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
 			order.OrderDetails = details;
 
 			return View(order);
@@ -325,7 +374,7 @@ namespace QualityHat.Controllers
                 return NotFound();
             }
 
-			var details = _context.OrderDetails.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
+			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
 			order.OrderDetails = details;
 
             return View(order);

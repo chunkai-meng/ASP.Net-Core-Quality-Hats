@@ -33,6 +33,7 @@ namespace QualityHat.Controllers
 
 		//
 		// GET: /Store/AddToCart/5
+		[Authorize(Roles = "Anonymous")]
 		public ActionResult AddToCart(int id)
 		{
 			// Retrieve the album from the database
