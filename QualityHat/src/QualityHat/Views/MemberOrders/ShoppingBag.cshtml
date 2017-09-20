@@ -93,6 +93,7 @@
         <dd>
 			<table class="table">
 				<tr>
+					<th>Selected</th>
 					<th>Tutorial </th>
 					<th>Dates</th>
 					<th>Quantity</th>
@@ -101,6 +102,9 @@
 				@foreach (var item in Model.OrderDetails)
 				{
 					<tr>
+						<td>
+							<input type="checkbox" name="selectedItems" value="@item.Hat.HatID" checked="checked" />
+						</td>
 						<td>@Html.DisplayFor(modelItem => item.Hat.Name)</td>
 						<td>@Html.DisplayFor(modelItem => item.Hat.Disc)</td>
 						<td>@Html.DisplayFor(modelItem => item.Quantity)</td>
@@ -108,6 +112,7 @@
 					</tr>
 				}
 				<tr>
+					<td></td>
 					<td></td>
 					<td></td>
 					<td>

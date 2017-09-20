@@ -144,6 +144,7 @@ namespace QualityHat.Controllers
 				return NotFound();
 			}
 
+			// This is a good example for how to retrive a one-many-many relationship data.
 			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
 			order.OrderDetails = details;
 
@@ -151,13 +152,8 @@ namespace QualityHat.Controllers
 		}
 
 
-
-
-
-
-
 		// GET: MemberOrders/Details/5
-		public async Task<IActionResult> Detail(int? id)
+		public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
