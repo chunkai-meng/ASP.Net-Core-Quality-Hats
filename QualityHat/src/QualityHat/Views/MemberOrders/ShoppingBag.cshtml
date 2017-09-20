@@ -130,3 +130,8 @@
     <a asp-action="Edit" asp-route-id="@Model.OrderId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+
+<div>
+	@await Component.InvokeAsync("ShoppingBag", new { order = Model })
+</div>

@@ -130,6 +130,7 @@ namespace QualityHat.Controllers
 		}
 
 		// GET: MemberOrders/ShoppingBag/
+		[Authorize(Roles = "Member")]
 		public async Task<IActionResult> ShoppingBag()
 		{
 			ApplicationUser user = await _userManager.GetUserAsync(User);
