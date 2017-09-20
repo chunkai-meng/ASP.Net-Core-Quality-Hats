@@ -20,6 +20,7 @@ namespace QualityHat.Data
 		public DbSet<Order> Orders { get; set; }
 
 		public DbSet<OrderDetail> OrderDetail { get; set; }
+		public DbSet<Recipient> Recipient { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -34,6 +35,7 @@ namespace QualityHat.Data
 			builder.Entity<CartItem>().ToTable("CartItem");
 			builder.Entity<Order>().ToTable("Order");
 			builder.Entity<OrderDetail>().ToTable("OrderDetail");
+			builder.Entity<Recipient>().ToTable("Recipient");
 			builder.Entity<OrderDetail>().HasOne(p => p.Order).WithMany(o => o.OrderDetails).OnDelete(Microsoft.EntityFrameworkCore.Metadata.DeleteBehavior.Cascade);
 		}
 

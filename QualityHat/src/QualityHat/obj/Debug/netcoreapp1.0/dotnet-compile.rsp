@@ -248,6 +248,7 @@ Z:\WebApp\QualityHat\src\QualityHat\Controllers\MemberHatsController.cs
 Z:\WebApp\QualityHat\src\QualityHat\Controllers\MemberOrdersController.cs
 Z:\WebApp\QualityHat\src\QualityHat\Controllers\OrderDetailsController.cs
 Z:\WebApp\QualityHat\src\QualityHat\Controllers\OrdersController.cs
+Z:\WebApp\QualityHat\src\QualityHat\Controllers\RecipientsController.cs
 Z:\WebApp\QualityHat\src\QualityHat\Controllers\ShoppingCartController.cs
 Z:\WebApp\QualityHat\src\QualityHat\Controllers\SuppliersController.cs
 Z:\WebApp\QualityHat\src\QualityHat\Controllers\UploadFileController.cs
@@ -278,6 +279,10 @@ Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170916063411_cart.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170916063411_cart.Designer.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170916230054_orderStatus.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170916230054_orderStatus.Designer.cs
+Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170920044409_recipient.cs
+Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170920044409_recipient.Designer.cs
+Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170920045234_recipientDefault.cs
+Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170920045234_recipientDefault.Designer.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\ApplicationDbContextModelSnapshot.cs
 Z:\WebApp\QualityHat\src\QualityHat\Migrations\20170912045247_decimalPrice.cs
 Z:\WebApp\QualityHat\src\QualityHat\Migrations\20170912045247_decimalPrice.Designer.cs
@@ -304,6 +309,7 @@ Z:\WebApp\QualityHat\src\QualityHat\Models\Category.cs
 Z:\WebApp\QualityHat\src\QualityHat\Models\Hat.cs
 Z:\WebApp\QualityHat\src\QualityHat\Models\Order.cs
 Z:\WebApp\QualityHat\src\QualityHat\Models\OrderDetail.cs
+Z:\WebApp\QualityHat\src\QualityHat\Models\Recipient.cs
 Z:\WebApp\QualityHat\src\QualityHat\Models\ShoppingCart.cs
 Z:\WebApp\QualityHat\src\QualityHat\Models\Supplier.cs
 Z:\WebApp\QualityHat\src\QualityHat\Models\AccountViewModels\ExternalLoginConfirmationViewModel.cs

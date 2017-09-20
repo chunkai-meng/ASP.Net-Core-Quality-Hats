@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace QualityHat.Models
 {
@@ -9,5 +10,7 @@ namespace QualityHat.Models
     	public String Address { get; set; }
 		public string CustomerName { get; set; }
 		public bool Enabled { get; set; }
+		public List<Recipient> Recipients { get; set; }
+
 	}
 }
