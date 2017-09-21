@@ -1,5 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using QualityHat.Data;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace QualityHat.Models {
         public enum OrderStatus
@@ -38,6 +42,22 @@ namespace QualityHat.Models {
 
         public ApplicationUser User { get; set; }
 
-    }
+
+		public static async Task<decimal> GetUserTotalPrice(ApplicationUser user, ApplicationDbContext _context)
+		{
+			decimal? total = await (from detail in _context.OrderDetail
+							  where detail.Order.User == user && detail.Order.OrderStatus == 0
+							  select (int?)detail.Quantity * detail.UnitPrice).SumAsync();
+
+			return total ?? decimal.Zero;
+		}
+
+		public static async void DeleteCart(ApplicationUser user, ApplicationDbContext _context)
+		{
+			var order = await _context.Orders.SingleOrDefaultAsync(m => m.User == user && m.OrderStatus == 0);
+			_context.Orders.Remove(order);
+			await _context.SaveChangesAsync();
+		}
+	}
 
 }
