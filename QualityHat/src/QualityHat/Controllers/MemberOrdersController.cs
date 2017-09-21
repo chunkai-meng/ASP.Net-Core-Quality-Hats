@@ -34,6 +34,37 @@ namespace QualityHat.Controllers
             return View(await _context.Orders.Where(o => o.User.Id == user.Id).Include(o => o.User).AsNoTracking().ToListAsync());
         }
 
+
+		// Get: MemberOrders/Submit Order
+		[Authorize(Roles = "Member")]
+		public async Task<IActionResult> Submit(int? id)
+		{
+			ApplicationUser user = await _userManager.GetUserAsync(User);
+			Order order = await _context.Orders
+				.Include(o => o.OrderDetails)
+				.AsNoTracking().
+				SingleOrDefaultAsync(m => m.User.Id == user.Id && m.OrderStatus == 0);
+			order.OrderStatus = OrderStatus.Placed;
+
+			try
+			{
+				await _context.SaveChangesAsync();
+			}
+			catch (DbUpdateException /* ex */)
+			{
+				//Log the error (uncomment ex variable name and write a log.)
+				ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists, " + "see your system administrator.");
+			}
+			return RedirectToAction("Submited");
+
+		}
+
+		[Authorize(Roles = "Member")]
+		public IActionResult Submited()
+		{
+			return View();
+		}
+
 		// GET: MemberOrders/Bag/CK
 		[Authorize(Roles = "Member")]
 		 public async Task<IActionResult> AddToBag()
@@ -112,14 +143,14 @@ namespace QualityHat.Controllers
 				orderToUpdate.Total = cart.GetTotal(_context) + order.Total;
 				_context.Orders.Update(orderToUpdate);
 				cart.EmptyCart(_context);
-				
+
 				try
 				{
 					await _context.SaveChangesAsync();
 				}
 				catch (DbUpdateException /* ex */)
 				{
-					//Log the error (uncomment ex variable name and write a log.) 
+					//Log the error (uncomment ex variable name and write a log.)
 					ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists, " + "see your system administrator.");
 				}
 
@@ -133,6 +164,15 @@ namespace QualityHat.Controllers
 		[Authorize(Roles = "Member")]
 		public async Task<IActionResult> ShoppingBag()
 		{
+			ViewBag.OrderStatus = new List<SelectListItem>
+			{
+				new SelectListItem {Text = "InCart", Value = "0"},
+				new SelectListItem {Text = "Placed", Value = "1"},
+				new SelectListItem {Text = "InProgress", Value = "2"},
+				new SelectListItem {Text = "PreparingToShip", Value = "3"},
+				new SelectListItem {Text = "Shipped", Value = "4"},
+				new SelectListItem {Text = "Delieved", Value = "5"}
+			};
 			ApplicationUser user = await _userManager.GetUserAsync(User);
 			var order = await _context.Orders
 				.Include(o => o.User)
@@ -148,10 +188,32 @@ namespace QualityHat.Controllers
 			// This is a good example for how to retrive a one-many-many relationship data.
 			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
 			order.OrderDetails = details;
-
+			//var recipients = _context.Recipient.Where(i => i.User == user);
+			order.User.Recipients = _context.Recipient.Where(i => i.User == user).AsNoTracking().ToList();
 			return View(order);
 		}
 
+        // GET: MemberOrders/Details/5
+		public async Task<IActionResult> Purchased(int? id)
+        {
+            ApplicationUser user = await _userManager.GetUserAsync(User);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+			var order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
+
+			if (order == null)
+            {
+                return NotFound();
+            }
+
+			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
+			order.OrderDetails = details;
+            order.User.Recipients = _context.Recipient.Where(i => i.User == user).ToList();
+			return View(order);
+        }
 
 		// GET: MemberOrders/Details/5
 		public async Task<IActionResult> Details(int? id)
@@ -231,7 +293,7 @@ namespace QualityHat.Controllers
 		}
 
         // POST: MemberOrders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 
 		[HttpPost]
@@ -311,7 +373,7 @@ namespace QualityHat.Controllers
         }
 
         // POST: MemberOrders/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -344,7 +406,6 @@ namespace QualityHat.Controllers
             }
             return View(order);
         }
-
 
         // GET: MemberOrders/Delete/5
         public async Task<IActionResult> Delete(int? id)

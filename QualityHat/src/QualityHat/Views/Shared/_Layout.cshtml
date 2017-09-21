@@ -35,7 +35,7 @@
                         <li><a asp-area="" asp-controller="Shop" asp-action="Mens">MENS</a></li>
                         <li><a asp-area="" asp-controller="Shop" asp-action="Womens">WOMENS</a></li>
                         <li><a asp-area="" asp-controller="Shop" asp-action="Childrens">KIDS</a></li>
-                        
+
                     @if (User.IsInRole("Admin"))
                     {
                         <li><a asp-area="" asp-controller="Categories" asp-action="Index">Categories</a></li>
@@ -44,11 +44,10 @@
                         <li><a asp-area="" asp-controller="Orders" asp-action="Index">Orders</a></li>
                         <li><a asp-area="" asp-controller="Hats" asp-action="Index">HATS</a></li>
 					}
-					else
+					else if (User.IsInRole("Member"))
 					{
 						<li><a asp-area="" asp-controller="MemberHats" asp-action="Index">HATS</a></li>
 						<li><a asp-area="" asp-controller="MemberOrders" asp-action="Index">Orders</a></li>
-                       <li><a asp-area="" asp-controller="MemberOrders" asp-action="ShoppingBag">Shopping Bag</a></li>
                     }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")

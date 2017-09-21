@@ -1,0 +1,100 @@
+@model QualityHat.Models.Order
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div id="accordion" role="tablist">
+	<div class="card">
+		<div class="card-header" role="tab" id="headingOne">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><h5 class="mb-0"><strong>Select Recipient</strong></h5></li>
+			</ol>
+		</div>
+
+		<div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+			<div class="card-body">
+				@await Component.InvokeAsync("Recipient", new { order = Model })
+			</div>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-header" role="tab" id="headingTwo">
+			<a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><h5 class="mb-0"><strong>Detail</strong></h5></li>
+				</ol>
+			</a>
+		</div>
+		<div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+			<div class="card-body">
+				@*Order Detail: Recipient Info*@
+				<div>
+					<dl>
+						<dd>
+							<table class="table">
+								<tr>
+									<th>Tutorial </th>
+									<th>Dates</th>
+									<th>Quantity</th>
+									<th>Price</th>
+								</tr>
+								@foreach (var item in Model.OrderDetails)
+											{
+											<tr>
+												<td>@Html.DisplayFor(modelItem => item.Hat.Name)</td>
+												<td>@Html.DisplayFor(modelItem => item.Hat.Disc)</td>
+												<td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+												<td>@Html.DisplayFor(modelItem => item.Hat.Price)</td>
+											</tr>
+											}
+								<tr>
+									<td></td>
+									<td></td>
+									<td>
+										<label>Total:</label>
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => Model.Total)
+									</td>
+								</tr>
+							</table>
+						</dd>
+					</dl>
+				</div>
+		</div>
+	</div>
+	@*<div class="card">
+		<div class="card-header" role="tab" id="headingThree">
+			<h5 class="mb-0">
+				<a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					Collapsible Group Item #3
+				</a>
+			</h5>
+		</div>
+		<div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+			<div class="card-body">
+				Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+			</div>
+		</div>
+	</div>*@
+</div>
+
+
+
+
+
+
+
+
+<div class="card text-right">
+	<div class="card-header">
+		<a asp-action="Submit" asp-route-id="@Model.OrderId" class="btn btn-primary">Submit Order</a>
+	</div>
+	<div class="card-body">
+
+	</div>
+	<div class="card-footer text-muted">
+		<a asp-action="Index" class="card-footer text-muted">Back to ShoppingCart</a>
+	</div>
+</div>

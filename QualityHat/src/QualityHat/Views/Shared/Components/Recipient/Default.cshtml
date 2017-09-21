@@ -1,0 +1,178 @@
+@model QualityHat.Models.ShoppingBagViewModels.ShoppingBagViewModel
+
+@{
+    ViewData["Title"] = "Recipient";
+}
+
+
+<div>
+	<table>
+		<tr>
+			<td>
+				<select onchange="location.href='/Recipients/SetDefault?id=' + this.value;" class="form-control">
+					@foreach (var item in Model.Recipients)
+					{
+						<option value="@item.RecipientId">
+							@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName),
+							@Html.DisplayFor(modelItem => item.Phone), @Html.DisplayFor(modelItem => item.City)
+						</option>
+					}
+				</select>
+			</td>
+			<td>
+				<a asp-controller="Recipients" asp-action="Create"> Create New </a> | <a asp-controller="Recipients" asp-action="Index"> Edit </a>
+			</td>
+		</tr>
+	</table>
+
+</div>
+
+@*<table class="table">
+    <thead>
+        <tr>
+			<th>
+				Recipient ID
+			</th>
+            <th>
+                City
+            </th>
+            <th>
+                Country
+            </th>
+            <th>
+                Default
+            </th>
+            <th>
+                FirstName
+            </th>
+            <th>
+                LastName
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+               PostalCode
+            </th>
+            <th>
+               State
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Recipients) {
+        <tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.RecipientId)
+			</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Default)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostalCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                <a asp-controller="Recipients" asp-action="Edit" asp-route-id="@item.RecipientId">Edit</a> |
+                <a asp-controller="Recipients" asp-action="Details" asp-route-id="@item.RecipientId">Details</a> |
+                <a asp-controller="Recipients" asp-action="Delete" asp-route-id="@item.RecipientId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>*@
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.City)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.City)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Country)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.Country)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.DelievedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.DelievedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.OrderDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.OrderDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.OrderStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.OrderStatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.PostalCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.PostalCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.ShippedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.ShippedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.State)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.State)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Total)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.Total)
+        </dd>
+    </dl>
+</div>

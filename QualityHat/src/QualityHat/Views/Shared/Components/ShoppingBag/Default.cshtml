@@ -25,7 +25,16 @@
 					</td>
 					<td>@Html.DisplayFor(modelItem => item.Hat.Name)</td>
 					<td>@Html.DisplayFor(modelItem => item.Hat.Disc)</td>
-					<td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+					<td>
+						
+						<a asp-action="DeleteOneFromBag" asp-controller="ShoppingBag" asp-route-id="@item.OrderDetailId">
+							<span class="glyphicon glyphicon-minus-sign"></span>
+						</a>
+						@Html.DisplayFor(modelItem => item.Quantity)
+						<a asp-action="AddOneToBag" asp-controller="ShoppingBag" asp-route-id="@item.OrderDetailId">
+							<span class="glyphicon glyphicon-plus-sign"></span>
+						</a>
+					</td>
 					<td>@Html.DisplayFor(modelItem => item.Hat.Price)</td>
 				</tr>
 			}

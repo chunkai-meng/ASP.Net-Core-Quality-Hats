@@ -12,7 +12,6 @@ namespace QualityHat.ViewComponents
     {
 		public IViewComponentResult Invoke(Order order)
 		{
-			var country = order.OrderStatus;
             var viewModel = new ShoppingBagViewModel
             {
                 Order = order
