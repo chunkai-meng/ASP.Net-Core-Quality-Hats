@@ -78,7 +78,7 @@ namespace QualityHat.Controllers
 
 			if (order == null)
 			{
-				Order orderToUpdate = new Order { OrderStatus = 0 };
+				Order orderToUpdate = new Order { OrderStatus = 0, User = user};
 
 				if (ModelState.IsValid)
 				{
@@ -93,17 +93,36 @@ namespace QualityHat.Controllers
 						_context.Add(detail);
 
 					}
+					try
+					{
+						await _context.SaveChangesAsync();
+					}
+					catch (DbUpdateException /* ex */)
+					{
+						//Log the error (uncomment ex variable name and write a log.)
+						ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists, " + "see your system administrator.");
+					}
 
-					orderToUpdate.User = user;
 					orderToUpdate.OrderDate = DateTime.Today;
-					orderToUpdate.Total = ShoppingCart.GetCart(this.HttpContext).GetTotal(_context);
 					orderToUpdate.OrderDetails = details;
-					_context.SaveChanges();
+					try
+					{
+						await _context.SaveChangesAsync();
+					}
+					catch (DbUpdateException /* ex */)
+					{
+						//Log the error (uncomment ex variable name and write a log.)
+						ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists, " + "see your system administrator.");
+					}
 
 					cart.EmptyCart(_context);
 
-					return RedirectToAction("Details", new RouteValueDictionary(
-					new { action = "Details", id = orderToUpdate.OrderId }));
+					
+					orderToUpdate.Total = Order.GetUserTotalPrice(user, _context);
+					await _context.SaveChangesAsync();
+
+					return RedirectToAction("ShoppingBag", new RouteValueDictionary(
+					new { action = "ShoppingBag" }));
 				}
 			}
 			else

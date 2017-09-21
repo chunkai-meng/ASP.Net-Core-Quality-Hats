@@ -43,13 +43,20 @@ namespace QualityHat.Models {
         public ApplicationUser User { get; set; }
 
 
-		public static async Task<decimal> GetUserTotalPrice(ApplicationUser user, ApplicationDbContext _context)
+		public static decimal GetUserTotalPrice(ApplicationUser user, ApplicationDbContext _context)
 		{
-			decimal? total = await (from detail in _context.OrderDetail
+			decimal? total = (from detail in _context.OrderDetail
 							  where detail.Order.User == user && detail.Order.OrderStatus == 0
-							  select (int?)detail.Quantity * detail.UnitPrice).SumAsync();
+							  select (int?)detail.Quantity * detail.UnitPrice).Sum();
 
 			return total ?? decimal.Zero;
+		}
+
+		public static async void SetOrderTotalPrice(ApplicationUser user, ApplicationDbContext _context)
+		{
+			var order = await _context.Orders.SingleOrDefaultAsync(m => m.User == user && m.OrderStatus == 0);
+			order.Total = GetUserTotalPrice(user, _context); 
+			await _context.SaveChangesAsync();
 		}
 
 		public static async void DeleteCart(ApplicationUser user, ApplicationDbContext _context)

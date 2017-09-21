@@ -56,6 +56,12 @@ namespace QualityHat.Controllers
 				ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists, " + "see your system administrator.");
 			}
 
+			ApplicationUser user = await _userManager.GetUserAsync(User);
+			var orderToUpdate = await _context.Orders.SingleOrDefaultAsync(m => m.User == user && m.OrderStatus == 0);
+			orderToUpdate.Total = Order.GetUserTotalPrice(user, _context);
+			await _context.SaveChangesAsync();
+
+
 			return Redirect(Request.Headers["Referer"].ToString());
 		}
 
@@ -81,6 +87,12 @@ namespace QualityHat.Controllers
 				//Log the error (uncomment ex variable name and write a log.) 
 				ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists, " + "see your system administrator.");
 			}
+
+			ApplicationUser user = await _userManager.GetUserAsync(User);
+			var orderToUpdate = await _context.Orders.SingleOrDefaultAsync(m => m.User == user && m.OrderStatus == 0);
+			orderToUpdate.Total = Order.GetUserTotalPrice(user, _context);
+			await _context.SaveChangesAsync();
+
 
 			return Redirect(Request.Headers["Referer"].ToString());
 		}
