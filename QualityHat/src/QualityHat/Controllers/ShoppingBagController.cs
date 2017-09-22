@@ -72,10 +72,7 @@ namespace QualityHat.Controllers
 
 			if (detail != null)
 			{
-				if (detail.Quantity > 1)
-				{
-					detail.Quantity ++;
-				}
+				detail.Quantity++;
 			}
 
 			try
