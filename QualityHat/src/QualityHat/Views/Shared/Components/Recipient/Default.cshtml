@@ -9,12 +9,12 @@
 	<table>
 		<tr>
 			<td>
-				<select onchange="location.href='/Recipients/SetDefault?id=' + this.value;" class="form-control">
+				<select on="location.href='/Recipients/SetDefault?id=' + this.value;" class="form-control"> 
 					@foreach (var item in Model.Recipients)
 					{
 						<option value="@item.RecipientId">
-							@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName),
-							@Html.DisplayFor(modelItem => item.Phone), @Html.DisplayFor(modelItem => item.City)
+								@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName),
+								@Html.DisplayFor(modelItem => item.Phone), @Html.DisplayFor(modelItem => item.City)
 						</option>
 					}
 				</select>

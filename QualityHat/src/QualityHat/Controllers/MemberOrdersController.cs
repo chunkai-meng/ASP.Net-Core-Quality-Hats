@@ -37,15 +37,17 @@ namespace QualityHat.Controllers
 
 		// Get: MemberOrders/Submit Order
 		[Authorize(Roles = "Member")]
-		public async Task<IActionResult> Submit(int? id)
+		public async Task<IActionResult> Submited(int? id)
 		{
 			ApplicationUser user = await _userManager.GetUserAsync(User);
-			Order order = await _context.Orders
+			var order = await _context.Orders
 				.Include(o => o.OrderDetails)
 				.AsNoTracking().
 				SingleOrDefaultAsync(m => m.User.Id == user.Id && m.OrderStatus == 0);
 			order.OrderStatus = OrderStatus.Placed;
+			order.OrderDate = DateTime.Now;
 
+			_context.Orders.Update(order);
 			try
 			{
 				await _context.SaveChangesAsync();
@@ -55,15 +57,9 @@ namespace QualityHat.Controllers
 				//Log the error (uncomment ex variable name and write a log.)
 				ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists, " + "see your system administrator.");
 			}
-			return RedirectToAction("Submited");
-
-		}
-
-		[Authorize(Roles = "Member")]
-		public IActionResult Submited()
-		{
 			return View();
 		}
+
 
 		// GET: MemberOrders/Bag/CK
 		[Authorize(Roles = "Member")]
@@ -117,7 +113,7 @@ namespace QualityHat.Controllers
 
 					cart.EmptyCart(_context);
 
-					
+
 					orderToUpdate.Total = Order.GetUserTotalPrice(user, _context);
 					await _context.SaveChangesAsync();
 

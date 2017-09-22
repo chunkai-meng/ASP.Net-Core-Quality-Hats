@@ -81,8 +81,17 @@ To undo this action:
 - Add relevant method in AdminApplicationUsersController.cs
 -
 
+## Publish
+- Don't in publish setting choose delete the previous files before publish
+- Choose the specific folder in the Server don't create a new one
+- The project name is not important don't need to warry about
+- You can also choose upload a Debug release for more error info
+- Choose the specific Data Connection so you don't need to change back after finish publishing.
+
+
 ## Problems Summary:
 if see `The term 'add-migration' is not recognized as the name of a cmdlet` error.
 - close VS2015 or even restart computer. then open the project should work.
     - Or cmd to /Project Name/src/Project Name/
     - use `dotnet ef migrations add addAddressToUser -c ApplicationDbContext`
+

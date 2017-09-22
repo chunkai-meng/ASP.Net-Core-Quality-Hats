@@ -1,14 +1,15 @@
-﻿-d:DEBUG
+﻿-d:RELEASE
 -d:TRACE
 -d:NETCOREAPP1_0
 -nowarn:CS1701
 -nowarn:CS1702
 -nowarn:CS1705
+-optimize
 -debug:full
 -nostdlib
 -nologo
-"Z:\WebApp\QualityHat\src\QualityHat\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
--out:"Z:\WebApp\QualityHat\src\QualityHat\bin\Debug\netcoreapp1.0\QualityHat.dll"
+"Z:\WebApp\QualityHat\src\QualityHat\obj\Release\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
+-out:"Z:\WebApp\QualityHat\src\QualityHat\bin\Release\netcoreapp1.0\QualityHat.dll"
 -r:"C:\Users\CK\.nuget\packages\MailKit\1.18.1.1\lib\netstandard1.3\MailKit.dll"
 -r:"C:\Users\CK\.nuget\packages\Microsoft.ApplicationInsights\2.1.0\lib\dotnet5.4\Microsoft.ApplicationInsights.dll"
 -r:"C:\Users\CK\.nuget\packages\Microsoft.ApplicationInsights.AspNetCore\1.0.0\lib\netstandard1.6\Microsoft.ApplicationInsights.AspNetCore.dll"
@@ -231,7 +232,7 @@
 -r:"C:\Users\CK\.nuget\packages\System.Threading.Timer\4.3.0\ref\netstandard1.2\System.Threading.Timer.dll"
 -r:"C:\Users\CK\.nuget\packages\System.Xml.ReaderWriter\4.3.0\ref\netstandard1.3\System.Xml.ReaderWriter.dll"
 -r:"C:\Users\CK\.nuget\packages\System.Xml.XDocument\4.3.0\ref\netstandard1.3\System.Xml.XDocument.dll"
--resource:"Z:\WebApp\QualityHat\src\QualityHat\obj\Debug\netcoreapp1.0\QualityHatdotnet-compile.deps.json",QualityHat.deps.json
+-resource:"Z:\WebApp\QualityHat\src\QualityHat\obj\Release\netcoreapp1.0\QualityHatdotnet-compile.deps.json",QualityHat.deps.json
 "Z:\WebApp\QualityHat\src\QualityHat\Program.cs"
 "Z:\WebApp\QualityHat\src\QualityHat\Startup.cs"
 "Z:\WebApp\QualityHat\src\QualityHat\Controllers\AccountController.cs"
