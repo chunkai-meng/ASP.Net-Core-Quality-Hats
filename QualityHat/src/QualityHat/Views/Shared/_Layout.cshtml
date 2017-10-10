@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Quality Hat</title>
-
+    <link rel="shortcut icon" href="/images/logos/logos-site-QH.ico" /> 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -27,31 +27,37 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Quality Hat</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                    <img src="/images/logos/logos-2.png" height="20" width="100">
+                    <!-- Quality Hats -->
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    	<li><a asp-area="" asp-controller="Shop" asp-action="Whats-new">WHAT'S NEW</a></li>
+
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li><a asp-area="" asp-controller="Hats" asp-action="Index">HATS</a></li>
+                        <li><a asp-area="" asp-controller="Categories" asp-action="Index">CATEGORIES</a></li>
+                        <li><a asp-area="" asp-controller="Suppliers" asp-action="Index">SUPPLIERS</a></li>
+                        <li><a asp-area="" asp-controller="AdminApplicationUsers" asp-action="Index">MEMBERS</a></li>
+                        <li><a asp-area="" asp-controller="Orders" asp-action="Index">ORDERS</a></li>
+
+					}
+					else if (User.IsInRole("Member"))
+					{
+                        <li><a asp-area="" asp-controller="Shop" asp-action="Mens">MENS</a></li>
+                        <li><a asp-area="" asp-controller="Shop" asp-action="Womens">WOMENS</a></li>
+                        <li><a asp-area="" asp-controller="Shop" asp-action="Childrens">KIDS</a></li>
+						<li><a asp-area="" asp-controller="MemberOrders" asp-action="Index">ORDERS</a></li>
+					}
+					else
+					{
                         <li><a asp-area="" asp-controller="Shop" asp-action="Mens">MENS</a></li>
                         <li><a asp-area="" asp-controller="Shop" asp-action="Womens">WOMENS</a></li>
                         <li><a asp-area="" asp-controller="Shop" asp-action="Childrens">KIDS</a></li>
 
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <li><a asp-area="" asp-controller="Categories" asp-action="Index">Categories</a></li>
-                        <li><a asp-area="" asp-controller="Suppliers" asp-action="Index">Suppliers</a></li>
-                        <li><a asp-area="" asp-controller="AdminApplicationUsers" asp-action="Index">Members</a></li>
-                        <li><a asp-area="" asp-controller="Orders" asp-action="Index">Orders</a></li>
-                        <li><a asp-area="" asp-controller="Hats" asp-action="Index">HATS</a></li>
-					}
-					else if (User.IsInRole("Member"))
-					{
-						<li><a asp-area="" asp-controller="MemberHats" asp-action="Index">HATS</a></li>
-						<li><a asp-area="" asp-controller="MemberOrders" asp-action="Index">Orders</a></li>
-					}
-					else
-					{
-						<li><a asp-area ="" asp-controller="MemberHats" asp-action="Index">HATS</a></li>
 					}
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")

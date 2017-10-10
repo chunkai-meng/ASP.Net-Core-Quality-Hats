@@ -63,7 +63,7 @@ namespace QualityHat.Controllers
 
 			var myUniqueFileName = $@"{DateTime.Now.Ticks}" + fileExtension;
 			var filePath = "./wwwroot/images/hats/" + myUniqueFileName;
-			var imageURL = "images/hats/" + myUniqueFileName;
+			var imageURL = "/images/hats/" + myUniqueFileName;
 
 			if (file.Length > 0)
 			{
@@ -82,8 +82,8 @@ namespace QualityHat.Controllers
 		// GET: Hats/Create
 		public IActionResult Create(string fileName)
         {
-            ViewData["CategoryID"] = new SelectList(_context.Categorys, "CategoryID", "CategoryID");
-            ViewData["SupplierID"] = new SelectList(_context.Suppliers, "SupplierID", "SupplierID");
+            ViewData["CategoryID"] = new SelectList(_context.Categorys, "CategoryID", "Name");
+            ViewData["SupplierID"] = new SelectList(_context.Suppliers, "SupplierID", "Name");
 
 			if (!string.IsNullOrEmpty(fileName))
 			{
@@ -189,7 +189,7 @@ namespace QualityHat.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cartItems = await _context.CartItems.SingleOrDefaultAsync(m => m.Hat.HatID == id);
+            var cartItems = await _context.Hats.SingleOrDefaultAsync(m => m.HatID == id);
 
             var hat = await _context.Hats.SingleOrDefaultAsync(m => m.HatID == id);
             _context.Hats.Remove(hat);

@@ -47,7 +47,8 @@
     },
     "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0",
     "MailKit": "1.18.1.1",
-    "Microsoft.AspNetCore.Session": "1.0.0"
+    "Microsoft.AspNetCore.Session": "1.0.0",
+    "bootstrap": "4.0.0-beta"
   },
 
   "tools": {

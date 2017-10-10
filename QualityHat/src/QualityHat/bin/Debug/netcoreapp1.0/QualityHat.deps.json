@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "f3c9e3e13701f3553ea208e6a6856b4d808119fc"
+    "signature": "6150b1df2f53558b2fefcfd761d05756b87d7598"
   },
   "compilationOptions": {
     "defines": [
@@ -38,7 +38,8 @@
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0",
           "MailKit": "1.18.1.1",
-          "Microsoft.AspNetCore.Session": "1.0.0"
+          "Microsoft.AspNetCore.Session": "1.0.0",
+          "bootstrap": "4.0.0-beta"
         },
         "runtime": {
           "QualityHat.dll": {}
@@ -47,6 +48,13 @@
           "QualityHat.dll": {}
         }
       },
+      "bootstrap/4.0.0-beta": {
+        "dependencies": {
+          "jQuery": "1.9.1",
+          "popper.js": "1.11.0"
+        }
+      },
+      "jQuery/1.9.1": {},
       "MailKit/1.18.1.1": {
         "dependencies": {
           "MimeKit": "1.18.1",
@@ -1990,6 +1998,7 @@
           "lib/netstandard1.0/NuGet.Versioning.dll": {}
         }
       },
+      "popper.js/1.11.0": {},
       "Portable.BouncyCastle/1.8.1.3": {
         "dependencies": {
           "NETStandard.Library": "1.6.1"
@@ -4175,6 +4184,16 @@
       "serviceable": false,
       "sha512": ""
     },
+    "bootstrap/4.0.0-beta": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vXc4BAnpmiIqwn2x9+lxPXndpY12BhoFHLZ6SpD04ghIGEFHFKPjqJyRjbBsbIWlefIMCXE83UqeCSMOHoB2LA=="
+    },
+    "jQuery/1.9.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HiX9icLyiJGgiL5EOIn0d1MBPHVV2M9mzWT4mANdniDNR51RvAFTyKEXEd2+5yQJ4PJ5xePOR61Vjj/omQzYcw=="
+    },
     "MailKit/1.18.1.1": {
       "type": "package",
       "serviceable": true,
@@ -4799,6 +4818,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-Stok+SI5lWxOkTgZZM7jT4xuAZogm5+j85mKJeHSXb8o0OAbB+qDX9jkdM2wIEnjoR8R29J0nQYwk2Kl2lWFpA=="
+    },
+    "popper.js/1.11.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Hi4Cr+JLPGKknq0CJtgGkPUQTnMqRk5kLwMliCjaFbcrJB2QPqW7gGGUjzALHxJY2bv6B9Rzc684Xg6qj8//ow=="
     },
     "Portable.BouncyCastle/1.8.1.3": {
       "type": "package",

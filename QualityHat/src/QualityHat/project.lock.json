@@ -3,6 +3,16 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.0": {
+      "bootstrap/4.0.0-beta": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "[1.9.1, 4.0.0)",
+          "popper.js": "[1.11.0, 2.0.0)"
+        }
+      },
+      "jQuery/1.9.1": {
+        "type": "package"
+      },
       "Libuv/1.9.0": {
         "type": "package",
         "dependencies": {
@@ -2362,6 +2372,9 @@
           "lib/netstandard1.0/NuGet.Versioning.dll": {}
         }
       },
+      "popper.js/1.11.0": {
+        "type": "package"
+      },
       "Portable.BouncyCastle/1.8.1.3": {
         "type": "package",
         "dependencies": {
@@ -4672,6 +4685,46 @@
     }
   },
   "libraries": {
+    "bootstrap/4.0.0-beta": {
+      "sha512": "vXc4BAnpmiIqwn2x9+lxPXndpY12BhoFHLZ6SpD04ghIGEFHFKPjqJyRjbBsbIWlefIMCXE83UqeCSMOHoB2LA==",
+      "type": "package",
+      "path": "bootstrap/4.0.0-beta",
+      "files": [
+        "bootstrap.4.0.0-beta.nupkg.sha512",
+        "bootstrap.nuspec",
+        "content/Content/bootstrap-grid.css",
+        "content/Content/bootstrap-grid.css.map",
+        "content/Content/bootstrap-grid.min.css",
+        "content/Content/bootstrap-grid.min.css.map",
+        "content/Content/bootstrap-reboot.css",
+        "content/Content/bootstrap-reboot.css.map",
+        "content/Content/bootstrap-reboot.min.css",
+        "content/Content/bootstrap-reboot.min.css.map",
+        "content/Content/bootstrap.css",
+        "content/Content/bootstrap.css.map",
+        "content/Content/bootstrap.min.css",
+        "content/Content/bootstrap.min.css.map",
+        "content/Scripts/bootstrap.js",
+        "content/Scripts/bootstrap.min.js"
+      ]
+    },
+    "jQuery/1.9.1": {
+      "sha512": "HiX9icLyiJGgiL5EOIn0d1MBPHVV2M9mzWT4mANdniDNR51RvAFTyKEXEd2+5yQJ4PJ5xePOR61Vjj/omQzYcw==",
+      "type": "package",
+      "path": "jQuery/1.9.1",
+      "files": [
+        "Content/Scripts/jquery-1.9.1-vsdoc.js",
+        "Content/Scripts/jquery-1.9.1.js",
+        "Content/Scripts/jquery-1.9.1.min.js",
+        "Content/Scripts/jquery-1.9.1.min.map",
+        "Tools/common.ps1",
+        "Tools/install.ps1",
+        "Tools/jquery-1.9.1.intellisense.js",
+        "Tools/uninstall.ps1",
+        "jQuery.1.9.1.nupkg.sha512",
+        "jQuery.nuspec"
+      ]
+    },
     "Libuv/1.9.0": {
       "sha512": "9Q7AaqtQhS8JDSIvRBt6ODSLWDBI4c8YxNxyCQemWebBFUtBbc6M5Vi5Gz1ZyIUlTW3rZK9bIr5gnVyv0z7a2Q==",
       "type": "package",
@@ -6674,6 +6727,24 @@
         "lib/net45/NuGet.Versioning.xml",
         "lib/netstandard1.0/NuGet.Versioning.dll",
         "lib/netstandard1.0/NuGet.Versioning.xml"
+      ]
+    },
+    "popper.js/1.11.0": {
+      "sha512": "Hi4Cr+JLPGKknq0CJtgGkPUQTnMqRk5kLwMliCjaFbcrJB2QPqW7gGGUjzALHxJY2bv6B9Rzc684Xg6qj8//ow==",
+      "type": "package",
+      "path": "popper.js/1.11.0",
+      "files": [
+        "index.d.ts",
+        "popper-utils.js",
+        "popper-utils.js.map",
+        "popper-utils.min.js",
+        "popper-utils.min.js.map",
+        "popper.js",
+        "popper.js.1.11.0.nupkg.sha512",
+        "popper.js.map",
+        "popper.js.nuspec",
+        "popper.min.js",
+        "popper.min.js.map"
       ]
     },
     "Portable.BouncyCastle/1.8.1.3": {
@@ -11740,7 +11811,8 @@
       "Microsoft.NETCore.App >= 1.0.1",
       "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Tools >= 1.0.0-preview2-final",
-      "Microsoft.VisualStudio.Web.CodeGenerators.Mvc >= 1.0.0-preview2-final"
+      "Microsoft.VisualStudio.Web.CodeGenerators.Mvc >= 1.0.0-preview2-final",
+      "bootstrap >= 4.0.0-beta"
     ],
     ".NETCoreApp,Version=v1.0": []
   },
