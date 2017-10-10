@@ -30,6 +30,8 @@ namespace QualityHat.Models {
 
         public string Phone { get; set; }
 
+		public decimal GST { get; set; }
+
         public decimal Total { get; set; }
 
         public System.DateTime ShippedDate { get; set; }

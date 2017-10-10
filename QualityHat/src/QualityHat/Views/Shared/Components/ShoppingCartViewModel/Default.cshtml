@@ -39,9 +39,11 @@
 	<hr />
 
 	<div class="row">
-			<div class="col-sm-2">Grand Total:</div>
-			<div class="col-sm-2">$@Model.CartTotal</div>
-			<div class="col-sm-2">
+		<div class="col-sm-2">GST:</div>
+		<div class="col-sm-2">$@Model.CartGST</div>
+		<div class="col-sm-2">Grand Total:</div>
+		<div class="col-sm-2">$@Model.CartTotal</div>
+		<div class="col-sm-2">
 @if (@Model.CartItems.Count > 0)
 {
 				<a asp-action="AddToBag" asp-controller="MemberOrders" class="badge badge-primary">

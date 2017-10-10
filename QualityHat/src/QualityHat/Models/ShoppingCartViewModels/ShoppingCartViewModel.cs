@@ -8,6 +8,7 @@ namespace QualityHat.Models.ShoppingCartViewModels
     public class ShoppingCartViewModel
     {
 		public List<CartItem> CartItems { get; set; }
+		public decimal CartGST { get; set; }
 		public decimal CartTotal { get; set; }
 	}
 }

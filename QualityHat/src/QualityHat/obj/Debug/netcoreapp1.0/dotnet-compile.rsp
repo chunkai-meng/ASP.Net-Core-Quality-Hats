@@ -286,6 +286,8 @@ Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170920045234_recipientDefa
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170920045234_recipientDefault.Designer.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170922021220_unitec.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170922021220_unitec.Designer.cs
+Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20171009224713_addGST.cs
+Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20171009224713_addGST.Designer.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\ApplicationDbContextModelSnapshot.cs
 Z:\WebApp\QualityHat\src\QualityHat\Migrations\20170912045247_decimalPrice.cs
 Z:\WebApp\QualityHat\src\QualityHat\Migrations\20170912045247_decimalPrice.Designer.cs
