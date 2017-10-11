@@ -112,7 +112,23 @@ namespace QualityHat
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=MemberHats}/{action=Index}/{id?}"
+                );
+                routes.MapRoute(
+                    name: "Mens",
+					template: "Shop/Mens",
+					defaults: new { controller = "MemberHats", action = "Category", id = 1 }
+                );
+                routes.MapRoute(
+                    name: "WOMENS",
+					template: "Shop/Womens",
+					defaults: new { controller = "MemberHats", action = "Category", id = 2 }
+                );
+                routes.MapRoute(
+                    name: "KIDS",
+					template: "Shop/Kids",
+					defaults: new { controller = "MemberHats", action = "Category", id = 3 }
+                );
             });
 
             await CreateRoles(serviceProvider);

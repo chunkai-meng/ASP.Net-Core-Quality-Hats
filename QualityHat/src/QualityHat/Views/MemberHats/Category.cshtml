@@ -1,14 +1,14 @@
-@model IEnumerable<QualityHat.Models.Hat>
+@model QualityHat.Models.Category
 
 @{
-    ViewData["Title"] = "Index";
-    var i = 0;
+    ViewData["Title"] = "Details";
+	var i = 0;
 }
-<h2>All Hats</h2>
-<hr />
+
+<h2>Details</h2>
 
 <div class="card-group">
-    @foreach (var item in Model) 
+    @foreach (var item in Model.Hats) 
     {
         if(i % 3 == 0){
             @:<div class="row">
@@ -36,6 +36,10 @@
     }
 </div>
 
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CategoryID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
 
 <hr />
 
@@ -45,4 +49,3 @@
         @await Component.InvokeAsync("ShoppingCartViewModel")
     }
 </div>
-

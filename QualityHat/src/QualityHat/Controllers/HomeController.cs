@@ -6,19 +6,15 @@ using QualityHat.Data;
 namespace QualityHat.Controllers
 {
 	public class HomeController : Controller
-{
+    {
 
-	private readonly ApplicationDbContext _context;
+	    private readonly ApplicationDbContext _context;
 
-	public HomeController(ApplicationDbContext context)
-	{
-		_context = context;
-	}
+	    public HomeController(ApplicationDbContext context)
+	    {
+	    	_context = context;
+	    }
 
-		//public IActionResult Index()
-		//{
-		//	return View();
-		//}
 
 		// GET: MemberHats
 		public async Task<IActionResult> Index()
@@ -27,6 +23,24 @@ namespace QualityHat.Controllers
 			return View(await applicationDbContext.ToListAsync());
 		}
 
+        public async Task<IActionResult> Category(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            // var category = await _context.Categorys.SingleOrDefaultAsync(m => m.CategoryID == id);
+
+            var category = await _context.Categorys.Include(h => h.Hats).AsNoTracking().SingleOrDefaultAsync(m => m.CategoryID == id);
+            
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            return View(category);
+        }
 
 		public IActionResult About()
         {

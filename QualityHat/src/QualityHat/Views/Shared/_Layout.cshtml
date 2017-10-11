@@ -27,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                <a class="navbar-brand" href="/">
                     <img src="/images/logos/logos-2.png" height="20" width="100">
                     <!-- Quality Hats -->
                 </a>
@@ -49,14 +49,14 @@
 					{
                         <li><a asp-area="" asp-controller="Shop" asp-action="Mens">MENS</a></li>
                         <li><a asp-area="" asp-controller="Shop" asp-action="Womens">WOMENS</a></li>
-                        <li><a asp-area="" asp-controller="Shop" asp-action="Childrens">KIDS</a></li>
+                        <li><a asp-area="" asp-controller="Shop" asp-action="Kids">KIDS</a></li>
 						<li><a asp-area="" asp-controller="MemberOrders" asp-action="Index">ORDERS</a></li>
 					}
 					else
 					{
                         <li><a asp-area="" asp-controller="Shop" asp-action="Mens">MENS</a></li>
                         <li><a asp-area="" asp-controller="Shop" asp-action="Womens">WOMENS</a></li>
-                        <li><a asp-area="" asp-controller="Shop" asp-action="Childrens">KIDS</a></li>
+                        <li><a asp-area="" asp-controller="Shop" asp-action="Kids">KIDS</a></li>
 
 					}
                 </ul>
@@ -74,8 +74,13 @@
             }
 		</div> -->
         <footer class="footer">
-            <p>&copy; 2017 - Quality Hats</p>
+            <div class="row">
+                <div class="col-xs-6 col-md-8">&copy; 2017 - Quality Hats</div>
+                <div class="col-xs-6 col-md-4"><a asp-action="Contact" asp-controller="Home" class="pull-right">Contact Us</a></div>
+		    </div>
         </footer>
+
+
     </div>
 
     <environment names="Development">
