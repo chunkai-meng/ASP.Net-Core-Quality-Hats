@@ -13,30 +13,38 @@ using Microsoft.AspNetCore.Routing;
 
 namespace QualityHat.Controllers
 {
-    public class MemberOrdersController : Controller
-    {
-        private readonly ApplicationDbContext _context;
+	public class MemberOrdersController : Controller
+	{
+		private readonly ApplicationDbContext _context;
 		private UserManager<ApplicationUser> _userManager;
 
 		public MemberOrdersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
-        {
-            _context = context;
+		{
+			_context = context;
 			_userManager = userManager;
 		}
 
-        // GET: MemberOrders
-        // [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Member")]
-        public async Task<IActionResult> Index()
-        {
-            // return View(await _context.Orders.ToListAsync());
-            ApplicationUser user = await _userManager.GetUserAsync(User);
-            return View(await _context.Orders.Where(o => o.User.Id == user.Id).Include(o => o.User).AsNoTracking().ToListAsync());
-        }
+		// GET: MemberOrders
+		// [ValidateAntiForgeryToken]
+		[Authorize(Roles = "Member")]
+		public async Task<IActionResult> Index()
+		{
+			// return View(await _context.Orders.ToListAsync());
+			ApplicationUser user = await _userManager.GetUserAsync(User);
+			return View(await _context.Orders.Where(o => o.User.Id == user.Id).Include(o => o.User).AsNoTracking().ToListAsync());
+		}
 
 
 		// Get: MemberOrders/Submit Order
+		public IActionResult Submited()
+		{
+			return View();
+		}
+
+		// POST: MemberOrders/Submit Order
 		[Authorize(Roles = "Member")]
+		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Submited(int? id)
 		{
 			ApplicationUser user = await _userManager.GetUserAsync(User);
@@ -57,13 +65,14 @@ namespace QualityHat.Controllers
 				//Log the error (uncomment ex variable name and write a log.)
 				ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists, " + "see your system administrator.");
 			}
-			return View();
+			// return View();
+			return RedirectToAction("Submited");
 		}
 
 
 		// GET: MemberOrders/Bag/CK
 		[Authorize(Roles = "Member")]
-		 public async Task<IActionResult> AddToBag()
+		public async Task<IActionResult> AddToBag()
 		{
 			ApplicationUser user = await _userManager.GetUserAsync(User);
 			ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
@@ -74,7 +83,7 @@ namespace QualityHat.Controllers
 
 			if (order == null)
 			{
-				Order orderToUpdate = new Order { OrderStatus = 0, User = user};
+				Order orderToUpdate = new Order { OrderStatus = 0, User = user };
 
 				if (ModelState.IsValid)
 				{
@@ -124,8 +133,20 @@ namespace QualityHat.Controllers
 			else
 			{
 				List<CartItem> items = cart.GetCartItems(_context);
-				Order orderToUpdate = new Order { OrderId = order.OrderId, City = "", Country = "", Phone = "", PostalCode = "", State = "", User = user ,
-										FirstName ="", LastName="", Total = 0, OrderStatus = 0 };
+				Order orderToUpdate = new Order
+				{
+					OrderId = order.OrderId,
+					City = "",
+					Country = "",
+					Phone = "",
+					PostalCode = "",
+					State = "",
+					User = user,
+					FirstName = "",
+					LastName = "",
+					Total = 0,
+					OrderStatus = 0
+				};
 				//var hatsInCart = new HashSet<int>(items.Select(i => i.Hat.HatID));
 				List<OrderDetail> detailsToUpdate = new List<OrderDetail>();
 				var details = _context.OrderDetail.Include(d => d.Hat).AsNoTracking().Where(d => d.Order.OrderId == orderToUpdate.OrderId);
@@ -208,54 +229,54 @@ namespace QualityHat.Controllers
 			return View(order);
 		}
 
-        // GET: MemberOrders/Details/5
+		// GET: MemberOrders/Details/5
 		public async Task<IActionResult> Purchased(int? id)
-        {
-            ApplicationUser user = await _userManager.GetUserAsync(User);
-            if (id == null)
-            {
-                return NotFound();
-            }
+		{
+			ApplicationUser user = await _userManager.GetUserAsync(User);
+			if (id == null)
+			{
+				return NotFound();
+			}
 
 			var order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
 
 			if (order == null)
-            {
-                return NotFound();
-            }
+			{
+				return NotFound();
+			}
 
 			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
 			order.OrderDetails = details;
-            order.User.Recipients = _context.Recipient.Where(i => i.User == user).ToList();
+			order.User.Recipients = _context.Recipient.Where(i => i.User == user).ToList();
 			return View(order);
-        }
+		}
 
 		// GET: MemberOrders/Details/5
 		public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
 
 			var order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
 
 			if (order == null)
-            {
-                return NotFound();
-            }
+			{
+				return NotFound();
+			}
 
 			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
 			order.OrderDetails = details;
 
 			return View(order);
-        }
+		}
 
-        // GET: MemberOrders/Create
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Member")]
-        public IActionResult Create()
-        {
+		// GET: MemberOrders/Create
+		[ValidateAntiForgeryToken]
+		[Authorize(Roles = "Member")]
+		public IActionResult Create()
+		{
 			//ViewData["OrderStatus"] = new SelectList(_context.Orders, "OrderStatus", "OrderStatus");
 			ViewBag.OrderStatus = new List<SelectListItem>
 			{
@@ -267,16 +288,16 @@ namespace QualityHat.Controllers
 				new SelectListItem {Text = "Delieved", Value = "5"}
 			};
 			return View();
-        }
+		}
 
-        // POST: CheckoutCart
-        // [HttpPost]
+		// POST: CheckoutCart
+		// [HttpPost]
 		//[ValidateAntiForgeryToken]
-        [Authorize(Roles = "Member")]
+		[Authorize(Roles = "Member")]
 		public async Task<IActionResult> Checkout()
 		{
 			ApplicationUser user = await _userManager.GetUserAsync(User);
-            Order order = new Order{OrderStatus = 0};
+			Order order = new Order { OrderStatus = 0 };
 			if (ModelState.IsValid)
 			{
 
@@ -307,13 +328,13 @@ namespace QualityHat.Controllers
 			return View(order);
 		}
 
-        // POST: MemberOrders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+		// POST: MemberOrders/Create
+		// To protect from overposting attacks, please enable the specific properties you want to bind to, for
+		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-        [Authorize(Roles = "Member")]
+		[Authorize(Roles = "Member")]
 		public async Task<IActionResult> Create([Bind("OrderStatus,City,Country,FirstName,LastName,Phone,PostalCode,State")]Order order)
 		{
 			ApplicationUser user = await _userManager.GetUserAsync(User);
@@ -363,7 +384,7 @@ namespace QualityHat.Controllers
 
 		// GET: MemberOrders/Edit/5
 		public async Task<IActionResult> Edit(int? id)
-        {
+		{
 			ViewBag.OrderStatus = new List<SelectListItem>
 			{
 				new SelectListItem {Text = "InCart", Value = "0"},
@@ -375,88 +396,88 @@ namespace QualityHat.Controllers
 			};
 
 			if (id == null)
-            {
-                return NotFound();
-            }
+			{
+				return NotFound();
+			}
 
-            var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
-            if (order == null)
-            {
-                return NotFound();
-            }
-            return View(order);
-        }
+			var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
+			if (order == null)
+			{
+				return NotFound();
+			}
+			return View(order);
+		}
 
-        // POST: MemberOrders/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderId,City,Country,DelievedDate,FirstName,LastName,OrderDate,OrderStatus,Phone,PostalCode,ShippedDate,State,Total")] Order order)
-        {
-            if (id != order.OrderId)
-            {
-                return NotFound();
-            }
+		// POST: MemberOrders/Edit/5
+		// To protect from overposting attacks, please enable the specific properties you want to bind to, for
+		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Edit(int id, [Bind("OrderId,City,Country,DelievedDate,FirstName,LastName,OrderDate,OrderStatus,Phone,PostalCode,ShippedDate,State,Total")] Order order)
+		{
+			if (id != order.OrderId)
+			{
+				return NotFound();
+			}
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(order);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!OrderExists(order.OrderId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction("Index");
-            }
-            return View(order);
-        }
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					_context.Update(order);
+					await _context.SaveChangesAsync();
+				}
+				catch (DbUpdateConcurrencyException)
+				{
+					if (!OrderExists(order.OrderId))
+					{
+						return NotFound();
+					}
+					else
+					{
+						throw;
+					}
+				}
+				return RedirectToAction("Index");
+			}
+			return View(order);
+		}
 
-        // GET: MemberOrders/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+		// GET: MemberOrders/Delete/5
+		public async Task<IActionResult> Delete(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
 
-            var order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
+			var order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
 
 			if (order == null)
-            {
-                return NotFound();
-            }
+			{
+				return NotFound();
+			}
 
 			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
 			order.OrderDetails = details;
 
-            return View(order);
-        }
+			return View(order);
+		}
 
-        // POST: MemberOrders/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
-            _context.Orders.Remove(order);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+		// POST: MemberOrders/Delete/5
+		[HttpPost, ActionName("Delete")]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> DeleteConfirmed(int id)
+		{
+			var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
+			_context.Orders.Remove(order);
+			await _context.SaveChangesAsync();
+			return RedirectToAction("Index");
+		}
 
-        private bool OrderExists(int id)
-        {
-            return _context.Orders.Any(e => e.OrderId == id);
-        }
-    }
+		private bool OrderExists(int id)
+		{
+			return _context.Orders.Any(e => e.OrderId == id);
+		}
+	}
 }

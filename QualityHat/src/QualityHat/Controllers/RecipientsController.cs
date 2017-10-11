@@ -28,7 +28,7 @@ namespace QualityHat.Controllers
 			return View(await _context.Recipient.Where(i => i.User == user).ToListAsync());
         }
 
-		// GET: Recipients/Details/5
+		// POST: Recipients/Details/5
 		public async Task<IActionResult> SetDefault(int? id)
 		{
 			if (id == null)
@@ -54,13 +54,14 @@ namespace QualityHat.Controllers
 
 			var order = await _context.Orders.SingleOrDefaultAsync(o => o.User == user && o.OrderStatus == 0);
 			order.FirstName = defaultRecipient.FirstName;
+			order.Address1 = defaultRecipient.Address1;
+			order.Address2 = defaultRecipient.Address2;
+			order.LastName = defaultRecipient.LastName;
 			order.City = defaultRecipient.City;
 			order.Country = defaultRecipient.Country;
 			order.Phone = defaultRecipient.Phone;
 			order.PostalCode = defaultRecipient.PostalCode;
 			order.State = defaultRecipient.State;
-			order.FirstName = defaultRecipient.FirstName;
-			order.LastName = defaultRecipient.LastName;
 
 			try
 			{
@@ -83,37 +84,7 @@ namespace QualityHat.Controllers
 			return Redirect(Request.Headers["Referer"].ToString());
 		}
 
-		//public async void SetShoppingCartRecipient(ApplicationUser user, int id)
-		//{
-		//	var defaultRecipient = _context.Recipient.AsNoTracking().SingleOrDefault(r => r.RecipientId == id);
-		//	var order = await _context.Orders.SingleOrDefaultAsync(o => o.User == user && o.OrderStatus == 0);
-		//	Order orderToUpdate = new Order
-		//	{
-		//		OrderId = order.OrderId,
-		//		City = defaultRecipient.City,
-		//		Country = defaultRecipient.Country,
-		//		Phone = defaultRecipient.Phone,
-		//		PostalCode = defaultRecipient.PostalCode,
-		//		State = defaultRecipient.State,
-		//		User = user,
-		//		FirstName = defaultRecipient.FirstName,
-		//		LastName = defaultRecipient.LastName,
-		//		Total = order.Total,
-		//		OrderStatus = 0
-		//	};
 
-		//	_context.Orders.Update(orderToUpdate);
-
-		//	try
-		//	{
-		//		await _context.SaveChangesAsync();
-		//	}
-		//	catch (DbUpdateException /* ex */)
-		//	{
-		//		//Log the error (uncomment ex variable name and write a log.)
-		//		ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists, " + "see your system administrator.");
-		//	}
-		//}
 
 		// GET: Recipients/Details/5
 		public async Task<IActionResult> Details(int? id)
@@ -143,7 +114,7 @@ namespace QualityHat.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RecipientId,City,Country,FirstName,LastName,Phone,PostalCode,State")] Recipient recipient)
+        public async Task<IActionResult> Create([Bind("RecipientId,Address1,Address2,City,Country,FirstName,LastName,Phone,PostalCode,State")] Recipient recipient)
         {
             if (ModelState.IsValid)
             {
@@ -177,7 +148,7 @@ namespace QualityHat.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RecipientId,City,Country,FirstName,LastName,Phone,PostalCode,State")] Recipient recipient)
+        public async Task<IActionResult> Edit(int id, [Bind("RecipientId,Address1,Address2,City,Country,FirstName,LastName,Phone,PostalCode,State")] Recipient recipient)
         {
             if (id != recipient.RecipientId)
             {

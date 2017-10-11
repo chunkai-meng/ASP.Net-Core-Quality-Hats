@@ -43,7 +43,7 @@ namespace QualityHat.Controllers
 			var cart = ShoppingCart.GetCart(this.HttpContext);
 			cart.AddToCart(addedHat, _context);
 			// Go back to the main store page for more shopping
-			return RedirectToAction("Index", "Home");
+			return RedirectToAction("Index", "MemberHats");
 		}
 
 		public ActionResult RemoveFromCart(int id)

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Quality Hat</title>
-    <link rel="shortcut icon" href="/images/logos/logos-site-QH.ico" /> 
+    <link rel="shortcut icon" href="/images/logos/logos-site-QH.ico" />
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -67,17 +67,12 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-		<!-- <div>
-            @if (!User.IsInRole("Admin"))
-            {
-                @await Component.InvokeAsync("ShoppingCartViewModel")
-            }
-		</div> -->
+
         <footer class="footer">
             <div class="row">
                 <div class="col-xs-6 col-md-8">&copy; 2017 - Quality Hats</div>
                 <div class="col-xs-6 col-md-4"><a asp-action="Contact" asp-controller="Home" class="pull-right">Contact Us</a></div>
-		    </div>
+		        </div>
         </footer>
 
 

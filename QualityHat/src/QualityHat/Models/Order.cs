@@ -15,34 +15,25 @@ namespace QualityHat.Models {
 
         public int OrderId { get; set; }
         public OrderStatus OrderStatus { get; set; }
-
         public string FirstName { get; set; }
-
         public string LastName { get; set; }
-
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
         public string City { get; set; }
-
         public string State { get; set; }
-
         public string PostalCode { get; set; }
-
         public string Country { get; set; }
-
         public string Phone { get; set; }
-
-		public decimal GST { get; set; }
-
+		    public decimal GST { get; set; }
         public decimal Total { get; set; }
-
         public System.DateTime ShippedDate { get; set; }
         public System.DateTime DelievedDate { get; set; }
 
         [Display(Name = "Order Date")]
         public System.DateTime OrderDate { get; set; }
-
         public List<OrderDetail> OrderDetails { get; set; }
-
         public ApplicationUser User { get; set; }
+
 
 
 		public static decimal GetUserTotalPrice(ApplicationUser user, ApplicationDbContext _context)
@@ -57,7 +48,7 @@ namespace QualityHat.Models {
 		public static async void SetOrderTotalPrice(ApplicationUser user, ApplicationDbContext _context)
 		{
 			var order = await _context.Orders.SingleOrDefaultAsync(m => m.User == user && m.OrderStatus == 0);
-			order.Total = GetUserTotalPrice(user, _context); 
+			order.Total = GetUserTotalPrice(user, _context);
 			await _context.SaveChangesAsync();
 		}
 
