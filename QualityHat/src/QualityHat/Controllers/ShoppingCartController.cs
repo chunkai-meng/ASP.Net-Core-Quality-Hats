@@ -34,7 +34,7 @@ namespace QualityHat.Controllers
 		//
 		// GET: /Store/AddToCart/5
 		[Authorize(Roles = "Anonymous")]
-		public ActionResult AddToCart(int id)
+		public IActionResult AddToCart(int id)
 		{
 			// Retrieve the album from the database
 			var addedHat = _context.Hats
@@ -43,7 +43,11 @@ namespace QualityHat.Controllers
 			var cart = ShoppingCart.GetCart(this.HttpContext);
 			cart.AddToCart(addedHat, _context);
 			// Go back to the main store page for more shopping
-			return RedirectToAction("Index", "MemberHats");
+			//return RedirectToAction("Index", "MemberHats");
+			return Redirect(Request.Headers["Referer"].ToString());
+			//return View();
+			//return ViewComponent("ShoppingCartViewModel");
+			//return ViewComponent("PriorityList", new { maxPriority = 3, isDone = false });
 		}
 
 		public ActionResult RemoveFromCart(int id)

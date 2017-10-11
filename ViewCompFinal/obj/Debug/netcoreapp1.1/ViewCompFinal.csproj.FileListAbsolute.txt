@@ -1,0 +1,11 @@
+/Users/CK/Git/ASP/WebApp/ViewCompFinal/bin/Debug/netcoreapp1.1/ViewCompFinal.deps.json
+/Users/CK/Git/ASP/WebApp/ViewCompFinal/bin/Debug/netcoreapp1.1/ViewCompFinal.runtimeconfig.json
+/Users/CK/Git/ASP/WebApp/ViewCompFinal/bin/Debug/netcoreapp1.1/ViewCompFinal.runtimeconfig.dev.json
+/Users/CK/Git/ASP/WebApp/ViewCompFinal/bin/Debug/netcoreapp1.1/ViewCompFinal.dll
+/Users/CK/Git/ASP/WebApp/ViewCompFinal/bin/Debug/netcoreapp1.1/ViewCompFinal.pdb
+/Users/CK/Git/ASP/WebApp/ViewCompFinal/obj/Debug/netcoreapp1.1/ViewCompFinal.csprojResolveAssemblyReference.cache
+/Users/CK/Git/ASP/WebApp/ViewCompFinal/obj/Debug/netcoreapp1.1/ViewCompFinal.csproj.CoreCompileInputs.cache
+/Users/CK/Git/ASP/WebApp/ViewCompFinal/obj/Debug/netcoreapp1.1/ViewCompFinal.AssemblyInfoInputs.cache
+/Users/CK/Git/ASP/WebApp/ViewCompFinal/obj/Debug/netcoreapp1.1/ViewCompFinal.AssemblyInfo.cs
+/Users/CK/Git/ASP/WebApp/ViewCompFinal/obj/Debug/netcoreapp1.1/ViewCompFinal.dll
+/Users/CK/Git/ASP/WebApp/ViewCompFinal/obj/Debug/netcoreapp1.1/ViewCompFinal.pdb

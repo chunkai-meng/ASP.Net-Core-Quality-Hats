@@ -23,10 +23,15 @@ namespace QualityHat.Controllers
         }
 
         // GET: MemberHats
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            var applicationDbContext = _context.Hats.Include(h => h.Category).Include(h => h.Supplier);
-            return View(await applicationDbContext.ToListAsync());
+			if (id == null){
+                var applicationDbContext = _context.Hats.Include(h => h.Category).Include(h => h.Supplier);
+				return View(await applicationDbContext.ToListAsync());
+			} else {
+                var applicationDbContext = _context.Hats.Where(h => h.CategoryID == id).Include(h => h.Category).Include(h => h.Supplier);
+				return View(await applicationDbContext.ToListAsync());
+			}
         }
 
         // GET: MemberHats/Details/5

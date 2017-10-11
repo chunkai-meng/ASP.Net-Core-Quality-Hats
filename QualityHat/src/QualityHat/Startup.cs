@@ -115,19 +115,24 @@ namespace QualityHat
                     template: "{controller=MemberHats}/{action=Index}/{id?}"
                 );
                 routes.MapRoute(
+                    name: "Shop",
+					template: "Shop",
+					defaults: new { controller = "MemberHats", action = "index"}
+                );
+                routes.MapRoute(
                     name: "Mens",
 					template: "Shop/Mens",
-					defaults: new { controller = "MemberHats", action = "Category", id = 1 }
+					defaults: new { controller = "MemberHats", action = "index", id = 1 }
                 );
                 routes.MapRoute(
                     name: "WOMENS",
 					template: "Shop/Womens",
-					defaults: new { controller = "MemberHats", action = "Category", id = 2 }
+					defaults: new { controller = "MemberHats", action = "index", id = 2 }
                 );
                 routes.MapRoute(
                     name: "KIDS",
 					template: "Shop/Kids",
-					defaults: new { controller = "MemberHats", action = "Category", id = 3 }
+					defaults: new { controller = "MemberHats", action = "index", id = 3 }
                 );
             });
 

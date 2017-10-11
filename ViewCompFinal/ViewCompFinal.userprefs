@@ -1,3 +1,24 @@
 ﻿<Properties StartupConfiguration="{E5EA685E-BAE4-42A3-831E-6CD39A28DC36}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Startup.cs">
+    <Files>
+      <File FileName="ViewComponents/PriorityListViewComponentFinal.cs" Line="1" Column="1" />
+      <File FileName="ViewComponents/PriorityListViewComponent.cs" Line="1" Column="1" />
+      <File FileName="Models/SeedData.cs" Line="1" Column="1" />
+      <File FileName="Models/ToDoContext.cs" Line="1" Column="1" />
+      <File FileName="Models/ToDoItem.cs" Line="1" Column="1" />
+      <File FileName="Controllers/ToDoController.cs" Line="1" Column="1" />
+      <File FileName="Views/Shared/Components/PriorityList/Default1.cshtml" Line="1" Column="1" />
+      <File FileName="Views/Todo/IndexFinal.cshtml" Line="1" Column="1" />
+      <File FileName="web.config" Line="1" Column="1" />
+      <File FileName="Program.cs" Line="1" Column="1" />
+      <File FileName="Startup.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.ViewCompFinal PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
 </Properties>
