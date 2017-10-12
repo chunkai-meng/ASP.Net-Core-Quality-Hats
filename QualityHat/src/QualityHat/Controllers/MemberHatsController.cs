@@ -23,15 +23,23 @@ namespace QualityHat.Controllers
         }
 
         // GET: MemberHats
-        public async Task<IActionResult> Index(int? id)
+        public async Task<IActionResult> Index(int? id, string searchString)
         {
-			if (id == null){
-                var applicationDbContext = _context.Hats.Include(h => h.Category).Include(h => h.Supplier);
-				return View(await applicationDbContext.ToListAsync());
-			} else {
-                var applicationDbContext = _context.Hats.Where(h => h.CategoryID == id).Include(h => h.Category).Include(h => h.Supplier);
-				return View(await applicationDbContext.ToListAsync());
-			}
+            ViewData["CurrentFilter"] = searchString;
+            var hats = from h in _context.Hats
+                   select h;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                hats = hats.Where(h => h.Name.Contains(searchString) || h.Disc.Contains(searchString));
+            } else {
+                if (id == null){
+                    hats = _context.Hats.Include(h => h.Category).Include(h => h.Supplier);
+                } else {
+                    hats = _context.Hats.Where(h => h.CategoryID == id).Include(h => h.Category).Include(h => h.Supplier);
+                }
+            }
+
+            return View(await hats.ToListAsync());
         }
 
         // GET: MemberHats/Details/5

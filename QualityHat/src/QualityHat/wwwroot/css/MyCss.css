@@ -6,3 +6,9 @@ footer {
     height: 30px;
     line-height:30px
 }
+
+#search {
+    height: 63px;
+    line-height: 63px;
+    padding-right: 30px;
+}

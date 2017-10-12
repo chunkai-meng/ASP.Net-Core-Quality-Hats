@@ -11,18 +11,18 @@
     <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                    <button class="btn btn-link navbar-btn navbar-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        @UserManager.GetUserName(User)
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="nav navbar-nav navbar-right dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li>
-                            <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">My Account</a>
-                        </li>
-                        <li>
-                            <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
-                        </li>
-                    </ul>
+                <button class="btn btn-link navbar-btn navbar-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    @UserManager.GetUserName(User)
+                    <span class="caret"></span>
+                </button>
+                <ul class="nav navbar-nav navbar-right dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li>
+                        <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">My Account</a>
+                    </li>
+                    <li>
+                        <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                    </li>
+                </ul>
             </li>
 			<li>
                 <a asp-area="" asp-controller="MemberOrders" asp-action="ShoppingBag">
