@@ -31,7 +31,7 @@ namespace QualityHat.Controllers
 		{
 			// return View(await _context.Orders.ToListAsync());
 			ApplicationUser user = await _userManager.GetUserAsync(User);
-			return View(await _context.Orders.Where(o => o.User.Id == user.Id).Include(o => o.User).AsNoTracking().ToListAsync());
+			return View(await _context.Orders.Where(o => o.User.Id == user.Id && o.OrderStatus != 0).Include(o => o.User).AsNoTracking().ToListAsync());
 		}
 
 

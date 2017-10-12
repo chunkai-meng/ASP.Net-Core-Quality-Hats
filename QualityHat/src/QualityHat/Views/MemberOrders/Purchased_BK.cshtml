@@ -4,25 +4,32 @@
     ViewData["Title"] = "Details";
 }
 
-<p></p>
-<div class="list-group">
-  <a href="#" class="list-group-item disabled">
-    Recipient Address:
-  </a>
-</div>
-
-<div class="card-body">
-	@await Component.InvokeAsync("Recipient", new { order = Model })
-</div>
-
-
-<div class="list-group">
-  <a href="#" class="list-group-item disabled">
-    Order Details:
-  </a>
-</div>
-
-
+<p />
+<div id="accordion" role="tablist">
+	<div class="card">
+		<div class="card-header" role="tab" id="headingOne">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><h5 class="mb-0"><strong>Select Recipient</strong></h5></li>
+			</ol>
+		</div>
+		@*Recipient Detail*@
+		<div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+			<div class="card-body">
+				@await Component.InvokeAsync("Recipient", new { order = Model })
+			</div>
+		</div>
+	</div>
+	@*Order Detail*@
+	<div class="card">
+		<div class="card-header" role="tab" id="headingTwo">
+			<a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><h5 class="mb-0"><strong>Detail</strong></h5></li>
+				</ol>
+			</a>
+		</div>
+		<div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+			<div class="card-body">
 				@*Order Detail: Recipient Info*@
 				<div>
 					<dl>
@@ -57,8 +64,10 @@
 						</dd>
 					</dl>
 				</div>
-
-
+			</div>
+		</div>
+	</div>
+</div>
 
 <div class="card text-right">
 	<div class="card-header">
