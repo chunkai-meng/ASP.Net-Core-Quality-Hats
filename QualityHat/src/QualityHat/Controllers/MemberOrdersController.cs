@@ -123,7 +123,12 @@ namespace QualityHat.Controllers
 					cart.EmptyCart(_context);
 
 
-					orderToUpdate.Total = Order.GetUserTotalPrice(user, _context);
+					// orderToUpdate.Total = Order.GetUserTotalPrice(user, _context);
+					decimal t = Order.GetUserTotalPrice(user, _context);
+					decimal gst = 0.15m * t;
+					decimal total = t + gst;
+					orderToUpdate.GST = gst;
+					orderToUpdate.Total = total;
 					await _context.SaveChangesAsync();
 
 					return RedirectToAction("ShoppingBag", new RouteValueDictionary(
@@ -176,7 +181,12 @@ namespace QualityHat.Controllers
 					}
 				}
 
-				orderToUpdate.Total = cart.GetTotal(_context) + order.Total;
+				// orderToUpdate.Total = cart.GetTotal(_context) + order.Total;
+				decimal t = cart.GetTotal(_context) + order.Total;
+				decimal gst = 0.15m * t;
+				decimal total = t + gst;
+				orderToUpdate.GST = gst;
+				orderToUpdate.Total = total;
 				_context.Orders.Update(orderToUpdate);
 				cart.EmptyCart(_context);
 

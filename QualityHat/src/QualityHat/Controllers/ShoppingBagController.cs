@@ -58,7 +58,12 @@ namespace QualityHat.Controllers
 
 			ApplicationUser user = await _userManager.GetUserAsync(User);
 			var orderToUpdate = await _context.Orders.SingleOrDefaultAsync(m => m.User == user && m.OrderStatus == 0);
-			orderToUpdate.Total = Order.GetUserTotalPrice(user, _context);
+			// orderToUpdate.Total = Order.GetUserTotalPrice(user, _context);
+			decimal t = Order.GetUserTotalPrice(user, _context);
+			decimal gst = 0.15m * t;
+			decimal total = t + gst;
+			orderToUpdate.GST = gst;
+			orderToUpdate.Total = total;
 			await _context.SaveChangesAsync();
 
 
@@ -87,7 +92,12 @@ namespace QualityHat.Controllers
 
 			ApplicationUser user = await _userManager.GetUserAsync(User);
 			var orderToUpdate = await _context.Orders.SingleOrDefaultAsync(m => m.User == user && m.OrderStatus == 0);
-			orderToUpdate.Total = Order.GetUserTotalPrice(user, _context);
+			// orderToUpdate.Total = Order.GetUserTotalPrice(user, _context);
+			decimal t = Order.GetUserTotalPrice(user, _context);
+			decimal gst = 0.15m * t;
+			decimal total = t + gst;
+			orderToUpdate.GST = gst;
+			orderToUpdate.Total = total;
 			await _context.SaveChangesAsync();
 
 

@@ -34,8 +34,6 @@ namespace QualityHat.Models {
         public List<OrderDetail> OrderDetails { get; set; }
         public ApplicationUser User { get; set; }
 
-
-
 		public static decimal GetUserTotalPrice(ApplicationUser user, ApplicationDbContext _context)
 		{
 			decimal? total = (from detail in _context.OrderDetail
