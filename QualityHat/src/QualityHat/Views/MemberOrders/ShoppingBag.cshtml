@@ -11,5 +11,6 @@
 <div>
 	@await Component.InvokeAsync("ShoppingBag", new { order = Model })
 </div>
-
-<a asp-controller="MemberOrders" asp-action="Purchased" asp-route-id="@Model.OrderId">Check Out</a>
+<div align="right">
+    <a asp-controller="MemberOrders" asp-action="Purchased" asp-route-id="@Model.OrderId" class="badge badge-dark">Check Out</a>
+</div>
