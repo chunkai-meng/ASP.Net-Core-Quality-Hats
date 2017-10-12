@@ -1,3 +1,7 @@
+body {
+    padding-bottom: 100px;
+}
+
 footer { 
     position: fixed;
     bottom: 0; 
@@ -7,8 +11,18 @@ footer {
     line-height:30px
 }
 
+#Category {
+    height: 40px;
+    line-height: 40px;
+}
+
 #search {
-    height: 63px;
-    line-height: 63px;
+    height: 40px;
+    line-height: 40px;
     padding-right: 30px;
+}
+
+#headline {
+    height: 40px;
+    line-height:40px
 }

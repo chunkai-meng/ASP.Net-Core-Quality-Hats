@@ -23,11 +23,23 @@ namespace QualityHat.Controllers
         }
 
         // GET: MemberHats
-        public async Task<IActionResult> Index(int? id, string searchString)
+        public async Task<IActionResult> Index(int? id, string currentFilter, string searchString, int? page)
         {
+            
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
             ViewData["CurrentFilter"] = searchString;
+
             var hats = from h in _context.Hats
                    select h;
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 hats = hats.Where(h => h.Name.Contains(searchString) || h.Disc.Contains(searchString));
@@ -39,7 +51,9 @@ namespace QualityHat.Controllers
                 }
             }
 
-            return View(await hats.ToListAsync());
+            int pageSize = 6;
+            return View(await PaginatedList<Hat>.CreateAsync(hats.AsNoTracking(), page ?? 1, pageSize));
+            // return View(await hats.ToListAsync());
         }
 
         // GET: MemberHats/Details/5

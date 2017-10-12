@@ -1,27 +1,22 @@
-@model IEnumerable<QualityHat.Models.Hat>
+@model PaginatedList<QualityHat.Models.Hat>
+    
 
 @{
     ViewData["Title"] = ViewData["Category"];
     var i = 0;
 }
-<div class="container">
-    <div class="row">
-        <div class="col-xs-4 col-md-6">
-            <h2>All Hats</h2>
+    <div class="row" id="headline">
+        <div class="col-xs-4 col-md-6" id="category">
+            <H3>All Hats</h3>
         </div>
         <form asp-controller="MemberHats" asp-action="Index" method="get" class="navbar-form navbar-right">
-            <div class="col-xs-8 col-md-6" id="search">
+        <div class="col-xs-8 col-md-6"  id="search">
                 <input type="text" class="form-control" placeholder="Search" name="SearchString" value="@ViewData["currentFilter"]">
-            </div>
+        </div>
         </form>
     </div>
-</div>
-
-
-<hr />
 
 <div class="card-group">
-
     @foreach (var item in Model) 
     {
         if(i % 3 == 0){
@@ -32,7 +27,7 @@
             <div class="thumbnail">
                 <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Image)" alt="Card image cap" height="242" width="200">
                 <div class="caption">
-                    <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+                    <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
                     <p>@Html.DisplayFor(modelItem => item.Disc)</p>
 					<div class="row">
 						<div class="col-xs-6 col-md-8">@Html.DisplayFor(modelItem => item.Price)</div>
@@ -53,8 +48,28 @@
     {
         @:</div>
     }
-
 </div>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+
 
 
 <hr />

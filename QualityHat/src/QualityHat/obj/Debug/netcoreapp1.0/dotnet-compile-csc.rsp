@@ -233,6 +233,7 @@
 -r:"C:\Users\CK\.nuget\packages\System.Xml.XDocument\4.3.0\ref\netstandard1.3\System.Xml.XDocument.dll"
 -resource:"Z:\WebApp\QualityHat\src\QualityHat\obj\Debug\netcoreapp1.0\QualityHatdotnet-compile.deps.json",QualityHat.deps.json
 "Z:\WebApp\QualityHat\src\QualityHat\Startup.cs"
+"Z:\WebApp\QualityHat\src\QualityHat\PaginatedList.cs"
 "Z:\WebApp\QualityHat\src\QualityHat\Program.cs"
 "Z:\WebApp\QualityHat\src\QualityHat\Migrations\20170912061509_orderall.Designer.cs"
 "Z:\WebApp\QualityHat\src\QualityHat\Migrations\20170915043813_deleteModelCustomerOrderOrderItem.cs"
