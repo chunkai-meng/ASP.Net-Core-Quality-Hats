@@ -8,6 +8,7 @@
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+         <link rel="stylesheet" href="~/css/MyCss.css" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -66,17 +67,17 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-
-        <footer class="footer">
-            <div class="row">
-                <div class="col-xs-6 col-md-8">&copy; 2017 - Quality Hats</div>
-                <div class="col-xs-6 col-md-4"><a asp-action="Contact" asp-controller="Home" class="pull-right">Contact Us</a></div>
-		        </div>
-        </footer>
-
-
     </div>
+
+
+    <footer class="footer">
+        <div class="container">
+                <div class="row">
+                    <div class="col-xs-6 col-md-8"><font color="white">&copy; 2017 - Quality Hats</font> </div>
+                    <div class="col-xs-6 col-md-4"><a asp-action="Contact" asp-controller="Home" class="pull-right"><font color="white">Contact Us</font></a></div>
+                </div>
+        </div>
+    </footer>
 
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -96,5 +97,14 @@
     </environment>
 
     @RenderSection("scripts", required: false)
+
+
+            <!-- <footer class="footer">
+                <div class="row">
+                    <div class="col-xs-6 col-md-8">&copy; 2017 - Quality Hats</div>
+                    <div class="col-xs-6 col-md-4"><a asp-action="Contact" asp-controller="Home" class="pull-right">Contact Us</a></div>
+                </div>
+            </footer> -->
 </body>
+
 </html>
