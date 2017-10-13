@@ -5,15 +5,15 @@
     ViewData["Title"] = ViewData["Category"];
     var i = 0;
 }
-    <div class="row" id="headline">
-        <div class="col-xs-4 col-md-6" id="category">
-            <H3>All Hats</h3>
+    <div class="wrapper">
+        <div>
+            <H3>All Hats</H3>
         </div>
-        <form asp-controller="MemberHats" asp-action="Index" method="get" class="navbar-form navbar-right">
-        <div class="col-xs-8 col-md-6"  id="search">
-                <input type="text" class="form-control" placeholder="Search" name="SearchString" value="@ViewData["currentFilter"]">
+        <div>
+            <form asp-controller="MemberHats" asp-action="Index" method="get" >
+                <input type="text" class="form-control" placeholder="Search" name="SearchString" value="@ViewData["currentFilter"]" />
+            </form>
         </div>
-        </form>
     </div>
 
 <div class="card-group">

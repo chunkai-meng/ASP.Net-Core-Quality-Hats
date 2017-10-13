@@ -16,30 +16,36 @@ namespace QualityHat.Models {
         public int OrderId { get; set; }
         [Display(Name = "Status")]
         public OrderStatus OrderStatus { get; set; }
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
         public string City { get; set; }
         public string State { get; set; }
+        [Display(Name = "ZIP")]
         public string PostalCode { get; set; }
         public string Country { get; set; }
         public string Phone { get; set; }
-		    public decimal GST { get; set; }
+		public decimal GST { get; set; }
         public decimal Total { get; set; }
+
         [Display(Name = "Date Shipped")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        // [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]
         public System.DateTime ShippedDate { get; set; }
+
         [Display(Name = "Date Delieved")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        // [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]
         public System.DateTime DelievedDate { get; set; }
 
         [Display(Name = "Date Ordered")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        // [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]
         public System.DateTime OrderDate { get; set; }
+
         public List<OrderDetail> OrderDetails { get; set; }
         public ApplicationUser User { get; set; }
 

@@ -53,7 +53,6 @@ namespace QualityHat.Controllers
 
             int pageSize = 6;
             return View(await PaginatedList<Hat>.CreateAsync(hats.AsNoTracking(), page ?? 1, pageSize));
-            // return View(await hats.ToListAsync());
         }
 
         // GET: MemberHats/Details/5

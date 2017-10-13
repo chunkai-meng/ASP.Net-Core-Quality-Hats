@@ -43,8 +43,12 @@
                 @Html.DisplayNameFor(model => model.State)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.GST)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Total)
             </th>
+            <th>Detail</th>
         </tr>
     </thead>
     <tbody>
@@ -84,7 +88,13 @@
                 @Html.DisplayFor(modelItem => item.State)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Total)
+                $@Html.DisplayFor(modelItem => item.GST)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                <a href="/MemberOrders/OrderDetail/@Html.DisplayFor(modelItem => item.OrderId)">Detail</a>
             </td>
         </tr>
 }

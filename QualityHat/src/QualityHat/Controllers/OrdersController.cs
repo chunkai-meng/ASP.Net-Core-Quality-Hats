@@ -30,7 +30,15 @@ namespace QualityHat.Models
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-			//return View(await _context.Orders.ToListAsync());
+			ViewBag.OrderStatus = new List<SelectListItem>
+			{
+				new SelectListItem {Text = "InCart", Value = "0"},
+				new SelectListItem {Text = "Placed", Value = "1"},
+				new SelectListItem {Text = "InProgress", Value = "2"},
+				new SelectListItem {Text = "PreparingToShip", Value = "3"},
+				new SelectListItem {Text = "Shipped", Value = "4"},
+				new SelectListItem {Text = "Delieved", Value = "5"}
+			};
 			return View(await _context.Orders.Include(i => i.User).AsNoTracking().Where(m => m.OrderStatus != 0).ToListAsync());
 		}
 
@@ -128,6 +136,15 @@ namespace QualityHat.Models
             {
                 return NotFound();
             }
+            ViewBag.OrderStatus = new List<SelectListItem>
+			{
+				new SelectListItem {Text = "InCart", Value = "0"},
+				new SelectListItem {Text = "Placed", Value = "1"},
+				new SelectListItem {Text = "InProgress", Value = "2"},
+				new SelectListItem {Text = "PreparingToShip", Value = "3"},
+				new SelectListItem {Text = "Shipped", Value = "4"},
+				new SelectListItem {Text = "Delieved", Value = "5"}
+			};
             return View(order);
         }
 
@@ -137,18 +154,50 @@ namespace QualityHat.Models
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderId,City,Country,FirstName,LastName,OrderDate,Phone,PostalCode,State,Total")] Order order)
+		public async Task<IActionResult> Edit(int id, [Bind("OrderId,OrderStatus,Address1,Address2,City,Country,FirstName,LastName,Phone,PostalCode,State,Total")] Order order)
         {
            if (id != order.OrderId)
            {
                return NotFound();
            }
 
+			ApplicationUser user = await _userManager.GetUserAsync(User);
+			var orderToUpdate = await _context.Orders.SingleOrDefaultAsync(o => o.OrderId == id);
+            if (orderToUpdate == null)
+            {
+                return NotFound();
+            }
+
            if (ModelState.IsValid)
            {
+                switch (order.OrderStatus)
+                {
+                    case OrderStatus.Placed:
+                        orderToUpdate.OrderDate = DateTime.Now;
+                        break;
+                    case OrderStatus.Shipped:
+                        orderToUpdate.ShippedDate = DateTime.Now;
+                        break;
+                    case OrderStatus.Delieved:
+                        order.DelievedDate = DateTime.Now;
+                        break;
+                    default:
+                        break;
+                }
+				orderToUpdate.OrderStatus = order.OrderStatus;
+				orderToUpdate.City = order.City;
+				orderToUpdate.Country = order.Country;
+				orderToUpdate.FirstName = order.FirstName;
+				orderToUpdate.LastName = order.LastName;
+                orderToUpdate.Address1 = order.Address1;
+				orderToUpdate.Address2 = order.Address2;					
+				orderToUpdate.Phone = order.Phone;
+				orderToUpdate.PostalCode = order.PostalCode;
+				orderToUpdate.State = order.State;
+
                try
                {
-                   _context.Update(order);
+                   _context.Update(orderToUpdate);
                    await _context.SaveChangesAsync();
                }
                catch (DbUpdateConcurrencyException)

@@ -28,13 +28,13 @@ namespace QualityHat.Controllers
 		[Authorize(Roles = "Member")]
 		public async Task<IActionResult> Index()
 		{
-			// return View(await _context.Orders.ToListAsync());
 			ApplicationUser user = await _userManager.GetUserAsync(User);
 			return View(await _context.Orders.Where(o => o.User.Id == user.Id && o.OrderStatus != 0).Include(o => o.User).AsNoTracking().ToListAsync());
 		}
-		
+
 		// GET: Orders/Edit/5
-        [Authorize(Roles = "Member")]
+		[HttpGet]
+		[Authorize(Roles = "Member")]
 		public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -42,7 +42,8 @@ namespace QualityHat.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
+			ApplicationUser user = await _userManager.GetUserAsync(User);
+			var order = await _context.Orders.SingleOrDefaultAsync(o => o.User.Id == user.Id && o.OrderId == id);
             if (order == null)
             {
                 return NotFound();
@@ -58,6 +59,8 @@ namespace QualityHat.Controllers
 			};
             return View(order);
         }
+
+		
 
 		// GET: MemberOrders/Bag/CK
 		[Authorize(Roles = "Member")]
@@ -304,31 +307,42 @@ namespace QualityHat.Controllers
 
 		// Get: MemberOrders/Submit Order
 		[HttpGet]
-		[Authorize(Roles = "Member")]
+		[Authorize(Roles = "Admin, Member")]
 		public IActionResult OrderSubmited()
 		{
 			return View();
 		}
 
-		public async Task<IActionResult> Show(int? id)
+		[Authorize(Roles = "Admin, Member")]
+		public async Task<IActionResult> OrderDetail(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-			//var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
-			var order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
-
+			ApplicationUser user = await _userManager.GetUserAsync(User);
+			var order = new Order();
+			if (user.UserName == "admin@email.com"){
+				order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
+			} else {
+				order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.User.Id == user.Id && m.OrderId == id);
+			}
+			
 			if (order == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
 			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
 			order.OrderDetails = details;
 
 			return View(order);
+        }
+
+		private bool OrderExists(int id)
+        {
+           return _context.Orders.Any(e => e.OrderId == id);
         }
 	}
 }

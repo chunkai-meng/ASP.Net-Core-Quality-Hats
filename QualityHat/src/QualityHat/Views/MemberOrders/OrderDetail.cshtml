@@ -1,0 +1,189 @@
+@model QualityHat.Models.Order
+
+@{
+	ViewData["Title"] = "Delete";
+}
+
+<h2>Detail</h2>
+
+<div class="panel panel-default">
+	<div class="panel-heading"><strong>Recipient Information</strong></div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.FirstName)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.LastName)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Phone)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Address1)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Address2)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.City)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.State)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Country)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.PostalCode)
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td>
+					@Html.DisplayFor(model => model.FirstName)
+				</td>
+				<td>
+					@Html.DisplayFor(model => model.LastName)
+				</td>
+				<td>
+					@Html.DisplayFor(model => model.Phone)
+				</td>
+				<td>
+					@Html.DisplayFor(model => model.Address1)
+				</td>
+				<td>
+					@Html.DisplayFor(model => model.Address2)
+				</td>
+				<td>
+					@Html.DisplayFor(model => model.City)
+				</td>
+				<td>
+					@Html.DisplayFor(model => model.State)
+				</td>
+				<td>
+					@Html.DisplayFor(model => model.Country)
+				</td>
+				<td>
+					@Html.DisplayFor(model => model.PostalCode)
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading"><strong>Order Status</strong></div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.OrderStatus)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.OrderDate)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.ShippedDate)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.DelievedDate)
+				</th>
+				<!-- <th>
+					@Html.DisplayNameFor(model => model.Address2)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.City)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.State)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Country)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.PostalCode)
+				</th>
+				<th></th> -->
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td>
+					@Html.DisplayFor(model => model.OrderStatus)
+				</td>
+				<td>
+					@Html.DisplayFor(model => model.OrderDate)
+				</td>
+				<td>
+					@Html.DisplayFor(model => model.ShippedDate)
+				</td>
+				<td>
+					@Html.DisplayFor(model => model.DelievedDate)
+				</td>
+				<!-- <td>
+					@Html.DisplayFor(model => model.Address2)
+				</td>
+				<td>
+					@Html.DisplayFor(model => model.City)
+				</td>
+				<td>
+					@Html.DisplayFor(model => model.State)
+				</td>
+				<td>
+					@Html.DisplayFor(model => model.Country)
+				</td>
+				<td>
+					@Html.DisplayFor(model => model.PostalCode)
+				</td> -->
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading"><strong>Order Information</strong></div>
+	<!-- <div class="panel-body"></div> -->
+	<table class="table">
+		<tr>
+			<th>Hat</th>
+			<th>Dates</th>
+			<th>Quantity</th>
+			<th>Price</th>
+		</tr>
+		@foreach (var item in Model.OrderDetails)
+		{
+			<tr>
+				<td>@Html.DisplayFor(modelItem => item.Hat.Name)</td>
+				<td>@Html.DisplayFor(modelItem => item.Hat.Disc)</td>
+				<td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+				<td>@Html.DisplayFor(modelItem => item.Hat.Price)</td>
+			</tr>
+		}
+		<tr>
+			<td></td>
+			<td></td>
+			<td>
+				<label>GST:</label>
+			</td>
+			<td>
+				$@Html.DisplayFor(modelItem => Model.GST)
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td>
+				<label>Total:</label>
+			</td>
+			<td>
+				$@Html.DisplayFor(modelItem => Model.Total)
+			</td>
+		</tr>
+	</table>
+</div>
