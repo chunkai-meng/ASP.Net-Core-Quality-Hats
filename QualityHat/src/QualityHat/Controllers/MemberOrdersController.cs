@@ -25,7 +25,6 @@ namespace QualityHat.Controllers
 		}
 
 		// GET: MemberOrders
-		[ValidateAntiForgeryToken]
 		[Authorize(Roles = "Member")]
 		public async Task<IActionResult> Index()
 		{
@@ -226,8 +225,7 @@ namespace QualityHat.Controllers
 			return View(order);
 		}
 
-		[HttpGet]
-		[ValidateAntiForgeryToken]
+
 		[Authorize(Roles = "Member")]
 		public async Task<IActionResult> EmptyBag(int id)
 		{

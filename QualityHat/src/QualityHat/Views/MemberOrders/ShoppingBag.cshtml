@@ -9,11 +9,12 @@
 <div>
 	@await Component.InvokeAsync("ShoppingBag", new { order = Model })
 </div>
+
 <div class="row">
-    <div class="col-md-6" align="left">
-        <a asp-controller="MemberOrders" asp-action="EmptyBag" asp-route-id="@Model.OrderId" class="badge badge-dark">Clear Bag</a>
-    </div>
-    <div class="col-md-6" align="right">
-        <a asp-controller="MemberOrders" asp-action="Details" asp-route-id="@Model.OrderId" class="badge badge-dark"> Check Out </a>
-    </div>
+	<div class="col-sm-6" align="left">
+		<form asp-controller="MemberOrders" asp-action="EmptyBag" asp-route-id="@Model.OrderId"><button class="btn btn-default btn-sm">Clear Bag</button></form>
+	</div>
+	<div class="col-sm-6" align="right">
+		<form asp-controller="MemberOrders" asp-action="Details" asp-route-id="@Model.OrderId"><button class="btn btn-primary btn-sm">Check Out</button></form>
+	</div>
 </div>

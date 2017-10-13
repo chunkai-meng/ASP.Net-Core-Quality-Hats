@@ -31,7 +31,10 @@
                     <p>@Html.DisplayFor(modelItem => item.Disc)</p>
 					<div class="row">
 						<div class="col-xs-6 col-md-8">@Html.DisplayFor(modelItem => item.Price)</div>
-						<div class="col-xs-6 col-md-4"><a asp-action="AddToCart" asp-controller="ShoppingCart" asp-route-id="@item.HatID" class="badge badge-dark pull-right">Select</a></div>
+						<!-- <div class="col-xs-6 col-md-4"><a asp-action="AddToCart" asp-controller="ShoppingCart" asp-route-id="@item.HatID" class="badge badge-dark pull-right">Select</a></div> -->
+                        <div class="col-xs-6 col-md-4" align="right">
+                            <form  asp-action="AddToCart" asp-controller="ShoppingCart" asp-route-id="@item.HatID"><button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></form>
+                        </div>
 					</div>
                 </div>
             </div>
