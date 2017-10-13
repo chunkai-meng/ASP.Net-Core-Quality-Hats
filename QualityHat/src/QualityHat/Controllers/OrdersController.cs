@@ -31,25 +31,9 @@ namespace QualityHat.Models
         public async Task<IActionResult> Index()
         {
 			//return View(await _context.Orders.ToListAsync());
-			return View(await _context.Orders.Include(i => i.User).AsNoTracking().ToListAsync());
+			return View(await _context.Orders.Include(i => i.User).AsNoTracking().Where(m => m.OrderStatus != 0).ToListAsync());
 		}
 
-        // // GET: Orders/Details/5
-        // public async Task<IActionResult> Details(int? id)
-        // {
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
-        //    if (order == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(order);
-        // }
 
         // GET: Orders/Create
         [Authorize(Roles = "Member")]
@@ -57,22 +41,6 @@ namespace QualityHat.Models
         {
             return View();
         }
-
-		// POST: Orders/Create
-		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-		//[HttpPost]
-		//[ValidateAntiForgeryToken]
-		//public async Task<IActionResult> Create([Bind("OrderId,City,Country,FirstName,LastName,OrderDate,Phone,PostalCode,State,Total")] Order order)
-		//{
-		//    if (ModelState.IsValid)
-		//    {
-		//        _context.Add(order);
-		//        await _context.SaveChangesAsync();
-		//        return RedirectToAction("Index");
-		//    }
-		//    return View(order);
-		//}
 
 
 		[HttpPost]

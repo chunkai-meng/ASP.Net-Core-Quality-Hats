@@ -32,6 +32,32 @@ namespace QualityHat.Controllers
 			ApplicationUser user = await _userManager.GetUserAsync(User);
 			return View(await _context.Orders.Where(o => o.User.Id == user.Id && o.OrderStatus != 0).Include(o => o.User).AsNoTracking().ToListAsync());
 		}
+		
+		// GET: Orders/Edit/5
+        [Authorize(Roles = "Member")]
+		public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+			ViewBag.OrderStatus = new List<SelectListItem>
+			{
+				new SelectListItem {Text = "InCart", Value = "0"},
+				new SelectListItem {Text = "Placed", Value = "1"},
+				new SelectListItem {Text = "InProgress", Value = "2"},
+				new SelectListItem {Text = "PreparingToShip", Value = "3"},
+				new SelectListItem {Text = "Shipped", Value = "4"},
+				new SelectListItem {Text = "Delieved", Value = "5"}
+			};
+            return View(order);
+        }
 
 		// GET: MemberOrders/Bag/CK
 		[Authorize(Roles = "Member")]
@@ -283,5 +309,26 @@ namespace QualityHat.Controllers
 		{
 			return View();
 		}
+
+		public async Task<IActionResult> Show(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+			//var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
+			var order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
+
+			if (order == null)
+            {
+                return NotFound();
+            }
+
+			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
+			order.OrderDetails = details;
+
+			return View(order);
+        }
 	}
 }

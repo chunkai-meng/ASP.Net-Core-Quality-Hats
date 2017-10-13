@@ -28,11 +28,17 @@ namespace QualityHat.Models {
 		    public decimal GST { get; set; }
         public decimal Total { get; set; }
         [Display(Name = "Date Shipped")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime ShippedDate { get; set; }
         [Display(Name = "Date Delieved")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime DelievedDate { get; set; }
 
         [Display(Name = "Date Ordered")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime OrderDate { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
         public ApplicationUser User { get; set; }
