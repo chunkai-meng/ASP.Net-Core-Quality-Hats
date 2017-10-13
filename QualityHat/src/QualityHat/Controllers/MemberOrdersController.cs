@@ -25,7 +25,7 @@ namespace QualityHat.Controllers
 		}
 
 		// GET: MemberOrders
-		// [ValidateAntiForgeryToken]
+		[ValidateAntiForgeryToken]
 		[Authorize(Roles = "Member")]
 		public async Task<IActionResult> Index()
 		{
@@ -33,42 +33,6 @@ namespace QualityHat.Controllers
 			ApplicationUser user = await _userManager.GetUserAsync(User);
 			return View(await _context.Orders.Where(o => o.User.Id == user.Id && o.OrderStatus != 0).Include(o => o.User).AsNoTracking().ToListAsync());
 		}
-
-
-		// Get: MemberOrders/Submit Order
-		public IActionResult Submited()
-		{
-			return View();
-		}
-
-		// POST: MemberOrders/Submit Order
-		[Authorize(Roles = "Member")]
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Submited(int? id)
-		{
-			ApplicationUser user = await _userManager.GetUserAsync(User);
-			var order = await _context.Orders
-				.Include(o => o.OrderDetails)
-				.AsNoTracking().
-				SingleOrDefaultAsync(m => m.User.Id == user.Id && m.OrderStatus == 0);
-			order.OrderStatus = OrderStatus.Placed;
-			order.OrderDate = DateTime.Now;
-
-			_context.Orders.Update(order);
-			try
-			{
-				await _context.SaveChangesAsync();
-			}
-			catch (DbUpdateException /* ex */)
-			{
-				//Log the error (uncomment ex variable name and write a log.)
-				ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists, " + "see your system administrator.");
-			}
-			// return View();
-			return RedirectToAction("Submited");
-		}
-
 
 		// GET: MemberOrders/Bag/CK
 		[Authorize(Roles = "Member")]
@@ -122,7 +86,7 @@ namespace QualityHat.Controllers
 
 					cart.EmptyCart(_context);
 
-
+					
 					// orderToUpdate.Total = Order.GetUserTotalPrice(user, _context);
 					decimal t = Order.GetUserTotalPrice(user, _context);
 					decimal gst = 0.15m * t;
@@ -228,7 +192,7 @@ namespace QualityHat.Controllers
 
 			if (order == null)
 			{
-				return NotFound();
+				return View("ShoppingBagIsEmpty");
 			}
 
 			// This is a good example for how to retrive a one-many-many relationship data.
@@ -240,7 +204,8 @@ namespace QualityHat.Controllers
 		}
 
 		// GET: MemberOrders/Details/5
-		public async Task<IActionResult> Purchased(int? id)
+		[Authorize(Roles = "Member")]
+		public async Task<IActionResult> Details(int? id)
 		{
 			ApplicationUser user = await _userManager.GetUserAsync(User);
 			if (id == null)
@@ -255,129 +220,22 @@ namespace QualityHat.Controllers
 				return NotFound();
 			}
 
-			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
+			var details = _context.OrderDetail.AsNoTracking().Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
 			order.OrderDetails = details;
 			order.User.Recipients = _context.Recipient.Where(i => i.User == user).ToList();
 			return View(order);
 		}
 
-		// GET: MemberOrders/Details/5
-		public async Task<IActionResult> Details(int? id)
-		{
-			if (id == null)
-			{
-				return NotFound();
-			}
-
-			var order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
-
-			if (order == null)
-			{
-				return NotFound();
-			}
-
-			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
-			order.OrderDetails = details;
-
-			return View(order);
-		}
-
-		// GET: MemberOrders/Create
+		[HttpGet]
 		[ValidateAntiForgeryToken]
 		[Authorize(Roles = "Member")]
-		public IActionResult Create()
+		public async Task<IActionResult> EmptyBag(int id)
 		{
-			//ViewData["OrderStatus"] = new SelectList(_context.Orders, "OrderStatus", "OrderStatus");
-			ViewBag.OrderStatus = new List<SelectListItem>
-			{
-				new SelectListItem {Text = "InCart", Value = "0"},
-				new SelectListItem {Text = "Placed", Value = "1"},
-				new SelectListItem {Text = "InProgress", Value = "2"},
-				new SelectListItem {Text = "PreparingToShip", Value = "3"},
-				new SelectListItem {Text = "Shipped", Value = "4"},
-				new SelectListItem {Text = "Delieved", Value = "5"}
-			};
-			return View();
+			Order.DeleteOrder(id, _context);
+			return View("ShoppingBagIsEmpty");
 		}
 
-		// POST: CheckoutCart
-		// [HttpPost]
-		//[ValidateAntiForgeryToken]
-		[Authorize(Roles = "Member")]
-		public async Task<IActionResult> Checkout()
-		{
-			ApplicationUser user = await _userManager.GetUserAsync(User);
-			Order order = new Order { OrderStatus = 0 };
-			if (ModelState.IsValid)
-			{
 
-				ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
-				List<CartItem> items = cart.GetCartItems(_context);
-				List<OrderDetail> details = new List<OrderDetail>();
-				foreach (CartItem item in items)
-				{
-
-					OrderDetail detail = CreateOrderDetailForThisItem(item);
-					detail.Order = order;
-					details.Add(detail);
-					_context.Add(detail);
-
-				}
-
-				order.User = user;
-				order.OrderDate = DateTime.Today;
-				order.Total = ShoppingCart.GetCart(this.HttpContext).GetTotal(_context);
-				order.OrderDetails = details;
-				_context.SaveChanges();
-
-
-				return RedirectToAction("Details", new RouteValueDictionary(
-				new { action = "Details", id = order.OrderId }));
-			}
-
-			return View(order);
-		}
-
-		// POST: MemberOrders/Create
-		// To protect from overposting attacks, please enable the specific properties you want to bind to, for
-		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		[Authorize(Roles = "Member")]
-		public async Task<IActionResult> Create([Bind("OrderStatus,City,Country,FirstName,LastName,Phone,PostalCode,State")]Order order)
-		{
-			ApplicationUser user = await _userManager.GetUserAsync(User);
-
-			if (ModelState.IsValid)
-			{
-
-				ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
-				List<CartItem> items = cart.GetCartItems(_context);
-				List<OrderDetail> details = new List<OrderDetail>();
-				foreach (CartItem item in items)
-				{
-
-					OrderDetail detail = CreateOrderDetailForThisItem(item);
-					detail.Order = order;
-					details.Add(detail);
-					_context.Add(detail);
-
-				}
-
-				order.User = user;
-				order.OrderDate = DateTime.Today;
-				order.Total = ShoppingCart.GetCart(this.HttpContext).GetTotal(_context);
-				order.OrderDetails = details;
-				_context.SaveChanges();
-
-
-				return RedirectToAction("Details", new RouteValueDictionary(
-				new { action = "Details", id = order.OrderId }));
-			}
-
-			return View(order);
-		}
 		private OrderDetail CreateOrderDetailForThisItem(CartItem item)
 		{
 
@@ -392,102 +250,40 @@ namespace QualityHat.Controllers
 
 		}
 
-		// GET: MemberOrders/Edit/5
-		public async Task<IActionResult> Edit(int? id)
-		{
-			ViewBag.OrderStatus = new List<SelectListItem>
-			{
-				new SelectListItem {Text = "InCart", Value = "0"},
-				new SelectListItem {Text = "Placed", Value = "1"},
-				new SelectListItem {Text = "InProgress", Value = "2"},
-				new SelectListItem {Text = "PreparingToShip", Value = "3"},
-				new SelectListItem {Text = "Shipped", Value = "4"},
-				new SelectListItem {Text = "Delieved", Value = "5"}
-			};
-
-			if (id == null)
-			{
-				return NotFound();
-			}
-
-			var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
-			if (order == null)
-			{
-				return NotFound();
-			}
-			return View(order);
-		}
-
-		// POST: MemberOrders/Edit/5
-		// To protect from overposting attacks, please enable the specific properties you want to bind to, for
-		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+		// POST: MemberOrders/Submit Order
+		[Authorize(Roles = "Member")]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("OrderId,City,Country,DelievedDate,FirstName,LastName,OrderDate,OrderStatus,Phone,PostalCode,ShippedDate,State,Total")] Order order)
+		public async Task<IActionResult> Submited(int? id)
 		{
-			if (id != order.OrderId)
-			{
-				return NotFound();
-			}
+			ApplicationUser user = await _userManager.GetUserAsync(User);
+			var order = await _context.Orders
+				.Include(o => o.OrderDetails)
+				.AsNoTracking().
+				SingleOrDefaultAsync(m => m.User.Id == user.Id && m.OrderStatus == 0);
+			order.OrderStatus = OrderStatus.Placed;
+			order.OrderDate = DateTime.Now;
 
-			if (ModelState.IsValid)
+			_context.Orders.Update(order);
+			try
 			{
-				try
-				{
-					_context.Update(order);
-					await _context.SaveChangesAsync();
-				}
-				catch (DbUpdateConcurrencyException)
-				{
-					if (!OrderExists(order.OrderId))
-					{
-						return NotFound();
-					}
-					else
-					{
-						throw;
-					}
-				}
-				return RedirectToAction("Index");
+				await _context.SaveChangesAsync();
 			}
-			return View(order);
+			catch (DbUpdateException /* ex */)
+			{
+				//Log the error (uncomment ex variable name and write a log.)
+				ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists, " + "see your system administrator.");
+			}
+			// return View();
+			return RedirectToAction("OrderSubmited");
 		}
 
-		// GET: MemberOrders/Delete/5
-		public async Task<IActionResult> Delete(int? id)
+		// Get: MemberOrders/Submit Order
+		[HttpGet]
+		[Authorize(Roles = "Member")]
+		public IActionResult OrderSubmited()
 		{
-			if (id == null)
-			{
-				return NotFound();
-			}
-
-			var order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
-
-			if (order == null)
-			{
-				return NotFound();
-			}
-
-			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
-			order.OrderDetails = details;
-
-			return View(order);
-		}
-
-		// POST: MemberOrders/Delete/5
-		[HttpPost, ActionName("Delete")]
-		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> DeleteConfirmed(int id)
-		{
-			var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
-			_context.Orders.Remove(order);
-			await _context.SaveChangesAsync();
-			return RedirectToAction("Index");
-		}
-
-		private bool OrderExists(int id)
-		{
-			return _context.Orders.Any(e => e.OrderId == id);
+			return View();
 		}
 	}
 }

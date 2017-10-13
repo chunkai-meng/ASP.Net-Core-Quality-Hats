@@ -6,7 +6,9 @@
 
 <h5><span class="glyphicon glyphicon glyphicon-shopping-cart"></span> Your Currently Selected:</h5>
 
-
+	
+@if (@Model.CartItems.Count > 0)
+{
 <div class="container">
 	<div class="row">
 		<div class="col-sm-2">
@@ -39,18 +41,21 @@
 	<hr />
 
 	<div class="row">
-		<div class="col-sm-2">GST:</div>
-		<div class="col-sm-2">$@Model.CartGST</div>
-		<div class="col-sm-2">Grand Total:</div>
+
+		<div class="col-sm-2"><strong>GST :</strong> $@Model.CartGST</div>
+		<div class="col-sm-2" align="right"><strong>Total :</strong></div>
 		<div class="col-sm-2">$@Model.CartTotal</div>
+		<div class="col-sm-2"></div>
+		<div class="col-sm-2" align="right">
+			<a asp-action="AddToBag" asp-controller="MemberOrders" class="badge badge-primary">
+				<span class="badge badge-primary">Add to Bag</span>
+			</a>
+		</div>
 		<div class="col-sm-2">
-			@if (@Model.CartItems.Count > 0)
-			{
-					<a asp-action="AddToBag" asp-controller="MemberOrders" class="badge badge-primary">
-						<span class="badge badge-primary">Add to Bag</span>
-					</a>
-			}
+			<a asp-action="EmptyCart" asp-controller="ShoppingCart" class="badge badge-primary">
+				<span class="badge badge-primary">Clear Cart</span>
+			</a>
 		</div>
 	</div>
-
 </div>
+}

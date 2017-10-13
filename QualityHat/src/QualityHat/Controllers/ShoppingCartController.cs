@@ -52,6 +52,12 @@ namespace QualityHat.Controllers
 			int itemCount = cart.RemoveFromCart(id, _context);
 			return Redirect(Request.Headers["Referer"].ToString());
 		}
+		public ActionResult EmptyCart()
+		{
+			var cart = ShoppingCart.GetCart(this.HttpContext);
+			cart.EmptyCart(_context);
+			return Redirect(Request.Headers["Referer"].ToString());
+		}
 
 	}
 }

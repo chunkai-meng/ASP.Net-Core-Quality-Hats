@@ -4,124 +4,62 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<p></p>
 
-<div>
-    <h4>Order</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.User.UserName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.User.UserName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Country)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DelievedDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DelievedDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.OrderDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.OrderDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.OrderStatus)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.OrderStatus)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PostalCode)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PostalCode)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ShippedDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ShippedDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.State)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.State)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Total)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Total)
-        </dd>
-    </dl>
-    <dl>
-        <dd>
-			<table class="table">
-				<tr>
-					<th>Tutorial </th>
-					<th>Dates</th>
-					<th>Quantity</th>
-					<th>Price</th>
-				</tr>
-				@foreach (var item in Model.OrderDetails)
-				{
-					<tr>
-						<td>@Html.DisplayFor(modelItem => item.Hat.Name)</td>
-						<td>@Html.DisplayFor(modelItem => item.Hat.Disc)</td>
-						<td>@Html.DisplayFor(modelItem => item.Quantity)</td>
-						<td>@Html.DisplayFor(modelItem => item.Hat.Price)</td>
-					</tr>
-				}
-				<tr>
-					<td></td>
-					<td></td>
-					<td>
-						<label>Total:</label>
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => Model.Total)
-					</td>
-				</tr>
-			</table>
-		</dd>
-    </dl>
+			@await Component.InvokeAsync("Recipient", new { order = Model })
+
+<!-- <div class="panel panel-default">
+  <div class="panel-heading">Recipient Address:</div>
+	<div class="panel-body"></div>
+			@await Component.InvokeAsync("Recipient", new { order = Model })
+</div> -->
+
+<div class="panel panel-default">
+  <div class="panel-heading"><strong>Order Information</strong></div>
+	<!-- <div class="panel-body"></div> -->
+	<table class="table">
+								<tr>
+									<th>Hat</th>
+									<th>Dates</th>
+									<th>Quantity</th>
+									<th>Price</th>
+								</tr>
+								@foreach (var item in Model.OrderDetails)
+								{
+									<tr>
+										<td>@Html.DisplayFor(modelItem => item.Hat.Name)</td>
+										<td>@Html.DisplayFor(modelItem => item.Hat.Disc)</td>
+										<td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+										<td>@Html.DisplayFor(modelItem => item.Hat.Price)</td>
+									</tr>
+								}
+								<tr>
+									<td></td>
+									<td></td>
+									<td>
+										<label>GST:</label>
+									</td>
+									<td>
+										$@Html.DisplayFor(modelItem => Model.GST)
+									</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td>
+										<label>Total:</label>
+									</td>
+									<td>
+										$@Html.DisplayFor(modelItem => Model.Total)
+									</td>
+								</tr>
+							</table>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.OrderId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+<form asp-controller="MemberOrders" asp-action="Submited">
+	<div class="card text-right">
+		<div class="card-header">
+			<input type="submit" asp-route-id="@Model.OrderId" method="POST" class="btn btn-primary">
+		</div>
+	</div>
+</form>

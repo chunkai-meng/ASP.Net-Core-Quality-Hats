@@ -14,6 +14,7 @@ namespace QualityHat.Models {
     public class Order {
 
         public int OrderId { get; set; }
+        [Display(Name = "Status")]
         public OrderStatus OrderStatus { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -26,10 +27,12 @@ namespace QualityHat.Models {
         public string Phone { get; set; }
 		    public decimal GST { get; set; }
         public decimal Total { get; set; }
+        [Display(Name = "Date Shipped")]
         public System.DateTime ShippedDate { get; set; }
+        [Display(Name = "Date Delieved")]
         public System.DateTime DelievedDate { get; set; }
 
-        [Display(Name = "Order Date")]
+        [Display(Name = "Date Ordered")]
         public System.DateTime OrderDate { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
         public ApplicationUser User { get; set; }
@@ -43,19 +46,16 @@ namespace QualityHat.Models {
 			return total ?? decimal.Zero;
 		}
 
-		public static async void SetOrderTotalPrice(ApplicationUser user, ApplicationDbContext _context)
-		{
-			var order = await _context.Orders.SingleOrDefaultAsync(m => m.User == user && m.OrderStatus == 0);
-			order.Total = GetUserTotalPrice(user, _context);
-			await _context.SaveChangesAsync();
-		}
-
-		public static async void DeleteCart(ApplicationUser user, ApplicationDbContext _context)
-		{
-			var order = await _context.Orders.SingleOrDefaultAsync(m => m.User == user && m.OrderStatus == 0);
-			_context.Orders.Remove(order);
-			await _context.SaveChangesAsync();
-		}
+        public static void DeleteOrder(int? id, ApplicationDbContext db)
+        {
+            var order = db.Orders.AsNoTracking().SingleOrDefault(o => o.OrderId == id);
+            var orderDetails = db.OrderDetail.Where(d => d.Order.OrderId == id);
+            foreach (var orderDetail in orderDetails)
+            {
+                db.OrderDetail.Remove(orderDetail);
+            }
+            db.Orders.Remove(order);
+            db.SaveChanges();
+        }
 	}
-
 }
