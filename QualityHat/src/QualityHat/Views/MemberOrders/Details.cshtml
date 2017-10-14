@@ -4,19 +4,12 @@
     ViewData["Title"] = "Details";
 }
 
-<p></p>
+<br />
 
-			@await Component.InvokeAsync("Recipient", new { order = Model })
-
-<!-- <div class="panel panel-default">
-  <div class="panel-heading">Recipient Address:</div>
-	<div class="panel-body"></div>
-			@await Component.InvokeAsync("Recipient", new { order = Model })
-</div> -->
+@await Component.InvokeAsync("Recipient", new { order = Model })
 
 <div class="panel panel-default">
   <div class="panel-heading"><strong>Order Information</strong></div>
-	<!-- <div class="panel-body"></div> -->
 	<table class="table">
 								<tr>
 									<th>Hat</th>
@@ -56,10 +49,11 @@
 							</table>
 </div>
 
-<form asp-controller="MemberOrders" asp-action="Submited">
-	<div class="card text-right">
-		<div class="card-header">
-			<input type="submit" asp-route-id="@Model.OrderId" method="POST" class="btn btn-primary">
-		</div>
+<div class="row">
+	<div class="col-sm-6" align="left">
+		<form asp-controller="MemberOrders" asp-action="ShoppingBag"><button class="btn btn-default btn-sm">Back</button></form>
 	</div>
-</form>
+	<div class="col-sm-6" align="right">
+		<form asp-controller="MemberOrders" asp-action="Submited" asp-route-id="@Model.OrderId" method="post"><button class="btn btn-primary btn-sm">Submit</button></form>
+	</div>
+</div>

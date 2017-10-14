@@ -55,7 +55,7 @@ namespace QualityHat.Controllers
 				new SelectListItem {Text = "InProgress", Value = "2"},
 				new SelectListItem {Text = "PreparingToShip", Value = "3"},
 				new SelectListItem {Text = "Shipped", Value = "4"},
-				new SelectListItem {Text = "Delieved", Value = "5"}
+				new SelectListItem {Text = "Delivered", Value = "5"}
 			};
             return View(order);
         }
@@ -209,7 +209,7 @@ namespace QualityHat.Controllers
 				new SelectListItem {Text = "InProgress", Value = "2"},
 				new SelectListItem {Text = "PreparingToShip", Value = "3"},
 				new SelectListItem {Text = "Shipped", Value = "4"},
-				new SelectListItem {Text = "Delieved", Value = "5"}
+				new SelectListItem {Text = "Delivered", Value = "5"}
 			};
 			ApplicationUser user = await _userManager.GetUserAsync(User);
 			var order = await _context.Orders

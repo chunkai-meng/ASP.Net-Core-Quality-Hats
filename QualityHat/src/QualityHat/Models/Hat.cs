@@ -15,7 +15,7 @@ namespace QualityHat.Models
 		public decimal Price { get; set; }
 
 		[Required]
-		[Display(Name = "Discription")]
+		[Display(Name = "Description")]
 		public string Disc { get; set; }
 
 		[Required]

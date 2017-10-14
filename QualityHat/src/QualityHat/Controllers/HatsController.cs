@@ -49,12 +49,8 @@ namespace QualityHat.Controllers
 
 
 		[HttpPost]
-		public async Task<IActionResult> UploadFile(IFormFile file)
+		public async Task<IActionResult> UploadFile(IFormFile file, int id)
 		{
-			// full path to file in temp location
-			//var filePath = Path.GetTempFileName();
-			//var filePath = "./wwwroot/images/temp1.png";
-			//string filePath = Path.GetTempFileName().Replace(".tmp", ".csv");
 			string fileFullPath = file.FileName;
 			var fileName = Path.GetFileName(fileFullPath);
 			var fileExtension = Path.GetExtension(fileFullPath);
@@ -75,7 +71,12 @@ namespace QualityHat.Controllers
 
 			// process uploaded files
 			// Don't rely on or trust the FileName property without validation.
-			return RedirectToAction("Create", "Hats", new { fileName = imageURL });
+            if(id == 0){
+                return RedirectToAction("Create", "Hats", new { fileName = imageURL });
+            } else {
+                return RedirectToAction("Edit", "Hats", new { fileName = imageURL, id = id });
+            }
+
 		}
 
 
@@ -85,12 +86,12 @@ namespace QualityHat.Controllers
             ViewData["CategoryID"] = new SelectList(_context.Categorys, "CategoryID", "Name");
             ViewData["SupplierID"] = new SelectList(_context.Suppliers, "SupplierID", "Name");
 
-			if (!string.IsNullOrEmpty(fileName))
-			{
-				//return Ok( new { filePath} );
-			}
-				ViewData["Image"] = fileName;
-			//}
+			// if (!string.IsNullOrEmpty(fileName))
+			// {
+			// 	return View("NotFound");
+			// }
+			ViewData["Image"] = fileName;
+
             return View();
         }
 
@@ -113,7 +114,7 @@ namespace QualityHat.Controllers
         }
 
         // GET: Hats/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string fileName, int? id)
         {
             if (id == null)
             {
@@ -125,8 +126,11 @@ namespace QualityHat.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryID"] = new SelectList(_context.Categorys, "CategoryID", "CategoryID", hat.CategoryID);
-            ViewData["SupplierID"] = new SelectList(_context.Suppliers, "SupplierID", "SupplierID", hat.SupplierID);
+            ViewData["Image"] = (fileName == null) ? hat.Image : fileName;
+            ViewData["CategoryID"] = new SelectList(_context.Categorys, "CategoryID", "Name", hat.CategoryID);
+            ViewData["SupplierID"] = new SelectList(_context.Suppliers, "SupplierID", "Name", hat.SupplierID);
+
+            ViewData["HatID"] = id;
             return View(hat);
         }
 
@@ -162,8 +166,6 @@ namespace QualityHat.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["CategoryID"] = new SelectList(_context.Categorys, "CategoryID", "CategoryID", hat.CategoryID);
-            ViewData["SupplierID"] = new SelectList(_context.Suppliers, "SupplierID", "SupplierID", hat.SupplierID);
             return View(hat);
         }
 

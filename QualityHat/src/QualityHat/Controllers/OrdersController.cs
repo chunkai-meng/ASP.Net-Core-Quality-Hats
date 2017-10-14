@@ -37,7 +37,7 @@ namespace QualityHat.Models
 				new SelectListItem {Text = "InProgress", Value = "2"},
 				new SelectListItem {Text = "PreparingToShip", Value = "3"},
 				new SelectListItem {Text = "Shipped", Value = "4"},
-				new SelectListItem {Text = "Delieved", Value = "5"}
+				new SelectListItem {Text = "Delivered", Value = "5"}
 			};
 			return View(await _context.Orders.Include(i => i.User).AsNoTracking().Where(m => m.OrderStatus != 0).ToListAsync());
 		}
@@ -143,7 +143,7 @@ namespace QualityHat.Models
 				new SelectListItem {Text = "InProgress", Value = "2"},
 				new SelectListItem {Text = "PreparingToShip", Value = "3"},
 				new SelectListItem {Text = "Shipped", Value = "4"},
-				new SelectListItem {Text = "Delieved", Value = "5"}
+				new SelectListItem {Text = "Delivered", Value = "5"}
 			};
             return View(order);
         }

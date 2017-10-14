@@ -36,7 +36,7 @@ namespace QualityHat.Models {
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]
         public System.DateTime ShippedDate { get; set; }
 
-        [Display(Name = "Date Delieved")]
+        [Display(Name = "Date Delivered")]
         // [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]
         public System.DateTime DelievedDate { get; set; }
