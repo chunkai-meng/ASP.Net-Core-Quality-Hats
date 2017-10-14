@@ -9,7 +9,12 @@
 @await Component.InvokeAsync("Recipient", new { order = Model })
 
 <div class="panel panel-default">
-  <div class="panel-heading"><strong>Order Information</strong></div>
+  	<div class="panel-heading">
+		<div class="wrapper">
+		  <div><strong>Order Information:</strong></div>
+		  <div><strong>Acount: @Model.User.UserName </strong></div>
+		</div>
+	</div>
 	<table class="table">
 								<tr>
 									<th>Hat</th>
@@ -54,6 +59,8 @@
 		<form asp-controller="MemberOrders" asp-action="ShoppingBag"><button class="btn btn-default btn-sm">Back</button></form>
 	</div>
 	<div class="col-sm-6" align="right">
-		<form asp-controller="MemberOrders" asp-action="Submited" asp-route-id="@Model.OrderId" method="post"><button class="btn btn-primary btn-sm">Submit</button></form>
+		<form asp-controller="MemberOrders" asp-action="Submited" asp-route-id="@Model.OrderId" method="post">
+			<button class="btn btn-primary btn-sm">Submit</button>
+		</form>
 	</div>
 </div>
