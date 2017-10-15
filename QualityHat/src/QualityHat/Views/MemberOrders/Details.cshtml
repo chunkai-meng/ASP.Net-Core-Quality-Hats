@@ -1,7 +1,7 @@
 @model QualityHat.Models.Order
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Recipient";
 }
 
 <br />
@@ -60,7 +60,15 @@
 	</div>
 	<div class="col-sm-6" align="right">
 		<form asp-controller="MemberOrders" asp-action="Submited" asp-route-id="@Model.OrderId" method="post">
-			<button class="btn btn-primary btn-sm">Submit</button>
+			@if (Model.Address1 == null)
+			{
+				<button class="btn btn-primary btn-sm" disabled>Submit</button>
+			}
+			else
+			{
+				<button class="btn btn-primary btn-sm">Submit</button>
+			}
+
 		</form>
 	</div>
 </div>

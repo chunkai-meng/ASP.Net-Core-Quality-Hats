@@ -51,7 +51,7 @@ namespace QualityHat.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Welcome to Quality Hats.";
 
             return View();
         }
