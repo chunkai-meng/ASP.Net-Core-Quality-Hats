@@ -309,6 +309,8 @@ Z:\WebApp\QualityHat\src\QualityHat\Data\ShopContext.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170910054539_Address1.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170916063411_cart.Designer.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20171009224713_addGST.cs
+Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20171015082150_lenovo.cs
+Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20171015082150_lenovo.Designer.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170915041140_MoveToAppDbContext1.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs
 Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170910105435_CustomerName.Designer.cs
