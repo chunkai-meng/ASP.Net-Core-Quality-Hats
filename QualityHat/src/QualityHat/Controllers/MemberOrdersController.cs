@@ -258,6 +258,7 @@ namespace QualityHat.Controllers
 		[Authorize(Roles = "Member")]
 		public async Task<IActionResult> EmptyBag(int id)
 		{
+			ApplicationUser user = await _userManager.GetUserAsync(User);
 			Order.DeleteOrder(id, _context);
 			return View("ShoppingBagIsEmpty");
 		}

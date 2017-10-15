@@ -58,10 +58,10 @@ namespace QualityHat.Models {
 			return total ?? decimal.Zero;
 		}
 
-        public static void DeleteOrder(int? id, ApplicationDbContext db)
+        public static void DeleteOrder(int? id, ApplicationDbContext db)
         {
             var order = db.Orders.AsNoTracking().SingleOrDefault(o => o.OrderId == id);
-            var orderDetails = db.OrderDetail.Where(d => d.Order.OrderId == id);
+            var orderDetails = db.OrderDetail.AsNoTracking().Where(d => d.Order.OrderId == id);
             foreach (var orderDetail in orderDetails)
             {
                 db.OrderDetail.Remove(orderDetail);

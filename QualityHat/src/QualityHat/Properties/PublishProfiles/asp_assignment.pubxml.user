@@ -11,7 +11,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.json">
-      <publishTime>09/22/2017 13:55:52</publishTime>
+      <publishTime>10/16/2017 00:11:28</publishTime>
     </File>
     <File Include="BouncyCastle.Crypto.dll">
       <publishTime>08/17/2017 18:20:54</publishTime>
@@ -278,16 +278,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/14/2016 18:06:14</publishTime>
     </File>
     <File Include="QualityHat.deps.json">
-      <publishTime>09/22/2017 16:58:35</publishTime>
+      <publishTime>10/16/2017 00:12:35</publishTime>
     </File>
     <File Include="QualityHat.dll">
-      <publishTime>09/22/2017 16:45:46</publishTime>
+      <publishTime>10/15/2017 23:37:18</publishTime>
     </File>
     <File Include="QualityHat.pdb">
-      <publishTime>09/22/2017 16:45:46</publishTime>
+      <publishTime>10/15/2017 23:37:18</publishTime>
     </File>
     <File Include="QualityHat.runtimeconfig.json">
-      <publishTime>09/22/2017 16:58:35</publishTime>
+      <publishTime>10/16/2017 00:12:36</publishTime>
     </File>
     <File Include="refs/Microsoft.CSharp.dll">
       <publishTime>06/12/2016 18:13:10</publishTime>
@@ -827,10 +827,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/11/2017 22:04:39</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>09/11/2017 22:04:39</publishTime>
+      <publishTime>10/14/2017 21:36:20</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
-      <publishTime>09/11/2017 22:04:39</publishTime>
+      <publishTime>10/15/2017 14:23:29</publishTime>
     </File>
     <File Include="Views/Account/ResetPassword.cshtml">
       <publishTime>09/11/2017 22:04:39</publishTime>
@@ -854,10 +854,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/11/2017 22:04:39</publishTime>
     </File>
     <File Include="Views/AdminApplicationUsers/Edit.cshtml">
-      <publishTime>09/11/2017 22:04:39</publishTime>
+      <publishTime>10/15/2017 01:13:19</publishTime>
     </File>
     <File Include="Views/AdminApplicationUsers/Index.cshtml">
-      <publishTime>09/11/2017 22:04:39</publishTime>
+      <publishTime>10/15/2017 00:57:13</publishTime>
     </File>
     <File Include="Views/Categories/Create.cshtml">
       <publishTime>09/12/2017 21:38:29</publishTime>
@@ -875,7 +875,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/12/2017 22:48:33</publishTime>
     </File>
     <File Include="Views/Hats/Create.cshtml">
-      <publishTime>09/17/2017 11:52:13</publishTime>
+      <publishTime>10/14/2017 23:41:36</publishTime>
     </File>
     <File Include="Views/Hats/Delete.cshtml">
       <publishTime>09/16/2017 22:32:22</publishTime>
@@ -884,7 +884,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/11/2017 22:04:39</publishTime>
     </File>
     <File Include="Views/Hats/Edit.cshtml">
-      <publishTime>09/11/2017 22:04:39</publishTime>
+      <publishTime>10/15/2017 00:11:32</publishTime>
     </File>
     <File Include="Views/Hats/Index.cshtml">
       <publishTime>09/16/2017 23:26:19</publishTime>
@@ -893,10 +893,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/11/2017 22:04:39</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
-      <publishTime>09/11/2017 22:04:39</publishTime>
+      <publishTime>10/15/2017 14:47:47</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>09/11/2017 22:04:39</publishTime>
+    </File>
+    <File Include="Views/Home/ToBeDeleteIndex.cshtml">
+      <publishTime>10/11/2017 15:41:15</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>09/11/2017 22:04:39</publishTime>
@@ -929,28 +932,40 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/16/2017 22:37:05</publishTime>
     </File>
     <File Include="Views/MemberHats/Index.cshtml">
-      <publishTime>09/20/2017 08:54:58</publishTime>
+      <publishTime>10/14/2017 03:14:08</publishTime>
+    </File>
+    <File Include="Views/MemberHats/ToBeDeletedCategory.cshtml">
+      <publishTime>10/12/2017 11:41:02</publishTime>
     </File>
     <File Include="Views/MemberOrders/Create.cshtml">
       <publishTime>09/17/2017 14:25:45</publishTime>
     </File>
     <File Include="Views/MemberOrders/Delete.cshtml">
-      <publishTime>09/17/2017 17:54:42</publishTime>
+      <publishTime>10/13/2017 18:05:02</publishTime>
     </File>
     <File Include="Views/MemberOrders/Details.cshtml">
-      <publishTime>09/17/2017 17:53:56</publishTime>
+      <publishTime>10/15/2017 15:56:08</publishTime>
     </File>
     <File Include="Views/MemberOrders/Edit.cshtml">
       <publishTime>09/17/2017 12:13:03</publishTime>
     </File>
     <File Include="Views/MemberOrders/Index.cshtml">
-      <publishTime>09/17/2017 23:20:17</publishTime>
+      <publishTime>10/14/2017 04:19:59</publishTime>
+    </File>
+    <File Include="Views/MemberOrders/OrderDetail.cshtml">
+      <publishTime>10/15/2017 16:50:44</publishTime>
+    </File>
+    <File Include="Views/MemberOrders/OrderSubmited.cshtml">
+      <publishTime>10/13/2017 15:25:04</publishTime>
     </File>
     <File Include="Views/MemberOrders/Purchased.cshtml">
       <publishTime>09/21/2017 23:41:46</publishTime>
     </File>
     <File Include="Views/MemberOrders/ShoppingBag.cshtml">
-      <publishTime>09/21/2017 07:39:16</publishTime>
+      <publishTime>10/13/2017 16:59:09</publishTime>
+    </File>
+    <File Include="Views/MemberOrders/ShoppingBagIsEmpty.cshtml">
+      <publishTime>10/13/2017 15:31:49</publishTime>
     </File>
     <File Include="Views/MemberOrders/Submited.cshtml">
       <publishTime>09/21/2017 13:47:40</publishTime>
@@ -977,16 +992,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/17/2017 12:39:36</publishTime>
     </File>
     <File Include="Views/Orders/Edit.cshtml">
-      <publishTime>09/16/2017 19:36:01</publishTime>
+      <publishTime>10/14/2017 04:18:01</publishTime>
     </File>
     <File Include="Views/Orders/Index.cshtml">
-      <publishTime>09/16/2017 23:34:20</publishTime>
+      <publishTime>10/14/2017 04:56:04</publishTime>
     </File>
     <File Include="Views/Orders/Purchased.cshtml">
       <publishTime>09/16/2017 20:50:12</publishTime>
     </File>
+    <File Include="Views/Orders/ToBeDeleteEdit.cshtml">
+      <publishTime>10/14/2017 04:17:54</publishTime>
+    </File>
     <File Include="Views/Recipients/Create.cshtml">
-      <publishTime>09/20/2017 16:45:46</publishTime>
+      <publishTime>10/11/2017 16:52:13</publishTime>
     </File>
     <File Include="Views/Recipients/Delete.cshtml">
       <publishTime>09/20/2017 16:45:49</publishTime>
@@ -995,31 +1013,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/20/2017 16:45:48</publishTime>
     </File>
     <File Include="Views/Recipients/Edit.cshtml">
-      <publishTime>09/20/2017 16:45:47</publishTime>
+      <publishTime>10/11/2017 16:46:40</publishTime>
     </File>
     <File Include="Views/Recipients/Index.cshtml">
-      <publishTime>09/20/2017 16:45:49</publishTime>
+      <publishTime>10/14/2017 21:43:11</publishTime>
     </File>
     <File Include="Views/Shared/Components/Recipient/Default.cshtml">
-      <publishTime>09/21/2017 13:26:16</publishTime>
+      <publishTime>10/13/2017 15:19:18</publishTime>
     </File>
     <File Include="Views/Shared/Components/Recipient/Edit.cshtml">
       <publishTime>09/20/2017 16:45:47</publishTime>
     </File>
     <File Include="Views/Shared/Components/ShoppingBag/Default.cshtml">
-      <publishTime>09/21/2017 19:50:23</publishTime>
+      <publishTime>10/13/2017 18:40:26</publishTime>
     </File>
     <File Include="Views/Shared/Components/ShoppingCartViewModel/Default.cshtml">
-      <publishTime>09/21/2017 06:17:32</publishTime>
+      <publishTime>10/13/2017 16:58:04</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>09/11/2017 22:04:39</publishTime>
     </File>
+    <File Include="Views/Shared/NotFound.cshtml">
+      <publishTime>10/14/2017 02:33:22</publishTime>
+    </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/22/2017 16:12:08</publishTime>
+      <publishTime>10/12/2017 20:10:41</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>09/21/2017 07:33:49</publishTime>
+      <publishTime>10/15/2017 14:55:38</publishTime>
     </File>
     <File Include="Views/Shared/_ValidationScriptsPartial.cshtml">
       <publishTime>09/11/2017 22:04:39</publishTime>
@@ -1046,22 +1067,157 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/11/2017 22:04:39</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>09/22/2017 16:58:37</publishTime>
+      <publishTime>10/16/2017 00:12:37</publishTime>
     </File>
     <File Include="wwwroot/.DS_Store">
-      <publishTime>09/15/2017 17:33:57</publishTime>
+      <publishTime>10/10/2017 14:02:11</publishTime>
+    </File>
+    <File Include="wwwroot/assets/brand/bootstrap-outline.svg">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/brand/bootstrap-punchout.svg">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/brand/bootstrap-social-logo.png">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/brand/bootstrap-social.png">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/brand/bootstrap-solid.svg">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/css/docs.min.css">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/css/docs.min.css.map">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/img/bootstrap-stack.png">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/img/bootstrap-themes.png">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/js/docs.min.js">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/js/ie-emulation-modes-warning.js">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/js/ie10-viewport-bug-workaround.js">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/js/src/application.js">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/js/vendor/anchor.min.js">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/js/vendor/clipboard.min.js">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/js/vendor/holder.min.js">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/js/vendor/jquery-slim.min.js">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/js/vendor/popper.min.js">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/docs.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_ads.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_algolia.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_anchor.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_brand.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_browser-bugs.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_buttons.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_callouts.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_clipboard-js.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_colors.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_component-examples.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_content.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_examples.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_featured-sites.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_footer.scss">
+      <publishTime>10/12/2017 15:31:57</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_masthead.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_nav.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_page-header.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_responsive-tests.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_sidebar.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_skiplink.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_syntax.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_team.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/assets/scss/_variables.scss">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap.min.css">
+      <publishTime>10/10/2017 14:04:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap.min.css.map">
+      <publishTime>10/10/2017 14:04:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/MyCss.css">
+      <publishTime>10/14/2017 03:09:27</publishTime>
     </File>
     <File Include="wwwroot/css/site.css">
-      <publishTime>09/11/2017 22:04:39</publishTime>
+      <publishTime>10/12/2017 17:16:21</publishTime>
     </File>
     <File Include="wwwroot/css/site.min.css">
-      <publishTime>09/22/2017 16:58:29</publishTime>
+      <publishTime>10/16/2017 00:12:30</publishTime>
     </File>
     <File Include="wwwroot/favicon.ico">
       <publishTime>09/11/2017 22:04:39</publishTime>
     </File>
     <File Include="wwwroot/images/.DS_Store">
-      <publishTime>09/15/2017 18:26:03</publishTime>
+      <publishTime>10/10/2017 14:01:56</publishTime>
     </File>
     <File Include="wwwroot/images/banner1.svg">
       <publishTime>09/11/2017 22:04:39</publishTime>
@@ -1099,11 +1255,149 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="wwwroot/images/hats/636412461948385029.jpg">
       <publishTime>09/17/2017 11:56:34</publishTime>
     </File>
+    <File Include="wwwroot/images/hats/636432545230789825.jpg">
+      <publishTime>10/10/2017 17:48:43</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636432547615372287.jpg">
+      <publishTime>10/10/2017 17:52:41</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636432550186957102.jpg">
+      <publishTime>10/10/2017 17:56:58</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636432550920488666.jpg">
+      <publishTime>10/10/2017 17:58:12</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636432551611777637.jpg">
+      <publishTime>10/10/2017 17:59:21</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636433237296254769.jpg">
+      <publishTime>10/11/2017 13:02:09</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636433238251981690.jpg">
+      <publishTime>10/11/2017 13:03:45</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636433239043852623.jpg">
+      <publishTime>10/11/2017 13:05:04</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636433239889898066.jpg">
+      <publishTime>10/11/2017 13:06:28</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636433240606488596.jpg">
+      <publishTime>10/11/2017 13:07:40</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636433241053253428.jpg">
+      <publishTime>10/11/2017 13:08:25</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636433323659854876.jpeg">
+      <publishTime>10/11/2017 15:26:05</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636433323955949887.jpeg">
+      <publishTime>10/11/2017 15:26:35</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636433324267278112.jpeg">
+      <publishTime>10/11/2017 15:27:06</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636433325561167338.jpg">
+      <publishTime>10/11/2017 15:29:16</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636433330682802531.jpg">
+      <publishTime>10/11/2017 15:37:48</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636433330983128445.jpg">
+      <publishTime>10/11/2017 15:38:18</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436144734885025.jpg">
+      <publishTime>10/14/2017 21:47:53</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436192950695673.png">
+      <publishTime>10/14/2017 23:08:15</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436193700815791.jpg">
+      <publishTime>10/14/2017 23:09:30</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436198069749736.jpg">
+      <publishTime>10/14/2017 23:16:46</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436199821927573.jpg">
+      <publishTime>10/14/2017 23:19:42</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436199947564613.jpg">
+      <publishTime>10/14/2017 23:19:54</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436202780014972.jpg">
+      <publishTime>10/14/2017 23:24:38</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436207979493292.jpg">
+      <publishTime>10/14/2017 23:33:17</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436209395469651.jpg">
+      <publishTime>10/14/2017 23:35:39</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436211475391763.jpg">
+      <publishTime>10/14/2017 23:39:07</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436213687545464.jpg">
+      <publishTime>10/14/2017 23:42:48</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436214202294568.png">
+      <publishTime>10/14/2017 23:43:40</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436214351871500.jpg">
+      <publishTime>10/14/2017 23:43:55</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436218213966799.jpg">
+      <publishTime>10/14/2017 23:50:21</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436220206540632.jpg">
+      <publishTime>10/14/2017 23:53:40</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436220742881717.jpg">
+      <publishTime>10/14/2017 23:54:34</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436223653132586.jpg">
+      <publishTime>10/14/2017 23:59:25</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436225663849489.jpg">
+      <publishTime>10/15/2017 00:02:46</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436227229858441.jpg">
+      <publishTime>10/15/2017 00:05:23</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436229465761784.jpg">
+      <publishTime>10/15/2017 00:09:06</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436229639321010.png">
+      <publishTime>10/15/2017 00:09:23</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436841938788181.png">
+      <publishTime>10/15/2017 17:09:53</publishTime>
+    </File>
+    <File Include="wwwroot/images/logos/.DS_Store">
+      <publishTime>10/10/2017 17:08:15</publishTime>
+    </File>
+    <File Include="wwwroot/images/logos/logos-2.png">
+      <publishTime>10/10/2017 16:38:10</publishTime>
+    </File>
+    <File Include="wwwroot/images/logos/logos-site-QH.ico">
+      <publishTime>10/10/2017 17:06:18</publishTime>
+    </File>
+    <File Include="wwwroot/images/logos/logos.png">
+      <publishTime>10/10/2017 16:33:58</publishTime>
+    </File>
+    <File Include="wwwroot/images/logos/QualityHats_logo.png">
+      <publishTime>10/10/2017 16:24:57</publishTime>
+    </File>
+    <File Include="wwwroot/js/bootstrap.js">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
+    <File Include="wwwroot/js/bootstrap.min.js">
+      <publishTime>08/10/2017 19:56:34</publishTime>
+    </File>
     <File Include="wwwroot/js/site.js">
-      <publishTime>09/11/2017 22:04:39</publishTime>
+      <publishTime>10/12/2017 16:33:30</publishTime>
     </File>
     <File Include="wwwroot/js/site.min.js">
-      <publishTime>09/22/2017 13:56:57</publishTime>
+      <publishTime>10/16/2017 00:12:30</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/.bower.json">
       <publishTime>09/11/2017 22:04:39</publishTime>
@@ -1201,8 +1495,26 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="wwwroot/lib/jquery/LICENSE.txt">
       <publishTime>09/11/2017 22:04:39</publishTime>
     </File>
+    <File Include="wwwroot/lib/less/.bower.json">
+      <publishTime>10/12/2017 15:43:06</publishTime>
+    </File>
+    <File Include="wwwroot/lib/less/bower.json">
+      <publishTime>10/12/2017 15:43:06</publishTime>
+    </File>
+    <File Include="wwwroot/lib/less/browser.js">
+      <publishTime>10/12/2017 15:43:06</publishTime>
+    </File>
+    <File Include="wwwroot/lib/less/dist/less.js">
+      <publishTime>10/12/2017 15:43:06</publishTime>
+    </File>
+    <File Include="wwwroot/lib/less/dist/less.min.js">
+      <publishTime>10/12/2017 15:43:06</publishTime>
+    </File>
+    <File Include="wwwroot/lib/less/index.js">
+      <publishTime>10/12/2017 15:43:06</publishTime>
+    </File>
     <File Include="wwwroot/_references.js">
-      <publishTime>09/11/2017 22:04:39</publishTime>
+      <publishTime>10/12/2017 15:43:08</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -201,7 +201,7 @@ namespace QualityHat.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateException s)
+            catch (DbUpdateException)
             {
                 TempData["HatUsed"]= "The Hat being deleted has been used in previous orders.Delete those orders before trying again.";
                 return RedirectToAction("Delete");
