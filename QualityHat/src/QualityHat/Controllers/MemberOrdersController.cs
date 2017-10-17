@@ -258,8 +258,24 @@ namespace QualityHat.Controllers
 		[Authorize(Roles = "Member")]
 		public async Task<IActionResult> EmptyBag(int id)
 		{
+			//ApplicationUser user = await _userManager.GetUserAsync(User);
+			//Order.DeleteOrder(id, _context);
+			//return View("ShoppingBagIsEmpty");
+
 			ApplicationUser user = await _userManager.GetUserAsync(User);
-			Order.DeleteOrder(id, _context);
+			var order = await _context.Orders.SingleOrDefaultAsync(o => o.User.Id == user.Id && o.OrderId == id);
+			if (order == null)
+			{
+				return NotFound();
+			}
+
+			var orderDetails = _context.OrderDetail.AsNoTracking().Where(d => d.Order.OrderId == id);
+			foreach (var orderDetail in orderDetails)
+			{
+				_context.OrderDetail.Remove(orderDetail);
+			}
+			_context.Orders.Remove(order);
+			_context.SaveChanges();
 			return View("ShoppingBagIsEmpty");
 		}
 

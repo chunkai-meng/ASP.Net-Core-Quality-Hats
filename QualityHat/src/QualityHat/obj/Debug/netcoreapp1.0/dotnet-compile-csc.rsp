@@ -308,6 +308,8 @@
 "Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20171015082150_lenovo.cs"
 "Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20171015082150_lenovo.Designer.cs"
 "Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170915041140_MoveToAppDbContext1.cs"
+"Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20171016100056_inital.Designer.cs"
+"Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20171016100056_inital.cs"
 "Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs"
 "Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170910105435_CustomerName.Designer.cs"
 "Z:\WebApp\QualityHat\src\QualityHat\Data\Migrations\20170915040930_MoveToAppDbContext.cs"

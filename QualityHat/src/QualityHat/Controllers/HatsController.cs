@@ -59,7 +59,9 @@ namespace QualityHat.Controllers
 
 			var myUniqueFileName = $@"{DateTime.Now.Ticks}" + fileExtension;
 			var filePath = "./wwwroot/images/hats/" + myUniqueFileName;
-			var imageURL = "/images/hats/" + myUniqueFileName;
+			// var imageURL = "/images/hats/" + myUniqueFileName;
+			// To fix the tricky Domain problem
+			var imageURL = "/mengc06/asp_assignment/images/hats/" + myUniqueFileName;
 
 			if (file.Length > 0)
 			{

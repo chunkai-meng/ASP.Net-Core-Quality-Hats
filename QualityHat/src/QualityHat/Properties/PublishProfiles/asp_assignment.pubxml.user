@@ -11,7 +11,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.json">
-      <publishTime>10/16/2017 00:11:28</publishTime>
+      <publishTime>10/17/2017 13:37:28</publishTime>
     </File>
     <File Include="BouncyCastle.Crypto.dll">
       <publishTime>08/17/2017 18:20:54</publishTime>
@@ -278,16 +278,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/14/2016 18:06:14</publishTime>
     </File>
     <File Include="QualityHat.deps.json">
-      <publishTime>10/16/2017 00:12:35</publishTime>
+      <publishTime>10/17/2017 15:29:26</publishTime>
     </File>
     <File Include="QualityHat.dll">
-      <publishTime>10/15/2017 23:37:18</publishTime>
+      <publishTime>10/17/2017 15:29:12</publishTime>
     </File>
     <File Include="QualityHat.pdb">
-      <publishTime>10/15/2017 23:37:18</publishTime>
+      <publishTime>10/17/2017 15:29:12</publishTime>
     </File>
     <File Include="QualityHat.runtimeconfig.json">
-      <publishTime>10/16/2017 00:12:36</publishTime>
+      <publishTime>10/17/2017 15:29:26</publishTime>
     </File>
     <File Include="refs/Microsoft.CSharp.dll">
       <publishTime>06/12/2016 18:13:10</publishTime>
@@ -896,7 +896,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/15/2017 14:47:47</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>09/11/2017 22:04:39</publishTime>
+      <publishTime>10/16/2017 00:56:41</publishTime>
     </File>
     <File Include="Views/Home/ToBeDeleteIndex.cshtml">
       <publishTime>10/11/2017 15:41:15</publishTime>
@@ -932,7 +932,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/16/2017 22:37:05</publishTime>
     </File>
     <File Include="Views/MemberHats/Index.cshtml">
-      <publishTime>10/14/2017 03:14:08</publishTime>
+      <publishTime>10/17/2017 14:00:59</publishTime>
     </File>
     <File Include="Views/MemberHats/ToBeDeletedCategory.cshtml">
       <publishTime>10/12/2017 11:41:02</publishTime>
@@ -950,22 +950,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/17/2017 12:13:03</publishTime>
     </File>
     <File Include="Views/MemberOrders/Index.cshtml">
-      <publishTime>10/14/2017 04:19:59</publishTime>
+      <publishTime>10/17/2017 00:33:16</publishTime>
     </File>
     <File Include="Views/MemberOrders/OrderDetail.cshtml">
       <publishTime>10/15/2017 16:50:44</publishTime>
     </File>
     <File Include="Views/MemberOrders/OrderSubmited.cshtml">
-      <publishTime>10/13/2017 15:25:04</publishTime>
+      <publishTime>10/17/2017 11:43:37</publishTime>
     </File>
     <File Include="Views/MemberOrders/Purchased.cshtml">
       <publishTime>09/21/2017 23:41:46</publishTime>
     </File>
     <File Include="Views/MemberOrders/ShoppingBag.cshtml">
-      <publishTime>10/13/2017 16:59:09</publishTime>
+      <publishTime>10/17/2017 11:43:17</publishTime>
     </File>
     <File Include="Views/MemberOrders/ShoppingBagIsEmpty.cshtml">
-      <publishTime>10/13/2017 15:31:49</publishTime>
+      <publishTime>10/17/2017 11:15:16</publishTime>
     </File>
     <File Include="Views/MemberOrders/Submited.cshtml">
       <publishTime>09/21/2017 13:47:40</publishTime>
@@ -1019,7 +1019,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/14/2017 21:43:11</publishTime>
     </File>
     <File Include="Views/Shared/Components/Recipient/Default.cshtml">
-      <publishTime>10/13/2017 15:19:18</publishTime>
+      <publishTime>10/16/2017 23:43:24</publishTime>
     </File>
     <File Include="Views/Shared/Components/Recipient/Edit.cshtml">
       <publishTime>09/20/2017 16:45:47</publishTime>
@@ -1037,7 +1037,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/14/2017 02:33:22</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>10/12/2017 20:10:41</publishTime>
+      <publishTime>10/16/2017 17:42:29</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>10/15/2017 14:55:38</publishTime>
@@ -1067,7 +1067,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/11/2017 22:04:39</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>10/16/2017 00:12:37</publishTime>
+      <publishTime>10/17/2017 15:29:28</publishTime>
     </File>
     <File Include="wwwroot/.DS_Store">
       <publishTime>10/10/2017 14:02:11</publishTime>
@@ -1205,13 +1205,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/10/2017 14:04:45</publishTime>
     </File>
     <File Include="wwwroot/css/MyCss.css">
-      <publishTime>10/14/2017 03:09:27</publishTime>
+      <publishTime>10/17/2017 14:50:41</publishTime>
     </File>
     <File Include="wwwroot/css/site.css">
-      <publishTime>10/12/2017 17:16:21</publishTime>
+      <publishTime>10/17/2017 14:50:28</publishTime>
     </File>
     <File Include="wwwroot/css/site.min.css">
-      <publishTime>10/16/2017 00:12:30</publishTime>
+      <publishTime>10/17/2017 15:29:19</publishTime>
     </File>
     <File Include="wwwroot/favicon.ico">
       <publishTime>09/11/2017 22:04:39</publishTime>
@@ -1256,121 +1256,172 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/17/2017 11:56:34</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636432545230789825.jpg">
-      <publishTime>10/10/2017 17:48:43</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636432547615372287.jpg">
-      <publishTime>10/10/2017 17:52:41</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636432550186957102.jpg">
-      <publishTime>10/10/2017 17:56:58</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636432550920488666.jpg">
-      <publishTime>10/10/2017 17:58:12</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636432551611777637.jpg">
-      <publishTime>10/10/2017 17:59:21</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636433237296254769.jpg">
-      <publishTime>10/11/2017 13:02:09</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636433238251981690.jpg">
-      <publishTime>10/11/2017 13:03:45</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636433239043852623.jpg">
-      <publishTime>10/11/2017 13:05:04</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636433239889898066.jpg">
-      <publishTime>10/11/2017 13:06:28</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636433240606488596.jpg">
-      <publishTime>10/11/2017 13:07:40</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636433241053253428.jpg">
-      <publishTime>10/11/2017 13:08:25</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636433323659854876.jpeg">
-      <publishTime>10/11/2017 15:26:05</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636433323955949887.jpeg">
-      <publishTime>10/11/2017 15:26:35</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636433324267278112.jpeg">
-      <publishTime>10/11/2017 15:27:06</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636433325561167338.jpg">
-      <publishTime>10/11/2017 15:29:16</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636433330682802531.jpg">
-      <publishTime>10/11/2017 15:37:48</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636433330983128445.jpg">
-      <publishTime>10/11/2017 15:38:18</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436144734885025.jpg">
-      <publishTime>10/14/2017 21:47:53</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436192950695673.png">
-      <publishTime>10/14/2017 23:08:15</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436193700815791.jpg">
-      <publishTime>10/14/2017 23:09:30</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436198069749736.jpg">
-      <publishTime>10/14/2017 23:16:46</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436199821927573.jpg">
-      <publishTime>10/14/2017 23:19:42</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436199947564613.jpg">
-      <publishTime>10/14/2017 23:19:54</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436202780014972.jpg">
-      <publishTime>10/14/2017 23:24:38</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436207979493292.jpg">
-      <publishTime>10/14/2017 23:33:17</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436209395469651.jpg">
-      <publishTime>10/14/2017 23:35:39</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436211475391763.jpg">
-      <publishTime>10/14/2017 23:39:07</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436213687545464.jpg">
-      <publishTime>10/14/2017 23:42:48</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436214202294568.png">
-      <publishTime>10/14/2017 23:43:40</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436214351871500.jpg">
-      <publishTime>10/14/2017 23:43:55</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436218213966799.jpg">
-      <publishTime>10/14/2017 23:50:21</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436220206540632.jpg">
-      <publishTime>10/14/2017 23:53:40</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436220742881717.jpg">
-      <publishTime>10/14/2017 23:54:34</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436223653132586.jpg">
-      <publishTime>10/14/2017 23:59:25</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436225663849489.jpg">
-      <publishTime>10/15/2017 00:02:46</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436227229858441.jpg">
-      <publishTime>10/15/2017 00:05:23</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436229465761784.jpg">
-      <publishTime>10/15/2017 00:09:06</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436229639321010.png">
-      <publishTime>10/15/2017 00:09:23</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
     </File>
     <File Include="wwwroot/images/hats/636436841938788181.png">
-      <publishTime>10/15/2017 17:09:53</publishTime>
+      <publishTime>10/17/2017 00:38:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436981602669367.jpg">
+      <publishTime>10/17/2017 00:38:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636436981727989014.jpg">
+      <publishTime>10/17/2017 00:38:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636437826820641685.jpg">
+      <publishTime>10/17/2017 00:38:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636438352379846923.jpg">
+      <publishTime>10/17/2017 11:07:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636438352548826626.jpg">
+      <publishTime>10/17/2017 11:07:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636438352652022579.jpg">
+      <publishTime>10/17/2017 11:07:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636438352760208753.jpg">
+      <publishTime>10/17/2017 11:07:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636438352886356044.jpg">
+      <publishTime>10/17/2017 11:08:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636438353054305555.jpg">
+      <publishTime>10/17/2017 11:08:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636438353199633910.jpg">
+      <publishTime>10/17/2017 11:08:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636438353483490200.jpg">
+      <publishTime>10/17/2017 11:09:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636438353651149791.jpg">
+      <publishTime>10/17/2017 11:09:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636438353877222707.jpeg">
+      <publishTime>10/17/2017 11:09:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636438354006770139.jpeg">
+      <publishTime>10/17/2017 11:10:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636438354104455685.jpg">
+      <publishTime>10/17/2017 11:10:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636438354351409949.jpg">
+      <publishTime>10/17/2017 11:10:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/hats/636438354566072172.jpeg">
+      <publishTime>10/17/2017 11:10:00</publishTime>
     </File>
     <File Include="wwwroot/images/logos/.DS_Store">
       <publishTime>10/10/2017 17:08:15</publishTime>
@@ -1397,7 +1448,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/12/2017 16:33:30</publishTime>
     </File>
     <File Include="wwwroot/js/site.min.js">
-      <publishTime>10/16/2017 00:12:30</publishTime>
+      <publishTime>10/17/2017 15:29:20</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/.bower.json">
       <publishTime>09/11/2017 22:04:39</publishTime>

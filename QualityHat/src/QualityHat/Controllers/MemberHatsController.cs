@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using QualityHat.Data;
 using QualityHat.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace QualityHat.Controllers
 {
@@ -16,11 +17,13 @@ namespace QualityHat.Controllers
     public class MemberHatsController : Controller
     {
         private readonly ApplicationDbContext _context;
+		private UserManager<ApplicationUser> _userManager;
 
-        public MemberHatsController(ApplicationDbContext context)
+		public MemberHatsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
-        }
+            _context = context;
+			_userManager = userManager;
+		}
 
         // GET: MemberHats
         public async Task<IActionResult> Index(int? id, string currentFilter, string searchString, int? page)
@@ -42,13 +45,18 @@ namespace QualityHat.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                hats = hats.Where(h => h.Name.Contains(searchString) || h.Disc.Contains(searchString));
+				ViewData["Category"] = "Search Results";
+				hats = hats.Where(h => h.Name.Contains(searchString) || h.Disc.Contains(searchString));
             } else {
                 if (id == null){
-                    hats = _context.Hats.Include(h => h.Category).Include(h => h.Supplier);
+					ViewData["Category"] = "All Hats";
+					hats = _context.Hats.Include(h => h.Category).Include(h => h.Supplier);
                 } else {
                     hats = _context.Hats.Where(h => h.CategoryID == id).Include(h => h.Category).Include(h => h.Supplier);
-                }
+					//Category category = new Category { };
+					var category = _context.Categorys.SingleOrDefault(m => m.CategoryID == id).Name;
+					ViewData["Category"] = category;
+				}
             }
 
             int pageSize = 6;

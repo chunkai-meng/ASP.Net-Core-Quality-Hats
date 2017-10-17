@@ -10,7 +10,8 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-xs-6 col-md-9">
-        <select onchange="location.href='/Recipients/SetDefault?id=' + this.value;" class="form-control">
+		  @*To fix the tricky Domain Problem*@
+        <select onchange="location.href='/mengc06/asp_assignment/Recipients/SetDefault?id=' + this.value;" class="form-control">
           <option>Please select a recipient</option>
           @foreach (var item in Model.Recipients)
           {

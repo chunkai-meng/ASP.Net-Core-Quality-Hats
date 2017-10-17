@@ -94,7 +94,9 @@
                 $@Html.DisplayFor(modelItem => item.Total)
             </td>
             <td>
-                <a href="/MemberOrders/OrderDetail/@Html.DisplayFor(modelItem => item.OrderId)">Detail</a>
+				@*Fix tricky Domain Problem*@
+				@*<a href="/MemberOrders/OrderDetail/@Html.DisplayFor(modelItem => item.OrderId)">Detail</a>*@
+                <a href="/mengc06/asp_assignment/MemberOrders/OrderDetail/@Html.DisplayFor(modelItem => item.OrderId)">Detail</a>
             </td>
         </tr>
 }
