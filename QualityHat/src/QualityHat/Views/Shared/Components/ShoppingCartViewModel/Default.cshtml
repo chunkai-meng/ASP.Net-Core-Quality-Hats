@@ -33,7 +33,7 @@
 			{
 				<div class="row">
 					<div class="col-sm-4 col-md-3">
-						<a asp-action="Details" asp-route-id="@item.Hat.HatID">@item.Hat.Name</a>
+						@item.Hat.Name
 					</div>
 					<div class="col-sm-2 col-md-2">@item.Count
 						<a asp-action="RemoveFromCart" asp-controller="ShoppingCart" asp-route-id="@item.Hat.HatID">
@@ -70,10 +70,10 @@
 			}
 <hr />
 <div class="row">
-	<div class="col-sm-6" align="left">
+	<div class="col-sm-6 col-xs-6" align="left">
 		<form asp-action="EmptyCart" asp-controller="ShoppingCart"><button class="btn btn-default btn-sm">Clear Cart</button></form>
 	</div>
-	<div class="col-sm-6" align="right">
+	<div class="col-sm-6 col-xs-6" align="right">
 		<form asp-action="AddToBag" asp-controller="MemberOrders"><button class="btn btn-primary btn-sm">Add to Bag</button></form>
 	</div>
 </div>

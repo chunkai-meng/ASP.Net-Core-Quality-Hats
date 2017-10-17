@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace QualityHat.Models
 {
-    [Authorize(Roles = "Admin, Member")]
+    [Authorize(Roles = "Admin")]
     public class OrdersController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -45,7 +45,7 @@ namespace QualityHat.Models
 
 
 		// GET: Orders/Create
-		[Authorize(Roles = "Member")]
+		[Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -54,7 +54,7 @@ namespace QualityHat.Models
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-        [Authorize(Roles = "Member")]
+        [Authorize(Roles = "Admin")]
 		public async Task<IActionResult> Create([Bind("City,Country,FirstName,LastName,Phone,PostalCode,State")]Order order)
 		{
 			ApplicationUser user = await _userManager.GetUserAsync(User);
