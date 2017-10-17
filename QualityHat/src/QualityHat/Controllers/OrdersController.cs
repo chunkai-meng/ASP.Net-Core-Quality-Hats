@@ -39,12 +39,13 @@ namespace QualityHat.Models
 				new SelectListItem {Text = "Shipped", Value = "4"},
 				new SelectListItem {Text = "Delivered", Value = "5"}
 			};
-			return View(await _context.Orders.Include(i => i.User).AsNoTracking().Where(m => m.OrderStatus != 0).ToListAsync());
+			//return View(await _context.Orders.Include(i => i.User).AsNoTracking().Where(m => m.OrderStatus != 0).ToListAsync());
+			return View(await _context.Orders.Include(i => i.User).AsNoTracking().ToListAsync());
 		}
 
 
-        // GET: Orders/Create
-        [Authorize(Roles = "Member")]
+		// GET: Orders/Create
+		[Authorize(Roles = "Member")]
         public IActionResult Create()
         {
             return View();

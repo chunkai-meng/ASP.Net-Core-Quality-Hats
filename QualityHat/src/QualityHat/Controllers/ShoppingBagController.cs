@@ -57,15 +57,20 @@ namespace QualityHat.Controllers
 			}
 
 			ApplicationUser user = await _userManager.GetUserAsync(User);
-			var orderToUpdate = await _context.Orders.SingleOrDefaultAsync(m => m.User == user && m.OrderStatus == 0);
+			var orderToUpdate = await _context.Orders.AsNoTracking().SingleOrDefaultAsync(m => m.User == user && m.OrderStatus == 0);
 			// orderToUpdate.Total = Order.GetUserTotalPrice(user, _context);
 			decimal t = Order.GetUserTotalPrice(user, _context);
-			decimal gst = 0.15m * t;
-			decimal total = t + gst;
-			orderToUpdate.GST = gst;
-			orderToUpdate.Total = total;
-			await _context.SaveChangesAsync();
-
+			if (t == 0)
+			{
+				Order.DeleteOrder(orderToUpdate.OrderId, _context);
+			} else
+			{
+				decimal gst = 0.15m * t;
+				decimal total = t + gst;
+				orderToUpdate.GST = gst;
+				orderToUpdate.Total = total;
+				await _context.SaveChangesAsync();
+			}
 
 			return Redirect(Request.Headers["Referer"].ToString());
 		}

@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     var s = "";
+    var i = "";
 }
 
 <h2>Orders List</h2>
@@ -54,9 +55,7 @@
                 <!-- <select asp-items="@ViewBag.OrderStatus" class="form-control"></select> -->
                 @Html.DisplayFor(modelItem => item.OrderStatus)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName), @Html.DisplayFor(modelItem => item.LastName)
-            </td>
+            <td>@i @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</td>
             <td>
                 @Html.DisplayFor(modelItem => item.Phone)
             </td>

@@ -139,7 +139,7 @@ namespace QualityHat.Controllers
 					PostalCode = "",
 					State = "",
 					User = user,
-					FirstName = "",
+					FirstName = "To be decided",
 					LastName = "",
 					Total = 0,
 					OrderStatus = 0

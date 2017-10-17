@@ -11,7 +11,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.json">
-      <publishTime>10/17/2017 13:37:28</publishTime>
+      <publishTime>10/17/2017 17:21:07</publishTime>
     </File>
     <File Include="BouncyCastle.Crypto.dll">
       <publishTime>08/17/2017 18:20:54</publishTime>
@@ -278,16 +278,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/14/2016 18:06:14</publishTime>
     </File>
     <File Include="QualityHat.deps.json">
-      <publishTime>10/17/2017 15:29:26</publishTime>
+      <publishTime>10/17/2017 18:04:27</publishTime>
     </File>
     <File Include="QualityHat.dll">
-      <publishTime>10/17/2017 15:29:12</publishTime>
+      <publishTime>10/17/2017 17:21:18</publishTime>
     </File>
     <File Include="QualityHat.pdb">
-      <publishTime>10/17/2017 15:29:12</publishTime>
+      <publishTime>10/17/2017 17:21:18</publishTime>
     </File>
     <File Include="QualityHat.runtimeconfig.json">
-      <publishTime>10/17/2017 15:29:26</publishTime>
+      <publishTime>10/17/2017 18:04:28</publishTime>
     </File>
     <File Include="refs/Microsoft.CSharp.dll">
       <publishTime>06/12/2016 18:13:10</publishTime>
@@ -845,7 +845,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/11/2017 22:04:39</publishTime>
     </File>
     <File Include="Views/AdminApplicationUsers/Create.cshtml">
-      <publishTime>09/11/2017 22:04:39</publishTime>
+      <publishTime>10/17/2017 18:00:28</publishTime>
     </File>
     <File Include="Views/AdminApplicationUsers/Delete.cshtml">
       <publishTime>09/11/2017 22:04:39</publishTime>
@@ -857,7 +857,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/15/2017 01:13:19</publishTime>
     </File>
     <File Include="Views/AdminApplicationUsers/Index.cshtml">
-      <publishTime>10/15/2017 00:57:13</publishTime>
+      <publishTime>10/17/2017 18:03:46</publishTime>
     </File>
     <File Include="Views/Categories/Create.cshtml">
       <publishTime>09/12/2017 21:38:29</publishTime>
@@ -995,7 +995,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/14/2017 04:18:01</publishTime>
     </File>
     <File Include="Views/Orders/Index.cshtml">
-      <publishTime>10/14/2017 04:56:04</publishTime>
+      <publishTime>10/17/2017 17:09:40</publishTime>
     </File>
     <File Include="Views/Orders/Purchased.cshtml">
       <publishTime>09/16/2017 20:50:12</publishTime>
@@ -1067,7 +1067,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/11/2017 22:04:39</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>10/17/2017 15:29:28</publishTime>
+      <publishTime>10/17/2017 18:04:31</publishTime>
     </File>
     <File Include="wwwroot/.DS_Store">
       <publishTime>10/10/2017 14:02:11</publishTime>
@@ -1211,7 +1211,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2017 14:50:28</publishTime>
     </File>
     <File Include="wwwroot/css/site.min.css">
-      <publishTime>10/17/2017 15:29:19</publishTime>
+      <publishTime>10/17/2017 18:04:18</publishTime>
     </File>
     <File Include="wwwroot/favicon.ico">
       <publishTime>09/11/2017 22:04:39</publishTime>
@@ -1448,7 +1448,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/12/2017 16:33:30</publishTime>
     </File>
     <File Include="wwwroot/js/site.min.js">
-      <publishTime>10/17/2017 15:29:20</publishTime>
+      <publishTime>10/17/2017 18:04:19</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/.bower.json">
       <publishTime>09/11/2017 22:04:39</publishTime>
