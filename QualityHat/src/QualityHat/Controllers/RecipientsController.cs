@@ -33,7 +33,7 @@ namespace QualityHat.Controllers
 		{
 			if (id == null)
 			{
-				return NotFound();
+				return View("NotFound");
 			}
 			ApplicationUser user = await _userManager.GetUserAsync(User);
 			var defaultRecipient = _context.Recipient.AsNoTracking().SingleOrDefault(r => r.RecipientId == id);
@@ -71,7 +71,7 @@ namespace QualityHat.Controllers
 			{
 				if (!RecipientExists(defaultRecipient.RecipientId))
 				{
-					return NotFound();
+					return View("NotFound");
 				}
 				else
 				{
@@ -91,13 +91,13 @@ namespace QualityHat.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             var recipient = await _context.Recipient.SingleOrDefaultAsync(m => m.RecipientId == id);
             if (recipient == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             return View(recipient);
@@ -132,13 +132,13 @@ namespace QualityHat.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             var recipient = await _context.Recipient.SingleOrDefaultAsync(m => m.RecipientId == id);
             if (recipient == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
             return View(recipient);
         }
@@ -152,7 +152,7 @@ namespace QualityHat.Controllers
         {
             if (id != recipient.RecipientId)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             if (ModelState.IsValid)
@@ -166,7 +166,7 @@ namespace QualityHat.Controllers
                 {
                     if (!RecipientExists(recipient.RecipientId))
                     {
-                        return NotFound();
+                        return View("NotFound");
                     }
                     else
                     {
@@ -183,13 +183,13 @@ namespace QualityHat.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             var recipient = await _context.Recipient.SingleOrDefaultAsync(m => m.RecipientId == id);
             if (recipient == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             return View(recipient);

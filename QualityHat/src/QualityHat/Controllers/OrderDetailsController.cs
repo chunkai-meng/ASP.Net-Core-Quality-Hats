@@ -30,13 +30,13 @@ namespace QualityHat.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             var orderDetail = await _context.OrderDetail.SingleOrDefaultAsync(m => m.OrderDetailId == id);
             if (orderDetail == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             return View(orderDetail);
@@ -69,13 +69,13 @@ namespace QualityHat.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             var orderDetail = await _context.OrderDetail.SingleOrDefaultAsync(m => m.OrderDetailId == id);
             if (orderDetail == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
             return View(orderDetail);
         }
@@ -89,7 +89,7 @@ namespace QualityHat.Controllers
         {
             if (id != orderDetail.OrderDetailId)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             if (ModelState.IsValid)
@@ -103,7 +103,7 @@ namespace QualityHat.Controllers
                 {
                     if (!OrderDetailExists(orderDetail.OrderDetailId))
                     {
-                        return NotFound();
+                        return View("NotFound");
                     }
                     else
                     {
@@ -120,13 +120,13 @@ namespace QualityHat.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             var orderDetail = await _context.OrderDetail.SingleOrDefaultAsync(m => m.OrderDetailId == id);
             if (orderDetail == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             return View(orderDetail);

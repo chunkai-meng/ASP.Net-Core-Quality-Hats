@@ -27,7 +27,7 @@ namespace QualityHat.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             // var category = await _context.Categorys.SingleOrDefaultAsync(m => m.CategoryID == id);
@@ -36,7 +36,7 @@ namespace QualityHat.Controllers
             
             if (category == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             return View(category);

@@ -39,13 +39,13 @@ namespace QualityHat.Controllers
 		{
 			if (id == null)
 			{
-				return NotFound();
+				return View("NotFound");
 			}
 			IEnumerable<ApplicationUser> members = ReturnAllMembers().Result;
 			ApplicationUser member = (ApplicationUser)members.Single(u => u.Id == id);
 			if (member == null)
 			{
-				return NotFound();
+				return View("NotFound");
 			}
 			member.Enabled = !member.Enabled;
 			_context.Update(member);
@@ -59,13 +59,13 @@ namespace QualityHat.Controllers
 		{
 		    if (id == null)
 		    {
-		        return NotFound();
+		        return View("NotFound");
 		    }
 
 		    var applicationUser = await _context.ApplicationUser.SingleOrDefaultAsync(m => m.Id == id);
 		    if (applicationUser == null)
 		    {
-		        return NotFound();
+		        return View("NotFound");
 		    }
 
 		    return View(applicationUser);
@@ -98,13 +98,13 @@ namespace QualityHat.Controllers
 		{
 		    if (id == null)
 		    {
-		        return NotFound();
+		        return View("NotFound");
 		    }
 
 		    var applicationUser = await _context.ApplicationUser.SingleOrDefaultAsync(m => m.Id == id);
 		    if (applicationUser == null)
 		    {
-		        return NotFound();
+		        return View("NotFound");
 		    }
 		    return View(applicationUser);
 		}
@@ -118,7 +118,7 @@ namespace QualityHat.Controllers
 		{
 		    if (id != applicationUser.Id)
 		    {
-		        return NotFound();
+		        return View("NotFound");
 		    }
 
 		    if (ModelState.IsValid)
@@ -132,7 +132,7 @@ namespace QualityHat.Controllers
 		        {
 		            if (!ApplicationUserExists(applicationUser.Id))
 		            {
-		                return NotFound();
+		                return View("NotFound");
 		            }
 		            else
 		            {
@@ -149,13 +149,13 @@ namespace QualityHat.Controllers
 		{
 		    if (id == null)
 		    {
-		        return NotFound();
+		        return View("NotFound");
 		    }
 
 		    var applicationUser = await _context.ApplicationUser.SingleOrDefaultAsync(m => m.Id == id);
 		    if (applicationUser == null)
 		    {
-		        return NotFound();
+		        return View("NotFound");
 		    }
 
 		    return View(applicationUser);

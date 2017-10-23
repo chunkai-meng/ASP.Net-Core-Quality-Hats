@@ -32,7 +32,7 @@ namespace QualityHat.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             var supplier = await _context.Suppliers
@@ -41,7 +41,7 @@ namespace QualityHat.Controllers
 				.SingleOrDefaultAsync(m => m.SupplierID == id);
             if (supplier == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             return View(supplier);
@@ -84,13 +84,13 @@ namespace QualityHat.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             var supplier = await _context.Suppliers.SingleOrDefaultAsync(m => m.SupplierID == id);
             if (supplier == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
             return View(supplier);
         }
@@ -104,7 +104,7 @@ namespace QualityHat.Controllers
         {
             if (id != supplier.SupplierID)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             if (ModelState.IsValid)
@@ -118,7 +118,7 @@ namespace QualityHat.Controllers
                 {
                     if (!SupplierExists(supplier.SupplierID))
                     {
-                        return NotFound();
+                        return View("NotFound");
                     }
                     else
                     {
@@ -135,13 +135,13 @@ namespace QualityHat.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             var supplier = await _context.Suppliers.SingleOrDefaultAsync(m => m.SupplierID == id);
             if (supplier == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             return View(supplier);
@@ -154,8 +154,17 @@ namespace QualityHat.Controllers
         {
             var supplier = await _context.Suppliers.SingleOrDefaultAsync(m => m.SupplierID == id);
             _context.Suppliers.Remove(supplier);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+
+			try
+			{
+				await _context.SaveChangesAsync();
+			}
+			catch (DbUpdateException)
+			{
+				TempData["SupplierUsed"] = "The Supplier being deleted has been used in previous orders.Delete those orders before trying again.";
+				return RedirectToAction("Delete");
+			}
+			return RedirectToAction("Index");
         }
 
         private bool SupplierExists(int id)

@@ -106,13 +106,13 @@ namespace QualityHat.Models
 		{
 			if (id == null)
 			{
-				return NotFound();
+				return View("NotFound");
 			}
 
 			var order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
 			if (order == null)
 			{
-				return NotFound();
+				return View("NotFound");
 			}
 
 			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
@@ -129,13 +129,13 @@ namespace QualityHat.Models
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
             if (order == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
             ViewBag.OrderStatus = new List<SelectListItem>
 			{
@@ -159,14 +159,14 @@ namespace QualityHat.Models
         {
            if (id != order.OrderId)
            {
-               return NotFound();
+               return View("NotFound");
            }
 
 			ApplicationUser user = await _userManager.GetUserAsync(User);
 			var orderToUpdate = await _context.Orders.SingleOrDefaultAsync(o => o.OrderId == id);
             if (orderToUpdate == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
            if (ModelState.IsValid)
@@ -205,7 +205,7 @@ namespace QualityHat.Models
                {
                    if (!OrderExists(order.OrderId))
                    {
-                       return NotFound();
+                       return View("NotFound");
                    }
                    else
                    {
@@ -223,7 +223,7 @@ namespace QualityHat.Models
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
 			//var order = await _context.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
@@ -231,7 +231,7 @@ namespace QualityHat.Models
 
 			if (order == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
 			var details = _context.OrderDetail.Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();

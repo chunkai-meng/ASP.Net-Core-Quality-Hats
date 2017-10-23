@@ -28,7 +28,7 @@ namespace QualityHat.Models
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             // var category = await _context.Categorys.SingleOrDefaultAsync(m => m.CategoryID == id);
@@ -37,7 +37,7 @@ namespace QualityHat.Models
             
             if (category == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             return View(category);
@@ -70,13 +70,13 @@ namespace QualityHat.Models
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             var category = await _context.Categorys.SingleOrDefaultAsync(m => m.CategoryID == id);
             if (category == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
             return View(category);
         }
@@ -90,7 +90,7 @@ namespace QualityHat.Models
         {
             if (id != category.CategoryID)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             if (ModelState.IsValid)
@@ -104,7 +104,7 @@ namespace QualityHat.Models
                 {
                     if (!CategoryExists(category.CategoryID))
                     {
-                        return NotFound();
+                        return View("NotFound");
                     }
                     else
                     {
@@ -121,13 +121,13 @@ namespace QualityHat.Models
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             var category = await _context.Categorys.SingleOrDefaultAsync(m => m.CategoryID == id);
             if (category == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             return View(category);
@@ -140,8 +140,19 @@ namespace QualityHat.Models
         {
             var category = await _context.Categorys.SingleOrDefaultAsync(m => m.CategoryID == id);
             _context.Categorys.Remove(category);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+
+			try
+			{
+				await _context.SaveChangesAsync();
+			}
+			catch (DbUpdateException)
+			{
+				TempData["CategoryUsed"] = "The Categories being deleted has been used in previous Orders. Delete those Orders before trying again.";
+				return RedirectToAction("Delete");
+			}
+
+
+			return RedirectToAction("Index");
         }
 
         private bool CategoryExists(int id)

@@ -68,13 +68,13 @@ namespace QualityHat.Controllers
         //{
         //    if (id == null)
         //    {
-        //        return NotFound();
+        //        return View("NotFound");
         //    }
 
         //    var hat = await _context.Hats.SingleOrDefaultAsync(m => m.HatID == id);
         //    if (hat == null)
         //    {
-        //        return NotFound();
+        //        return View("NotFound");
         //    }
 
         //    return View(hat);
@@ -111,13 +111,13 @@ namespace QualityHat.Controllers
         //{
         //    if (id == null)
         //    {
-        //        return NotFound();
+        //        return View("NotFound");
         //    }
 
         //    var hat = await _context.Hats.SingleOrDefaultAsync(m => m.HatID == id);
         //    if (hat == null)
         //    {
-        //        return NotFound();
+        //        return View("NotFound");
         //    }
         //    ViewData["CategoryID"] = new SelectList(_context.Categorys, "CategoryID", "Name", hat.CategoryID);
         //    ViewData["SupplierID"] = new SelectList(_context.Suppliers, "SupplierID", "Email", hat.SupplierID);
@@ -133,7 +133,7 @@ namespace QualityHat.Controllers
         //{
         //    if (id != hat.HatID)
         //    {
-        //        return NotFound();
+        //        return View("NotFound");
         //    }
 
         //    if (ModelState.IsValid)
@@ -147,7 +147,7 @@ namespace QualityHat.Controllers
         //        {
         //            if (!HatExists(hat.HatID))
         //            {
-        //                return NotFound();
+        //                return View("NotFound");
         //            }
         //            else
         //            {
@@ -166,13 +166,13 @@ namespace QualityHat.Controllers
         //{
         //    if (id == null)
         //    {
-        //        return NotFound();
+        //        return View("NotFound");
         //    }
 
         //    var hat = await _context.Hats.SingleOrDefaultAsync(m => m.HatID == id);
         //    if (hat == null)
         //    {
-        //        return NotFound();
+        //        return View("NotFound");
         //    }
 
         //    return View(hat);
@@ -199,7 +199,7 @@ namespace QualityHat.Controllers
 		{
 			if (id == null)
 			{
-				return NotFound();
+				return View("NotFound");
 			}
 
 			// var category = await _context.Categorys.SingleOrDefaultAsync(m => m.CategoryID == id);
@@ -208,7 +208,7 @@ namespace QualityHat.Controllers
 
 			if (category == null)
 			{
-				return NotFound();
+				return View("NotFound");
 			}
 
 			return View(category);

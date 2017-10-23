@@ -39,14 +39,14 @@ namespace QualityHat.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
 			ApplicationUser user = await _userManager.GetUserAsync(User);
 			var order = await _context.Orders.SingleOrDefaultAsync(o => o.User.Id == user.Id && o.OrderId == id);
             if (order == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 			ViewBag.OrderStatus = new List<SelectListItem>
 			{
@@ -238,14 +238,14 @@ namespace QualityHat.Controllers
 			ApplicationUser user = await _userManager.GetUserAsync(User);
 			if (id == null)
 			{
-				return NotFound();
+				return View("NotFound");
 			}
 
 			var order = await _context.Orders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.OrderId == id);
 
 			if (order == null)
 			{
-				return NotFound();
+				return View("NotFound");
 			}
 
 			var details = _context.OrderDetail.AsNoTracking().Where(detail => detail.Order.OrderId == order.OrderId).Include(detail => detail.Hat).ToList();
@@ -266,7 +266,7 @@ namespace QualityHat.Controllers
 			var order = await _context.Orders.SingleOrDefaultAsync(o => o.User.Id == user.Id && o.OrderId == id);
 			if (order == null)
 			{
-				return NotFound();
+				return View("NotFound");
 			}
 
 			var orderDetails = _context.OrderDetail.AsNoTracking().Where(d => d.Order.OrderId == id);
@@ -335,7 +335,7 @@ namespace QualityHat.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
 			ApplicationUser user = await _userManager.GetUserAsync(User);
